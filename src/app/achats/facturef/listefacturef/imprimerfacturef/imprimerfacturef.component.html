@@ -1,0 +1,44 @@
+<div >
+    
+    <div class="page-head2"id='sectionAimprimer'>
+        <h1 class="radio1 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">LES FACTURES FOURNISSEURS </b></a></h1>
+       <br>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Num facture </th>
+            <th >Date facture</th>
+            <th >Declaration</th>
+            <th >Fournisseur </th>
+            <th >Montant HT </th>
+            <th >Montant TVA</th>
+            <th >Montant TTC</th>
+            <th >Etat paiements</th>
+            
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let document of documents">
+       
+        <tr *ngIf="document.type == 12 ">
+          <td >{{document.num}}</td>
+          <td >{{document.date}}</td>
+          <td >{{document.date_dec}}</td>
+          <td >{{document.fournisseur_id}}</td>
+          <td >{{lignedocument.prix}}</td>
+          <td >0.000 (a verifier mnin njibo)</td>
+          <td >0.000 (a verifier mnin njibo)</td>
+          <td >{{document.etat_pay}}</td>
+          
+</tr> 
+     
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

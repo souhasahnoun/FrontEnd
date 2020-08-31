@@ -1,0 +1,35 @@
+<div>
+    <div class="page-head2" id="tblData">
+        <h1 class="radio41 f4"><b  class="f1">Historique</b>
+            <a href="javascript:Export('tblData','Historique')" class="radio11"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+
+        </h1>
+        <br>
+
+        <table class=" f4  t44 table-sm t88 table-bordered2 ">
+            <thead >
+                <tr> 
+                    <th>Date/Heure </th>
+                    <th>Responsable</th>
+                    <th >Action</th>
+                    <th >Source</th>
+                    
+                   
+                  </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tracabilite of tracabilites">
+                              
+                    <td>{{tracabilite.date}}{{tracabilite.time}}</td>    
+                    <td>{{tracabilite.login}}</td>
+                    <td>{{tracabilite.action}}</td>    
+                    <td>{{tracabilite.objet}}</td>  
+          
+
+                  </tr>
+          
+                
+            </tbody>
+        </table>
+    </div>
+</div>

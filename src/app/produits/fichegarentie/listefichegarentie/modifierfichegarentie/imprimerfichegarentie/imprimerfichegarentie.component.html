@@ -1,0 +1,37 @@
+<div >
+    
+    <div class="page-head2" id='sectionAimprimer' *ngIf="garentie.id" >
+        <table class="  t44 table-sm  table-bordered1  " >
+          <thead >
+    
+          <tr> 
+            <th ><a href="imprimerfichegarentie" class="p4"><b class="p88 radio03 f4">C</b><b class="p8 f4"> A R T H A G </b><b class="p88 f4">O</b> </a><br>
+                <p class="cc1 radio06 f4">I n f o r m a t i q u e</p></th>
+            <th ><a href="javascript:imprimer('sectionAimprimer')"><b class="tt2 f p4 f4">FICHE DE GARANTIE N°{{garentie.num}} </b></a></th>
+
+            
+            
+          </tr>
+        </thead>
+
+      </table>
+      <br><br><br>
+      <label class="tt3 radio511 p4" ><b>Responsable de garantie :</b>  {{garentie.login}} <b class="radio72">Date  : </b>{{garentie.date}}</label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Nom & prenom :</b>  <span class="radio111"> {{garentie.nom}}</span>  <b class="radio71">Tel : </b> {{garentie.tel}} </label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Piéces:</b>  <span class="radio111"> {{garentie.piece}}</span></label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Accessoires :</b>  <span class="radio111"> {{garentie.accessoire}}</span></label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Panne :</b>  <span class="radio111"> {{garentie.panne}}</span></label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Tâches efféctués :</b>  <span class="radio111"> {{garentie.tache}}</span></label>
+      <br>
+      <label class="tt3 radio511 p4"><b>Reçu par:</b>  <span class="radio111" > {{garentie.recu_par}}</span>  <b class="radio05">Prix : </b> {{garentie.prix}}</label>
+      <br>
+      <p class="radio055" id="example1">&nbsp;&nbsp;Signature Client</p>
+      
+      <br><br>
+      </div>
+</div>

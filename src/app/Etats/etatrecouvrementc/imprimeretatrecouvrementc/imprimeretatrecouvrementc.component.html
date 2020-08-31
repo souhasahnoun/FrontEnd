@@ -1,0 +1,145 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio004 f4 "><a href="javascript:imprimer('sectionAimprimer')"><b class="f1">ETAT RECOVREMENT BLS  & FACT CLT 
+         </b></a>
+            <a href="javascript:Export('tblData','ETAT RECOUVREMENT SUR BLS & FACTURES CLT')" class="radio1110"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+            <a href="javascript:exportTableToExcel('tblData','ETAT RECOUVREMENT SUR BLS & FACTURES CLIENT ')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+        <br>
+        <h4 class="radio31 f4">Date d'impression:{{myDate | date: 'mediumDate' }}</h4>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 " *ngFor="let document of documents" >
+          <thead >
+    
+          <tr class="thead3" *ngFor="let client of clients"> 
+            <th  colspan="8" *ngIf=" document.type == 7 && document.client_id == client.id">{{client.raison_social}} / {{client.tel}} / {{client.gsm}} - BLs</th>
+           
+            
+          </tr>
+          <tr class="tr3" *ngIf=" document.type == 7 ">
+            <th  rowspan="2">Nº BL</th>
+            <th  rowspan="2">Date BL</th>
+            <th  rowspan="2">Montant BL</th>
+            <th  colspan="3">Reglement</th>
+            <th  rowspan="2">Reste</th>
+            <th rowspan="2">Solde</th>
+           
+            
+  </tr> 
+         
+             <tr class="tr3" *ngIf=" document.type == 7 " >
+                 <th>Type</th>
+                 <th >Date</th>
+                 <th >Montant</th>
+               
+             </tr> 
+        </thead>
+        <tbody  >
+          <tr *ngIf=" document.type == 7 " >
+            <td >{{document.num}}</td>
+            <td >{{document.date}}</td>
+            <td >(mnin)</td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td >(mnin)</td>
+            <td >(mnin)</td>
+
+          </tr>
+          
+         
+          </tbody >
+          
+         <tbody class="tr3">
+          <tr class="thead3" *ngFor="let client of clients"> 
+            <th  colspan="8" *ngIf=" document.type == 10 && document.client_id == client.id">{{client.raison_social}} / {{client.tel}} / {{client.gsm}} - FACTURES</th>
+           
+            
+          </tr>
+        <tr *ngIf=" document.type == 10 ">
+          <th  rowspan="2">Nº Facture</th>
+          <th  rowspan="2">Date Facture</th>
+          <th  rowspan="2">Montant Facture</th>
+          <th  colspan="3">Reglement</th>
+          <th  rowspan="2">Reste</th>
+          <th rowspan="2">Solde</th>
+         
+          
+  </tr> 
+        <tr *ngIf=" document.type == 10 ">
+            <th>Type</th>
+            <th >Date</th>
+  
+            <th >Montant</th>
+  
+        </tr>
+      </tbody> 
+      <tr *ngIf=" document.type == 10 ">
+        <td >{{document.num}}</td>
+        <td >{{document.date}}</td>
+        <td >(mnin)</td>
+        <td ></td>
+        <td ></td>
+        <td ></td>
+        <td >(mnin)</td>
+        <td >(mnin)</td>
+
+      </tr> 
+         
+        
+         
+      </table>
+      
+     
+
+     <table class=" f4 t44 table-sm t88 table-bordered2 ">
+        <thead class="tr2">
+            <tr >
+                <th colspan="8" ><b class="radio5 tt2">TOTAL RECOUVREMENT CLIENT :&nbsp;&nbsp;&nbsp; 0.000</b></th>
+            </tr>
+        </thead>
+    </table>
+    <table class=" f4 t44 table-sm t88 table-bordered2">
+        <thead >
+  
+        <tr class="thead3"> 
+          <th class=" f5" colspan="8">RECAP. Recouvrement Client</th>
+         
+          
+        </tr>
+       
+      </thead>
+      <tbody>
+      <tr class="tr3">
+        <th  >Client</th>
+        <th  >Total BLs</th>
+        <th  >Total Factures</th>
+        <th  >Total</th>
+        
+       
+        
+</tr> 
+<tr>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td></td>
+   
+</tr> 
+      <tr class="tr3">
+          <th  colspan="3"><b>TOTAL RECOUVREMENT CLIENT</b>	</th>
+          
+
+          <th ><b>0.000</b></th>
+
+      </tr> 
+        
+        
+         
+        </tbody>
+    </table>
+      </div>
+      
+  
+</div>   

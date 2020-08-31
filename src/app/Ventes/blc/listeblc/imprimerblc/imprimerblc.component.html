@@ -1,0 +1,50 @@
+<div >
+    
+    <div class="page-head2" id='sectionAimprimer'>
+        <h1 class="radio511 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">LISTE DES BON DE LIVRAISON </b></a></h1>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Num BL</th>
+            <th >Date </th>
+            <th >Client</th>
+            <th >Montant TTC</th>
+            <th >Etat FACT.</th>
+            <th >Etat Paiement.</th>
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let document of documents">
+          <tr class="tr1" *ngFor="let client of clientss">
+            <th  colspan="8" *ngIf=" document.type == 7 && document.client_id == client.id">{{client.code_clt}}:{{client.raison_social}}</th>
+        </tr>
+        <tr  *ngIf="document.type == 7 ">
+          <td >{{document.num}}</td>
+          <td >{{document.date}}</td>
+          <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>             
+          <td >(champs calculable)</td>
+          <td ><a  class="radio11 img2 s7-repeat" ></a></td>
+          <td ><a  class="radio11 img2 s7-repeat" ></a></td>
+          
+</tr> 
+                  
+
+            
+          </tbody>
+       
+          <tr >
+            <td class=" tr1" colspan="3" ><b *ngIf="  document.client_id== client.id">TOTAL ({{client.raison_social}})</b></td>
+            <td class=" td12"><b >0.000 DT</b></td>
+            <td class=" td12"><b >0.000 DT</b></td>
+            <td class=" td13"><b >0.000 DT</b></td>
+          </tr> 
+          
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

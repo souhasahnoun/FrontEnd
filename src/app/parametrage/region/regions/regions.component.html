@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+      <h2>GESTION DES REGIONS</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a >Regions</a></li>
+        <li class="breadcrumb-item"><a href="/regions">Gestion des regions </a></li>
+      </ol>
+    </div>
+    <div class="main-content">
+      <div class="row">
+          
+        <div class="col-md-6">
+          <div class="card3">
+            <div class="card-header">
+              <h3>Ajouter region</h3>
+                  
+            </div>
+               
+            <div class="card-body">
+              <div>
+                
+                <div class="form-group radio2"> 
+                    
+                  <label for="libelle">Libéllé region</label>
+                  <input [(ngModel)]="region.libelle"  class="form-control label1" type="text" id="libelle" name="libelle"  placeholder="Enter libélé " required #libelle="ngModel" minlength="2" maxlength="20" pattern="[a-zA-Z ]*"/>
+                  <div *ngIf="libelle.invalid && (libelle.dirty || libelle.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="libelle.errors.required">
+                        Champs libelle est obligatoire.
+                      </div>
+                      <div *ngIf="libelle.errors.minlength">
+                        libelle doit comporter au moins 2 caractères.
+                      </div>
+                      <div *ngIf="libelle.errors.maxlength">
+                        libelle doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="libelle.errors.pattern">
+                        libelle doit être une chaîne.
+                      </div>
+                    </div>
+                </div>
+                
+                <br><br>
+                <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterR()">Enregistrer</button>
+                    <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>   
+                  
+              </div>
+            </div>
+          </div>
+           
+          <br>
+          <div class="card3">
+            <div class="card-header">
+              <h3>Liste des regions</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                
+          </div>
+                  
+          <br>
+          <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+                
+          <table class=" t2 table-sm  table-bordered ">
+                  
+            <thead class="thead1">
+              <tr>
+                <th>Libéllé</th>
+                <th>Action</th>
+      
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let region of regions | filter:term | orderBy:id ">
+                <td > {{region.libelle}}</td>
+                <td ><a  class="img2 s7-note" title="modifier" routerLink="/regions/{{region.id}}"></a>
+                  <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(region.id)"></a></td>
+      
+                     
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <nav aria-label="Page navigation example" class="radio45">
+            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(1)">First</a>
+              </li>
+              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+              </li>
+              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+              </li>
+              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+
+  
+

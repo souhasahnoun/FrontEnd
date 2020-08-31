@@ -1,0 +1,177 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>ETAT DE STOCKS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Stocks</a></li>
+          <li class="breadcrumb-item"><a href="/etatstock">Etat de stock</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+              
+                <h3>Chercher </h3>
+              </div>
+              
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                 
+                 <!-- <div class="form-group "> 
+                    <label for="code">Par code</label>
+                    <input class="form-control1 label3" type="text" id="code" name="code" [(ngModel)]="produit.code" #code="ngModel" >
+
+                  </div>
+                  <div class="form-group "> 
+                    <label for="designation">Par designation</label>
+                    <input class="form-control1 label3" type="text"  id="designation" name="designation" [(ngModel)]="produit.designation" #designation="ngModel" >
+
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="famille_id" >Famille</label>
+  
+                    <select  id="famille_id" name="famille_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.famille_id" #famille_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let famille of familles.controls; index as i"
+                        [value]="famille.value.id">{{famille.value.libelle}}
+                    </option>
+                    </select>
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="marque_id" >Marque</label>
+  
+                    <select  id="marque_id" name="marque_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.marque_id" #marque_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let marque of marques.controls; index as i"
+                        [value]="marque.value.id">{{marque.value.libelle}}
+                    </option>
+                    </select>
+                  </div>-->
+                  <div class="form-group  "> 
+                    <label for="produit_id" >Produit</label>
+  
+                    <select  id="produit_id" name="produit_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="stock.produit_id" #produit_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let produit of produits.controls; index as i"
+                        [value]="produit.value.id">{{produit.value.nom_prod}}
+                    </option>
+                    </select>
+                  </div>
+                  <div class="form-group "> 
+                    <label for="magasin_id">Par magasin</label>
+
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="stock.magasin_id" #magasin_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                  </div>
+                  
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                </form>
+                </div>
+              </div>
+           
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Etat de stock </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimeretatstock1" target="_blanc" class="img4 s7-print" title="imprimer"></a>
+              </div>
+                  
+                
+                
+                    <div class="card-body ">
+                     
+                      
+                      <a href="/imprimeretatstock2" target="_blanc"><button  class=" bb btn-primary" type="submit">IMP (Qte<0)</button></a>
+                      <a href="/imprimeretatstock3" target="_blanc"><button class="btn-primary" type="submit">IMP (Qte=0)</button></a>
+                      <a href="/imprimeretatstock4" target="_blanc"><button class="btn-primary" type="submit">IMP (Qte>0)</button></a>
+                      <a href="/imprimeretatstock5" target="_blanc"> <button class=" btn-primary" type="submit">IMP (Qte<=0)</button></a>
+                <table class=" t5 table-sm  table-bordered ">
+                  
+                  <thead class="thead1">
+                    <tr>
+                      
+                      <th>Réf Produit</th>
+                      <th>Code a barre</th>
+                      <th >Nom produit </th>
+                     
+                      <th >Qte en stock</th>
+                      <th >PU HT</th>
+                      <th >TOTAL HT</th> 
+                      <th >TOTAL TTC</th> 
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let stock of stocks" >
+                    <tr *ngFor="let produit of produitss">
+                      <td *ngIf="stock.produit_id == produit.id" >{{produit.ref_prod}}</td>
+                      <td *ngIf="stock.produit_id == produit.id">{{produit.code}}</td>
+                      <td *ngIf="stock.produit_id == produit.id">{{produit.nom_prod}}</td>
+                      <td *ngIf="stock.produit_id == produit.id">{{stock.QteStock}}</td>
+                      <td *ngIf="stock.produit_id == produit.id">{{produit.prix_achat}}</td>
+                      <td *ngIf="stock.produit_id == produit.id">0.000</td>
+                      <td *ngIf="stock.produit_id == produit.id" >0.000</td>
+                      <td *ngIf="stock.produit_id == produit.id">
+                        <a title="supprimer"class="img2 s7-trash" (click)="supprimer(stock.id)"></a>
+                      </td>
+                    </tr>
+                   
+                    </tbody>
+                    <tfoot>
+                      <tr class="thead1">
+                        <td colspan="4" ></td>
+                        <td >TOTAL</td>
+                        <td >0.000</td>
+                        <td >0.000</td>
+                        <td ></td>
+  
+                       
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

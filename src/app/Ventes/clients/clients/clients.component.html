@@ -1,0 +1,362 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>CLIENTS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Ventes</a></li>
+          <li class="breadcrumb-item"><a href="/clients">Clients</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter client</h3>
+              </div>
+              <div class="card-body">
+                <div >
+                    <div class="form-group ">
+                        <label for="type" >Type de client</label>
+                          <select class="form-control label3 " [(ngModel)]="client.type" id="type" #type="ngModel" name="type" required>
+                            <option value="Passager">Passager</option>
+                            <option value="Société">Société</option>
+                            <option value="Revendeur">Revendeur</option>
+                            <option value="Sous Revendeur">Sous Revendeur</option>
+
+                          </select>
+                        <div *ngIf="type.invalid && (type.dirty || type.touched)"
+                          class="f55">
+                      
+                          <div *ngIf="type.errors.required">
+                            champs type est obligatoire.
+                          </div>
+                        </div>
+                    </div>
+                  <div  class="form-group">
+                    <label for="raison_social">Raison sociale</label>   
+                    <input [(ngModel)]="client.raison_social" id="raison_social" class="form-control label3" type="text"   placeholder="Enter raison  " #raison_social="ngModel" name="raison_social" minlength="4" maxlength="30" pattern="[A-Za-z0-9\s ]*" required>
+                    <div *ngIf="raison_social.invalid && (raison_social.dirty || raison_social.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="raison_social.errors.required">
+                       champs raison_social est obligatoire.
+                      </div>
+                      <div *ngIf="raison_social.errors.minlength">
+                        raison_social doit comporter au moins 4 caractères.
+                      </div>
+                      <div *ngIf="raison_social.errors.maxlength">
+                        raison_social doit contenir au maximum 30 caractères.
+                      </div>
+                      <div *ngIf="raison_social.errors.pattern">
+                        raison_social doit être une chaîne de caractère.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input [(ngModel)]="client.adresse" id="adresse" class="form-control label7"  type="text"  placeholder="Adresse" #adresse="ngModel" name="adresse" minlength="4" maxlength="20" pattern="[A-Za-z0-9\s]+" required>
+                    <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)"
+                      class="f55">
+                
+                      <div *ngIf="adresse.errors.required">
+                         champs adresse est obligatoire.
+                      </div>
+                      <div *ngIf="adresse.errors.minlength">
+                        adresse doit comporter au moins 4 caractères.
+                      </div>
+                      <div *ngIf="adresse.errors.maxlength">
+                        raison_social doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="adresse.errors.pattern">
+                        veuillez respecter le format requis
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="tel">Tel</label>   
+                    <input [(ngModel)]="client.tel" id="tel" class="form-control label3" type="text" placeholder="+000.00.000.000 " #tel="ngModel" name="tel" minlength="15"  maxlength="15" pattern="[\+][0-9]{3}[\.][0-9]{2}[\.][0-9]{3}[\.][0-9]{3}" required>
+                    <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+                      class="f55">
+                
+                      <div *ngIf="tel.errors.required">
+                        champs tel est obligatoire.
+                      </div>
+                      <div *ngIf="tel.errors.minlength">
+                        tel doit comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.maxlength">
+                        tel doit contenir au maximum 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.pattern">
+                        veuillez respecter le format +000.00.000.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="fax">Fax</label>
+                    <input [(ngModel)]="client.fax" id="fax" class="form-control label3"  type="text"   placeholder="+000.00.000.000 " #fax="ngModel" name="fax" minlength="15"  maxlength="15" pattern="[\+][0-9]{3}[\.][0-9]{2}[\.][0-9]{3}[\.][0-9]{3}" required>
+                    <div *ngIf="fax.invalid && (fax.dirty || fax.touched)"
+                      class="f55">
+                
+                      <div *ngIf="fax.errors.required">
+                        champs fax est obligatoire.
+                      </div>
+                      <div *ngIf="fax.errors.minlength">
+                        fax fax comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="fax.errors.maxlength">
+                        fax doit contenir au maximum 15 caractères.
+                      </div>
+                      <div *ngIf="fax.errors.pattern">
+                        veuillez respecter le format +000.00.000.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="gsm">GSM</label>
+                    <input [(ngModel)]="client.gsm" id="gsm" class="form-control label3"  type="text"  placeholder="+000.00.000.000 " #gsm="ngModel" name="gsm" minlength="15"  maxlength="15" pattern="[\+][0-9]{3}[\.][0-9]{2}[\.][0-9]{3}[\.][0-9]{3}" required>
+                    <div *ngIf="gsm.invalid && (gsm.dirty || gsm.touched)"
+                      class="f55">
+                
+                      <div *ngIf="gsm.errors.required">
+                        champs gsm est obligatoire.
+                      </div>
+                      <div *ngIf="gsm.errors.minlength">
+                        gsm fax comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="gsm.errors.maxlength">
+                        gsm doit contenir au maximum 15 caractères.
+                      </div>
+                      <div *ngIf="gsm.errors.pattern">
+                        veuillez respecter le format +000.00.000.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="personne_contacter ">Personne à contacter</label>
+                    <input [(ngModel)]="client.personne_contacter" id="personne_contacter"  class="form-control label3"   type="text"  placeholder="Personne"  #personne_contacter="ngModel" name="personne_contacter" minlength="4" maxlength="15" pattern="[a-zA-Z ]*" required>
+                    <div *ngIf="personne_contacter.invalid && (personne_contacter.dirty || personne_contacter.touched)"
+                    class="f55">
+              
+                    <div *ngIf="personne_contacter.errors.required">
+                       champs personne_contacter est obligatoire.
+                    </div>
+                    <div *ngIf="personne_contacter.errors.minlength">
+                      personne_contacter doit comporter au moins 4 caractères.
+                    </div>
+                    <div *ngIf="personne_contacter.errors.maxlength">
+                      personne_contacter doit contenir au maximum 15 caractères.
+                    </div>
+                    <div *ngIf="personne_contacter.errors.pattern">
+                      personne_contacter doit être une chaîne.
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email ">Email</label>
+                    <input [(ngModel)]="client.email" id="email" class="form-control label7"   type="text"  placeholder="Exemple@gmail.com" #email="ngModel" name="email" minlength="15" maxlength="25" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})"required>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                      class="f55">
+              
+                      <div *ngIf="email.errors.required">
+                        champs email est obligatoire.
+                      </div>
+                      <div *ngIf="email.errors.minlength">
+                        email doit comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="email.errors.maxlength">
+                        email doit contenir au maximum 25 caractères.
+                      </div>
+                      <div *ngIf="email.errors.pattern">
+                        veuillez respecter le format d'un email
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="site_web">Site web</label>
+                    <input [(ngModel)]="client.site_web" id="site_web" class="form-control label3"  placeholder="https://example.com" type="url"  #site_web="ngModel" name="site_web" minlength="15" maxlength="30"  pattern="http(s?)(:\/\/)((www.)?)(([^.]+)\.)?([a-zA-z0-9\-_]+)(.com|.net|.gov|.org|.in|.tn)(\/[^\s]*)?" required>
+                    <div *ngIf="site_web.invalid && (site_web.dirty || site_web.touched)"
+                      class="f55">
+              
+                      <div *ngIf="site_web.errors.required">
+                        champs site_web est obligatoire.
+                      </div>
+                      <div *ngIf="site_web.errors.minlength">
+                        site_web doit comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="site_web.errors.maxlength">
+                        site_web doit contenir au maximum 30 caractères.
+                      </div>
+                      <div *ngIf="site_web.errors.pattern">
+                        veuillez respecter le format d'un site web
+                      </div>
+                    </div>
+                  </div>
+				          <div class="form-group">
+                    <label for="mf">M.F</label>
+                    <input [(ngModel)]="client.mf" id="mf" class="form-control label3"  type="text" placeholder="ex:0000000/A/B/C/000" #mf="ngModel" name="mf" minlength="17" maxlength="17" pattern="[0-9]{7}/[A-Z]{1}/[A-Z]{1}/[A-Z]{1}/[0]{2}[0-9]{1}" required>
+                    <div *ngIf="mf.invalid && (mf.dirty || mf.touched)"
+                      class="f55">
+              
+                      <div *ngIf="mf.errors.required">
+                        champs mf est obligatoire.
+                      </div>
+                      <div *ngIf="mf.errors.minlength">
+                        mf doit comporter au moins 17 caractères.
+                      </div>
+                      <div *ngIf="mf.errors.maxlength">
+                        mf doit contenir au maximum 17 caractères.
+                      </div>
+                      <div *ngIf="mf.errors.pattern">
+                        veuillez respecter le format d'un matricule fiscale
+                      </div>
+                    </div>
+                  </div>
+				          <div class="form-group">
+                    <label for="rc">R.C</label>
+                    <input [(ngModel)]="client.rc" id="rc" class="form-control label3"   type="text"  placeholder="ex:B2015447855" #rc="ngModel" name="rc" minlength="11" maxlength="11" pattern="[A-B]{1}[0-9]{10}" required>
+                    <div *ngIf="rc.invalid && (rc.dirty || rc.touched)"
+                      class="f55">
+              
+                      <div *ngIf="rc.errors.required">
+                        champs rc est obligatoire.
+                      </div>
+                      <div *ngIf="rc.errors.minlength">
+                        rc doit comporter au moins 11 caractères.
+                      </div>
+                      <div *ngIf="rc.errors.maxlength">
+                        rc doit contenir au maximum 11 caractères.
+                      </div>
+                      <div *ngIf="rc.errors.pattern">
+                        veuillez respecter le format d'un registre de commerce 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exonere" >Exonéré</label>
+                    <input   type="radio" name="r" value="oui" checked > Oui
+                    &nbsp;&nbsp;&nbsp;
+                    <input   type="radio" name="r" value="non"  >Non
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="form-group">
+                    <label for="timbre">Timbre</label>
+                    <input   [(ngModel)]="client.timbre" id="timbre" type="radio" value="0.6" checked  required > 0.600
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input  [(ngModel)]="client.timbre" id="timbre"  type="radio" value="0.0"  >0.000
+                </div>
+                <div class="form-group">
+                  <label for="date_aff">Date Affectation</label>
+                  <input [(ngModel)]="client.date_aff" id="date_aff" class="form-control label3"  type="date"   #date_aff="ngModel" name="date_aff" required>
+                  <div *ngIf="date_aff.invalid && (date_aff.dirty || date_aff.touched)"
+                    class="f55">
+              
+                    <div *ngIf="date_aff.errors.required">
+                       champs date_aff est obligatoire.
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="plafond">Plafond</label>
+                    <input [(ngModel)]="client.plafond" id="plafond" class="form-control label3"  type="text"   placeholder="0.000" #plafond="ngModel" name="plafond" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}" required>
+                    <div *ngIf="plafond.invalid && (plafond.dirty || plafond.touched)"
+                      class="f55">
+              
+                      <div *ngIf="plafond.errors.required">
+                        champs plafond est obligatoire.
+                      </div>
+                      <div *ngIf="plafond.errors.minlength">
+                        plafond doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="plafond.errors.maxlength">
+                        plafond doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="plafond.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                  </div>
+				 
+                  <button class="b8 btn btn-space btn-primary"(click)="ajouterC()"type="submit">Enregistrer</button>
+                  <button class="btn btn-space btn-primary" type="submit" type="reset" (click)="reset()">Annuler</button>
+
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des clients</h3><h5 class=" h5"><b>{{message}}</b></h5>
+                <a href="/imprimerclient" target="_blanc" class="img4 s7-print" title="imprimer"></a>
+
+              </div><br>
+              <input class="form-control label6 glyphicon glyphicon-search" type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+                <table class="t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                       
+                        <th>Code client</th>
+                        <th>Type</th>
+                        <th >Raison sociale</th>
+                        <th >M.F</th>
+                        <th >Tel</th>
+                        <th >GSM</th>
+                        <th >Fax</th>
+                        <th >Email</th>
+                        <th >Plafond</th>
+                        <th >Archiver</th> 
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let client of clients | filter:term | orderBy:id">
+                        <td>{{ client.code_clt}}{{client.id}}</td>
+                        <td >{{ client.type}}</td>
+                        <td >{{ client.raison_social}}</td>
+                        <td>{{ client.mf}}</td>
+                        <td >{{ client.tel}}</td>
+                        <td >{{ client.gsm}}</td>
+                        <td>{{ client.fax}}</td>
+                        <td >{{ client.email}}</td>
+                        <td >{{ client.plafond}}</td>
+                        <td >{{ client.etat}}</td>
+                        <td ><a  class="img2 s7-note" routerLink="/clients/{{client.id}}">
+                        </a><a  class="img2 s7-trash" (click)="supprimer(client.id)"></a>
+                        <a *ngIf="client.etat == 0 " (click)="archiver(client)" class="img2 s7-folder" title="Archiver"></a>
+                        <a *ngIf="client.etat == 1 " (click)="desarchiver(client)" class="img2 s7-albums" title="Desarchiver"></a>
+                        </td>
+
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+

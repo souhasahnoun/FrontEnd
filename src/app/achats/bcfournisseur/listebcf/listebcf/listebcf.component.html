@@ -1,0 +1,144 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES DES COMMANDES FOURNISSEURS</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Achats</a></li>
+            <li class="breadcrumb-item"><a href="/listebcf">Listes des commandes fournisseurs</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Chercher Commande</h3>
+                    </div>
+                    <div class="card-body">
+                        <form role="form" data-parsley-validate="" novalidate="">
+                          <div class="form-group">
+                            <label for="fournisseur_id" >Fournisseur</label>
+  
+                            <select  id="fournisseur_id" name="fournisseur_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="document.fournisseur_id" #fournisseur_id="ngModel" required>
+                              
+                              <option
+                                
+                                *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                                [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+                            </option>
+                            </select>
+                          </div>
+                          <div class="form-group ">
+                            <label for="date_prev">Du:</label>
+                              <input class="form-control1 label7"  type="date" id="date_prev" name="date_prev" [(ngModel)]="document.date_prev">
+                          </div>
+                   <div class="form-group ">
+                            <label for="date_fin">Au:</label>
+                              <input class="form-control1 label7"  type="date"id="date_fin" name="date_fin" [(ngModel)]="document.date_fin">
+                          </div>
+                         <!-- <div class="form-group">
+                            <label >Type:</label>
+                            <select class="form-control1 label7"  required="" >
+                              <option value="En cours">En cours</option>
+                              <option value="En Retard">En Retard</option>
+                              <option value="Cloturé">Cloturé</option>
+                              <option value="Approuvé">Approuvé</option>
+                            </select>
+                          </div>-->
+                        
+                              <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+        
+                    
+        
+                        </form>
+                      </div>
+                    </div>
+                <br>
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Liste des commandes fournisseurs
+                          <a routerLink="/imprimerbcf/{{document.fournisseur_id}}{{document.date_prev}}{{document.date_fin}}" target="_blanc" class="img4 s7-print" title="Imprimer"></a>
+                        </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                    </div>
+
+                 <br>
+                        <div >
+                         
+  
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                              <tr>
+                                  
+                                <th> Num Commande</th>
+                                <th >Fournisseur</th>
+                                <th >Date commande</th>
+                                <th >Date Prév.</th>
+                                <th >Date Fin</th>
+                                <th >Nb jour retard</th>
+                                <th >Montant HT</th>
+                                <th >Montant TTC</th>
+                                <th>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody *ngFor="let document of documents">
+                              <tr *ngIf=" document.type == 6 && document.id>0">
+                                  
+                                  <td>{{document.num}}</td>
+                                  <td ><span *ngFor="let fournisseur of fournisseurss"><span *ngIf="fournisseur.id == document.fournisseur_id">{{fournisseur.raison_social}}</span></span></td>                                  <td>{{document.date}}</td>
+                                  <td >{{document.date_prev}}</td>
+                                  <td >{{document.date_fin}}</td>
+                                  <td>{{document.date_prev - document.date_fin}}</td>
+                                  <td ></td>
+                                  <td ></td>
+                                 
+                                  <td ><a href="/lignecommandef/{{document.id}}" class="img2 s7-note" title="modifier"></a>
+                                    <a (click)="supprimer(document.id)" class="img2 s7-trash" title="supprimer"></a>
+                                    <a *ngIf="document.etat == 0 " (click)="archiver(document)" class="img2 s7-folder" title="Archiver"></a>
+                                    <a *ngIf="document.etat == 1 " (click)="desarchiver(document)" class="img2 s7-albums" title="Desarchiver"></a>
+                                      <a href="/imprimerbcf1/{{document.id}}"  target="_blanc"  class="img2 s7-print" title="Imprimer"></a>
+                                      &nbsp; <a href="/listebcf" class="img2 s7-like2" title="Approuver"></a>
+                                    </td>
+            
+                              </tr>
+                             
+                                  
+                              </tbody>
+                              <tfoot>
+                                <tr class="thead1">
+                                  <td colspan="6"><b>TOTAL</b> </td>
+                                  <td class="td55"><b>0.000 DT</b></td>
+                                  <td class="td55"><b>0.000 DT</b></td>
+                                  <td></td>
+                               
+                                 
+                                </tr>
+                              </tfoot>
+                          </table><br>
+                        
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

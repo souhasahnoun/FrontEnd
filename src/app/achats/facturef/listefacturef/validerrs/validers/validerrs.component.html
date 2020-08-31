@@ -1,0 +1,38 @@
+
+<html>
+    <body>
+        <br><br>
+        <p class="p6"><b>Valider RS </b></p>
+        <br> 
+        
+        <table class=" t341 table-sm  table-bordered ">
+            <thead class="thead2">
+              <tr >
+                <th ><p >Montant RS</p></th>
+                <th ><p>Action</p> </th>
+                
+            </tr>
+            </thead>
+            <tbody *ngFor="let rsf of rsfs">
+              
+                <tr class="tdd" >
+                    <td >{{rsf.montant}} DT</td>
+                     <td class="td00"><b><a href="/retenuepdf" target="_blanc" class="img2 s7-print" title="imprimer note"></a></b></td>
+     
+                   </tr> 
+             
+                  
+            </tbody>
+            <tfoot>
+              <tr class="tdd">
+                <td ><b >Total Retenus</b></td>
+                 <td class="td00"><b>0.009 DT</b></td>
+ 
+               </tr>
+            </tfoot>
+          </table> 
+        
+         <button class="b55 btn btn-dark" onClick="self.close()">Fermer</button>
+    </body>
+</html> 
+

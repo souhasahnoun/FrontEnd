@@ -1,0 +1,37 @@
+<div id="tblData">
+    <div class="page-head2" id='sectionAimprimer'>
+        <h1 class="radio43 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b  class="f1">Liste des fiches de receptions
+        </b></a></h1>  
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+        
+            <tr>
+                                
+                <th>N° bon de reception </th>
+                <th>Date récuperation </th>
+                <th >Nom & Prénom</th>
+               
+                <th >Piéce</th>
+                <th >Montant</th>
+                <th >Suivi réglement</th> 
+                <th>Contact client avant reparation</th>
+               
+
+              </tr>
+                
+                <tr *ngFor="let reception of receptions | orderBy:id">
+                    <td>{{reception.num}}</td>    
+                    <td>{{reception.date}}</td>
+                    <td>{{reception.nom}}</td>    
+                    <td>{{reception.piece}}</td>  
+                    <td>{{reception.prix}}</td>
+                    <td>{{reception.etat_pay}}</td>    
+                    <td>{{reception.contact_clt}}</td> 
+                </tr>
+               
+                
+            </table>
+
+
+    </div>
+</div>

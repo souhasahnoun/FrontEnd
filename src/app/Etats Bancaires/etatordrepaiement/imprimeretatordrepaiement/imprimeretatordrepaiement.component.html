@@ -1,0 +1,53 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2"id="tblData">
+      <h1 class="radio1 f4 "><b><a href="javascript:imprimer('sectionAimprimer')"  ><p class="f1">LISTE ORDRE DE PAIEMENT </p></a> 
+        <a href="javascript:exportTableToExcel('tblData','LISTE ORDRE DE PAIEMENT ')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a></b></h1>
+        <h4 class="radio133 f4 f1" *ngFor="let ordrepaiement of ordrepaiements" >Date Impression: {{myDate | date: 'mediumDate' }} &nbsp;  Boutique: ------- &nbsp; Par: {{ordrepaiement.login}} </h4>
+
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+            <tr class="td001"  *ngFor="let ordrepaiement of ordrepaiements" > 
+                <th class="  f4" colspan="5"><b>ORDRE DE PAIEMENT N° {{ordrepaiement.num}}</b></th>
+                
+     
+              </tr>
+          <tr > 
+            <th >NUM DE TRAITE</th>
+            <th >BANQUE</th>
+            <th >NOM ET PRENOM</th>
+            <th >MONTANT</th>
+            <th >DATE</th>
+         
+ 
+          </tr>
+         
+        </thead>
+        <tbody>
+        <tr *ngFor="let paiementfrs of paiementfrss">
+          <td >{{paiementfrs.num}}</td>
+          <td >{{paiementfrs.banque}}</td>
+          <td >{{paiementfrs.fournisseur}}</td>
+          <td >{{paiementfrs.montant}}</td>
+          <td >{{paiementfrs.date}}</td>
+         
+          
+</tr> 
+      
+
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td   colspan="3"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+          </tr> 
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

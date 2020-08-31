@@ -1,0 +1,468 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION DES PRODUITS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Produits</a></li>
+          <li class="breadcrumb-item"><a href="/produit">Gestion des produits</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter un produit</h3><h3 class=" h5"><b>{{message}}</b></h3>
+              </div>
+              <div class="card-body">
+                <div>
+                  <br>
+                  <div  class="form-group ">
+                    <label for="code">Code a barre</label>  
+                    <div *ngIf="code.invalid && (code.dirty || code.touched)"
+                    class="f55">
+              
+                    <div *ngIf="code.errors.required">
+                      champs code est obligatoire.
+                    </div>
+                    <div *ngIf="code.errors.minlength">
+                      code doit comporter au moins 13caractères.
+                    </div>
+                    <div *ngIf="code.errors.maxlength">
+                      code doit contenir au maximum 13 caractères.
+                    </div>
+                    <div *ngIf="code.errors.pattern">
+                      code doit être un entier.
+  
+                    </div>
+                  </div> 
+                    <input type="text" name="code" class="form-control1 label3" id="code"  [(ngModel)]="produit.code" required #code="ngModel" minlength="13"  maxlength="13" pattern="[0-9]*"/>
+
+                  </div>
+              
+                  <div  class="form-group">
+                    <label for="ref_prod">Reference</label>   
+                    <div *ngIf="ref_prod.invalid && (ref_prod.dirty || ref_prod.touched)"
+                    class="f55">
+              
+                    <div *ngIf="ref_prod.errors.required">
+                      champs reference est obligatoire.
+                    </div>
+                    <div *ngIf="ref_prod.errors.minlength">
+                      reference doit comporter au moins 4 caractères.
+                    </div>
+                    <div *ngIf="ref_prod.errors.maxlength">
+                      reference doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="ref_prod.errors.pattern">
+                      reference doit être une chaîne.
+
+                    </div>
+                  </div>
+                    <input type="text" name="ref_prod" class="form-control1 label3" id="ref_prod"  [(ngModel)]="produit.ref_prod" required #ref_prod="ngModel" minlength="4"  maxlength="20" pattern="[A-Za-z0-9\s]*"/>
+               
+                  </div>
+                  <div class="form-group">
+                    <label for="nom_prod">Nom Produit</label>
+                    <div *ngIf="nom_prod.invalid && (nom_prod.dirty || nom_prod.touched)"
+                    class="f55">
+              
+                    <div *ngIf="nom_prod.errors.required">
+                      champs nom est obligatoire.
+                    </div>
+                    <div *ngIf="nom_prod.errors.minlength">
+                      nom doit comporter au moins 2 caractères.
+                    </div>
+                    <div *ngIf="nom_prod.errors.maxlength">
+                      nom doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="nom_prod.errors.pattern">
+                      nom doit être une chaîne.
+
+                    </div>
+                  </div>
+                    <input type="text" name="nom_prod" class="form-control1 label3" id="nom_prod"  [(ngModel)]="produit.nom_prod" required #nom_prod="ngModel" minlength="2"  maxlength="20" pattern="[A-Za-z0-9\s]*"/>
+                     
+                  </div>
+                  <div class="form-group">
+                    <label for="designation">Designation</label>
+                    <div *ngIf="designation.invalid && (designation.dirty || designation.touched)"
+                    class="f55">
+              
+                    <div *ngIf="designation.errors.required">
+                      champs designation est obligatoire.
+                    </div>
+                    <div *ngIf="designation.errors.minlength">
+                      designation doit comporter au moins 2 caractères.
+                    </div>
+                    <div *ngIf="designation.errors.maxlength">
+                      designation doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="designation.errors.pattern">
+                      designation doit être une chaîne.
+
+                    </div>
+                  </div>
+                    <input type="text" name="designation" class="form-control1 label3" id="designation"  [(ngModel)]="produit.designation" required #designation="ngModel" minlength="2"  maxlength="20" pattern="[A-Za-z0-9\s]*"/>
+              
+                  </div>
+                  
+                  <div class="form-group  "> 
+                    <label for="categorie_id" >Categorie</label>
+                    <div *ngIf=" categorie_id.invalid  && categorie_id.touched">  
+                      <div *ngIf="categorie_id.errors.required" class="f55">
+                        categorie est obligatoire
+                      </div>  
+                    </div> 
+                    <select id="categorie_id" name="categorie_id" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.categorie_id" #categorie_id="ngModel" required>
+                     
+                      <option
+                        
+                        *ngFor="let categorie of categories.controls; index as i"
+                        [value]="categorie.value.id">{{categorie.value.libelle}}
+                    </option>
+                    </select>
+                   
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="famille_id" >Famille</label>
+                    <div *ngIf=" famille_id.invalid  && famille_id.touched">  
+                      <div *ngIf="famille_id.errors.required" class="f55">
+                        famille est obligatoire
+                      </div>  
+                    </div> 
+                    <select  id="famille_id" name="famille_id" class="form-control label3" size="1"  (change)="onSelectType($event.target)" [(ngModel)]="produit.famille_id" #famille_id="ngModel" required>
+                      
+                      
+                      <option
+ 
+                      *ngFor="let famille of familles.controls; index as i"
+                        [value]="famille.value.id">{{famille.value.libelle}}
+                    </option>
+                    </select>
+                    
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="marque_id" >Marque</label>
+                    <div *ngIf=" marque_id.invalid  && marque_id.touched">  
+                      <div *ngIf="marque_id.errors.required" class="f55">
+                        marque est obligatoire
+                      </div>  
+                    </div> 
+                    <select  id="marque_id" name="marque_id" class="form-control label3" size="1" 
+                    (change)="onSelectType($event.target)" 
+                    [(ngModel)]="produit.marque_id" #marque_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let marque of marques.controls; index as i"
+                        [value]="marque.value.id">{{marque.value.libelle}}
+                    </option>
+                    </select>
+                    
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="tva_id" >TVA %</label>
+                    <!--<div *ngIf=" tva_id.invalid  && tva_id.touched">  
+                      <div *ngIf="tva_id.errors.required" class="f55">
+                        tva est obligatoire
+                      </div>  
+                    </div> -->
+                    
+                    <select id="tva_id" name="tva_id" class="form-control label3" size="1"
+                      [(ngModel)]="produit.tva_id" (change)="calculer()" #tva_id="ngModel" >
+                      <option  *ngFor="let tva of tvas.controls; index as i"
+                      [value]="tva.value.id">
+                           {{tva.value.taux}}
+                       </option>
+                    </select>
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="unite_id" >Unité</label>
+                    <!--<div *ngIf=" unite_id.invalid  && unite_id.touched">  
+                      <div *ngIf="unite_id.errors.required" class="f55">
+                        unit est obligatoire
+                      </div>  
+                    </div>-->
+                    <select  id="unite_id" name="unite_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.unite_id" #unite_id="ngModel" required>
+                     <!-- <option ><button onClick="newunit()">--new--</button></option>-->
+                      <option
+                        
+                        *ngFor="let unite of unites.controls; index as i"
+                        [value]="unite.value.id">{{unite.value.nom}}
+                    </option>
+                   
+                    </select>
+
+                  </div>
+                 
+             
+                  <div class="form-group">
+                    <label for="image">Image</label>
+                    <div *ngIf="image.invalid && (image.dirty || image.touched)"
+                    class="f55">
+            
+                    <div *ngIf="image.errors.required">
+                      champs image est obligatoire.
+                    </div>
+                    
+                  </div>
+                    <input type="file" src="./assets/img/"  accept=".png, .jpg, .jpeg"  name=image class="form-control1 label3" id="image"  [(ngModel)]="produit.image" required #image="ngModel">
+                    
+                  </div>
+                  <div class="form-group ">
+                    <label for=" prix_achat">Prix Achat HT (dt) </label>
+                    <div *ngIf="prix_achat.invalid && (prix_achat.dirty || prix_achat.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prix_achat.errors.required">
+                      champs prix_achat est obligatoire.
+                    </div>
+                    <div *ngIf="prix_achat.errors.minlength">
+                      prix_achat doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prix_achat.errors.maxlength">
+                      prix_achat doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prix_achat.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input (change)="calculer()" type="text" name=prix_achat class="form-control1 label3" id="prix_achat"  [(ngModel)]="produit.prix_achat" required #prix_achat="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="mrg_ben_pub">Marge Bénif Public (%) </label>
+                    <div *ngIf="mrg_ben_pub.invalid && (mrg_ben_pub.dirty || mrg_ben_pub.touched)"
+                    class="f55">
+            
+                    <div *ngIf="mrg_ben_pub.errors.required">
+                      champs merg_ben_pub est obligatoire.
+                    </div>
+                    <div *ngIf="mrg_ben_pub.errors.minlength">
+                      merg_ben_pub doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="mrg_ben_pub.errors.maxlength">
+                      merg_ben_pub doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="mrg_ben_pub.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input (change)="calculer()" type="text" name=mrg_ben_pub class="form-control1 label3" id="mrg_ben_pub"  [(ngModel)]="produit.mrg_ben_pub" required #mrg_ben_pub="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                
+                  </div>
+                  <div class="form-group">
+                    <label for="mrg_ben_rev">Marge Bénif Rev (%) </label>
+                    <div *ngIf="mrg_ben_rev.invalid && (mrg_ben_rev.dirty || mrg_ben_rev.touched)"
+                    class="f55">
+            
+                    <div *ngIf="mrg_ben_rev.errors.required">
+                      champs mrg_ben_rev est obligatoire.
+                    </div>
+                    <div *ngIf="mrg_ben_rev.errors.minlength">
+                      mrg_ben_rev doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="mrg_ben_rev.errors.maxlength">
+                      mrg_ben_rev doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="mrg_ben_rev.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" (change)="calculer()" name=mrg_ben_rev class="form-control1 label3" id="mrg_ben_rev"  [(ngModel)]="produit.mrg_ben_rev" required #mrg_ben_rev="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="ristourne">Ristourne (%) </label>
+                    <div *ngIf="ristourne.invalid && (ristourne.dirty || ristourne.touched)"
+                    class="f55">
+            
+                    <div *ngIf="ristourne.errors.required">
+                      champs ristourne est obligatoire.
+                    </div>
+                    <div *ngIf="ristourne.errors.minlength">
+                      ristourne doit comporter au moins 1 caractères.
+                    </div>
+                    <div *ngIf="ristourne.errors.maxlength">
+                      ristourne doit contenir au maximum 3 caractères.
+                    </div>
+                    <div *ngIf="ristourne.errors.pattern">
+                      ristourne doit etre un reel
+                    </div>
+                  </div>
+                    <input type="text" name=ristourne class="form-control1 label3 radio0000" id="ristourne"  [(ngModel)]="produit.ristourne" required #ristourne="ngModel" minlength="1"  maxlength="4" pattern="[0-9]{1,2}[\.][0-9]{1}">
+                    
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="points">Points</label>
+                    <input type="radio" value="pts" name="points" required  >Pts <br>
+                    <input type="radio" value="%"  name="points" required  > %
+                    <input type="text" name="points" class="form-control1 label2 radio0000" id="points"  [(ngModel)]="produit.points" required #points="ngModel" minlength="1"  maxlength="4" pattern="[0-9]{1,2}[\.][0-9]{1}">
+                    
+                  </div>
+                  <div class="form-group ">
+                    <label for="stk_alert">Stocks Alerte</label>
+                    <div *ngIf="stk_alert.invalid && (stk_alert.dirty || stk_alert.touched)"
+                    class="f55">
+            
+                    <div *ngIf="stk_alert.errors.required">
+                      champs stk_alert est obligatoire.
+                    </div>
+                    <div *ngIf="stk_alert.errors.minlength">
+                      stk_alert doit comporter au moins 1 caractères.
+                    </div>
+                    <div *ngIf="stk_alert.errors.maxlength">
+                      stk_alert doit contenir au maximum 4 caractères.
+                    </div>
+                    <div *ngIf="stk_alert.errors.pattern">
+                      stock est un entier
+                    </div>
+                  </div>
+                    <input type="text" name=stk_alert class="form-control1 label3" id="stk_alert"  [(ngModel)]="produit.stk_alert" required #stk_alert="ngModel" minlength="1"  maxlength="4" pattern="[0-9]*">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="prixf">Prix Final Public (dt)</label>
+                    <div *ngIf="prixf.invalid && (prixf.dirty || prixf.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prixf.errors.required">
+                      champs prixfpub est obligatoire.
+                    </div>
+                    <div *ngIf="prixf.errors.minlength">
+                      prixfpub doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prixf.errors.maxlength">
+                      prixfpub doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prixf.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text"  name=prixfpub class="form-control1 label3" id="prixf"  [(ngModel)]="produit.prixf" required #prixf="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                   
+                  </div>
+                  <div class="form-group">
+                    <label for="prixfrev">Prix Final Revend (dt)</label>
+                    <div *ngIf="prixfrev.invalid && (prixfrev.dirty || prixfrev.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prixfrev.errors.required">
+                      champs prixfrev est obligatoire.
+                    </div>
+                    <div *ngIf="prixfrev.errors.minlength">
+                      prix_min doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prixfrev.errors.maxlength">
+                      prixfrev doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prixfrev.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" name=prixfrev class="form-control1 label3" id="prixfrev"  [(ngModel)]="produit.prixfrev" required #prixfrev="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="prix_min">Prix Min (dt)</label>
+                    <div *ngIf="prix_min.invalid && (prix_min.dirty || prix_min.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prix_min.errors.required">
+                      champs prix_min est obligatoire.
+                    </div>
+                    <div *ngIf="prix_min.errors.minlength">
+                      prix_min doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prix_min.errors.maxlength">
+                      prix_min doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prix_min.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" name=prix_min class="form-control1 label3" id="prix_min"  [(ngModel)]="produit.prix_min" required #prix_min="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="prixrispub">Prix Rist Public (dt)</label>
+                    <div *ngIf="prixrispub.invalid && (prixrispub.dirty || prixrispub.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prixrispub.errors.required">
+                      champs prixrispub est obligatoire.
+                    </div>
+                    <div *ngIf="prixrispub.errors.minlength">
+                      prixrispub doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prixrispub.errors.maxlength">
+                      prixrispub doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prixrispub.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" name=prixrispub class="form-control1 label7" id="prixrispub"  [(ngModel)]="produit.prixrispub" required #prixrispub="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                   
+                  </div>
+                  <div class="form-group ">
+                    <label for="prixrisrev">Prix Rist Revend (dt)</label>
+                    <div *ngIf="prixrisrev.invalid && (prixrisrev.dirty || prixrisrev.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prixrisrev.errors.required">
+                      champs prixrisrev est obligatoire.
+                    </div>
+                    <div *ngIf="prixrisrev.errors.minlength">
+                      prixrisrev doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prixrisrev.errors.maxlength">
+                      prixrisrev doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prixrisrev.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" name=prixrisrev class="form-control1 label3" id="prixrisrev"  [(ngModel)]="produit.prixrisrev" required #prixrisrev="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="prix_revient">Prix De Revient (dt)</label>
+                    <div *ngIf="prix_revient.invalid && (prix_revient.dirty || prix_revient.touched)"
+                    class="f55">
+            
+                    <div *ngIf="prix_revient.errors.required">
+                      champs prix_revient est obligatoire.
+                    </div>
+                    <div *ngIf="prix_revient.errors.minlength">
+                      prix_revient doit comporter au moins 5 caractères.
+                    </div>
+                    <div *ngIf="prix_revient.errors.maxlength">
+                      prix_revient doit contenir au maximum 10 caractères.
+                    </div>
+                    <div *ngIf="prix_revient.errors.pattern">
+                      veuillez respecter le format 0.000 
+                    </div>
+                  </div>
+                    <input type="text" name=prix_revient class="form-control1 label3" id="prix_revient"  [(ngModel)]="produit.prix_revient" required #prix_revient="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                   
+                  </div>
+                  <button class="b2 btn btn-space btn-primary" type="submit" (click)="ajouterProd()">Ajouter</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  

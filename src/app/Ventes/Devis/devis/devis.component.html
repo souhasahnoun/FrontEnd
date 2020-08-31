@@ -1,0 +1,164 @@
+
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>DEVIS </h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Ventes</a></li>
+          <li class="breadcrumb-item"><a href="/devis">Devis</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter un nouveau devis client </h3>
+              </div>
+              <div class="card-body">
+                <div>
+                    <div  class="form-group">
+                        <label for="num">Devis N°</label>   
+                        <input class="form-control label3" type="text" id="num" name="num" [(ngModel)]="document.num"  #num="ngModel" minlength="2" maxlength="5" pattern="[0-9\s ]*" required>
+                        <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                  <div *ngIf="num.errors.required">
+                   champs num est obligatoire.
+                  </div>
+                  <div *ngIf="num.errors.minlength">
+                    num doit comporter au moins 2 caractères.
+                  </div>
+                  <div *ngIf="num.errors.maxlength">
+                    num doit contenir au maximum 5 caractères.
+                  </div>
+                  <div *ngIf="num.errors.pattern">
+                    num doit être un numero.
+                  </div>
+                </div>
+                      </div>
+                    <div class="form-group ">
+                        <label for="client_id">Client</label>
+                        <select  id="client_id" name="client_id" class="form-control label3" size="1"  #client_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.client_id"  required>
+                            
+                          <option
+                            
+                            *ngFor="let client of clients.controls; index as i"
+                            [value]="client.value.id">{{client.value.raison_social}}
+                        </option>
+                        </select>
+                        <div *ngIf="client_id.invalid && (client_id.dirty || client_id.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="client_id.errors.required">
+                       champs client_id est obligatoire.
+                      </div>
+                      </div>
+                    </div>
+                  <div  class="form-group">
+                    <label for="date">Date</label>
+                    <input class="form-control label7"  type="date" id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                  </div>
+
+                  <button class="b8 btn btn-space btn-primary" type="submit"  (click)="ajouterDevis()">Ajouter</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+                </div>
+              </div>
+            </div>
+         
+          <br>
+          
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des devis</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimerdevis" target="_blanc" class="img4 s7-print" title="imprimer"></a>
+
+              </div>
+              <br>
+              <div class="radio0">
+                <div class="form-group ">
+                  <label for="date">Du:</label>
+                  <input class="form-control1 label2"  type="date"id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                </div>
+                <div class="form-group ">
+                  <label for="date_fin">Au:</label>
+                  <input class="form-control1 label2"  type="date" id="date_fin" name="date_fin" #date_fin="ngModel" [(ngModel)]="document.date_fin"  required>
+                </div>
+                <div class="form-group">
+          
+                  <label for="client_id">Client:</label>
+                  <select  id="client_id" name="client_id" class="form-control label2" size="1"  #client_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.client_id"  required>
+              
+                    <option
+                      
+                      *ngFor="let client of clients.controls; index as i"
+                      [value]="client.value.id">{{client.value.raison_social}}
+                  </option>
+                  </select>
+                </div>
+                
+                    <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+              </div>
+              <br>
+
+                  <table class="t2 table-sm  table-bordered">
+                    <thead class="thead1">
+                      <tr>
+                        <th>Num Devis</th>
+                        <th>Date</th>
+                        <th >Client</th>
+                        <th >Montant Devis</th>
+                        <th >Action</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let document of documents | orderBy:id">
+                      <tr *ngIf="document.type == 1">
+                        <td >{{document.num}}</td>
+                        <td >{{document.date}}</td>  
+                        <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>             
+                        <td ><span *ngFor="let lignedocument of lignedocuments"><span *ngIf="lignedocument.document_id == document.id">{{lignedocument.prix}} dt</span></span></td>
+                        <td><a href="/lignedevis/{{document.id}}" class="img2 s7-note" title="modifier"></a>
+                          <a (click)="supprimer(document.id)" class="img2 s7-trash" title="supprimer"></a>
+                          <a href="/imprimerdevis1/{{document.id}}" target="_blanc" class="img2 s7-print" title="imprimer"></a>
+                          
+                        </td>
+                      </tr>
+                     
+                          
+                    </tbody>
+                    <tfoot>
+                      <tr class="thead1">
+                        <td colspan="3">Total</td>
+                        <td colspan="2">0.000 Dt</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

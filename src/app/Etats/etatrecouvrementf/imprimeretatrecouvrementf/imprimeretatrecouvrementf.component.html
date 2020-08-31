@@ -1,0 +1,60 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio1  f4 "><a href="javascript:imprimer('sectionAimprimer')"><b class="f1">ETAT REGLEMENTS FOURNISSEURS  </b></a>
+            <a href="javascript:Export('tblData','ETAT REGLEMENTS FRS')"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+            <a href="javascript:exportTableToExcel('tblData','ETAT REGLEMENTS FOURNISSEURS ')"  class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+        <h4 class="radio33  f1 f4">Date d'impression:{{myDate | date: 'mediumDate' }}</h4>
+        
+        <table class="  f4 t44 table-sm t88 table-bordered2 " *ngFor="let document of documents" >
+          <thead >
+    
+          <tr class="thead3" *ngFor="let fournisseur of fournisseurs"> 
+            <th  colspan="8" *ngIf=" document.type == 12 && document.fournisseur_id == fournisseur.id">{{fournisseur.raison_social}}</th>
+           
+            
+          </tr>
+         
+        </thead>
+        <tbody class="tr3">
+          <tr  *ngIf=" document.type == 12 ">
+            <th  rowspan="2">Nº Facture</th>
+            <th  rowspan="2">Date Facture</th>
+            <th  rowspan="2">Montant Facture</th>
+            <th  colspan="3">Reglement</th>
+            <th  rowspan="2">Reste</th>
+            <th rowspan="2">Solde</th>
+           
+            
+  </tr> 
+          <tr  *ngIf=" document.type == 12 ">
+              <th >Type</th>
+              <th >Date</th>
+  
+              <th >Montant</th>
+  
+          </tr> 
+          </tbody>
+          <tbody>
+          <tr  *ngIf=" document.type == 12 ">
+            <td >{{document.num}}</td>
+            <td >{{document.date}}</td>
+            <td >(mnin)</td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td >(mnin)</td>
+            <td >(mnin)</td>
+        </tr> 
+      </tbody>
+
+     
+     
+      </table>
+      
+      
+      </div>
+      
+  
+</div>   

@@ -1,0 +1,120 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>FACTURE FOURNISSEUR</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Achats</a></li>
+          <li class="breadcrumb-item"><a href="/facturationf">Facture fournisseur</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Nouvelle facture fournisseur</h3><h4 class=" h5"><b>{{message}}</b></h4>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div  class="form-group radio0000">
+                    <label for="num">Facture fournisseur N°</label>   
+                    <input class="form-control label3" type="text" id="num" name="num" [(ngModel)]="document.num"  #num="ngModel" minlength="2" maxlength="5" pattern="[0-9\s ]*" required>
+                    <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                  <div *ngIf="num.errors.required">
+                   champs num est obligatoire.
+                  </div>
+                  <div *ngIf="num.errors.minlength">
+                    num doit comporter au moins 2 caractères.
+                  </div>
+                  <div *ngIf="num.errors.maxlength">
+                    num doit contenir au maximum 5 caractères.
+                  </div>
+                  <div *ngIf="num.errors.pattern">
+                    num doit être un numero.
+                  </div>
+                </div>
+                  </div>
+				  <div class="form-group">
+            <label for="fournisseur_id">Fournisseur</label>
+            <select  id="fournisseur_id" name="fournisseur_id" class="form-control label3" size="1"  #fournisseur_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.fournisseur_id"  required>
+                
+              <option
+                
+                *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+            </option>
+            </select>
+            <div *ngIf="fournisseur_id.invalid && (fournisseur_id.dirty || fournisseur_id.touched)"
+            class="f55">
+        
+          <div *ngIf="fournisseur_id.errors.required">
+           champs fournisseur_id est obligatoire.
+          </div>
+          </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="date">Sfax le</label>
+                    <input class="form-control label7"  type="date" id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                    <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                    class="f55">
+                
+                  <div *ngIf="date.errors.required">
+                   champs date est obligatoire.
+                  </div>
+                  </div>
+                  </div>
+				   <div class="form-group">
+                    <label for="date_dec">Date de déclaration:</label>
+                    <input class="form-control label7" type="date"  id="date_dec" name="date_dec" #date_dec="ngModel" [(ngModel)]="document.date_dec"  required>
+                    <div *ngIf="date_dec.invalid && (date_dec.dirty || date_dec.touched)"
+                    class="f55">
+                
+                  <div *ngIf="date_dec.errors.required">
+                   champs date_dec est obligatoire.
+                  </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timbre">Timbre DT:</label>
+                    <input class="form-control label3" type="text" placeholder="0 ou 600" id="timbre" name="timbre" #timbre="ngModel" [(ngModel)]="document.timbre" minlength="1" maxlength="3" required>
+                    <div *ngIf="timbre.invalid && (timbre.dirty || timbre.touched)"
+                    class="f55">
+                
+                  <div *ngIf="timbre.errors.required">
+                   champs timbre est obligatoire.
+                  </div>
+                  <div *ngIf="timbre.errors.minlength">
+                    timbre doit comporter au moins 1 caractères.
+                  </div>
+                  <div *ngIf="timbre.errors.maxlength">
+                    num doit contenir au maximum 3 caractères.
+                  </div>
+                  
+                </div>
+                  </div><br><br>
+               <div class="form-group radio3">
+                    <input type="radio" id="fodec" name="fodec" value="0" checked #fodec="ngModel" [(ngModel)]="document.fodec"  required>&nbsp;&nbsp;Facture sans fodec.
+               </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-group">
+                    <input type="radio" id="fodec" name="fodec" value="1" #fodec="ngModel" [(ngModel)]="document.fodec">&nbsp;&nbsp;Facture avec fodec.
+                </div>
+<br><br>
+
+				 
+<button class="b8 btn btn-space btn-primary" type="submit"  (click)="ajouterFactureFrs()">Ajouter</button>
+<button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+              </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+

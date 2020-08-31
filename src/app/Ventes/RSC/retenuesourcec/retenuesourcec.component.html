@@ -1,0 +1,296 @@
+
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>RETENUE A LA SOURCE CLIENT</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Ventes</a></li>
+          <li class="breadcrumb-item"><a href="/retenuesourcec">Retenue à la source clients</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajout RS client</h3><h4 class=" h5"><b>{{message}}</b></h4>
+              </div>
+              <div class="card-body">
+                <div>
+              
+                  <div class="form-group"> 
+                    <label for="client_id" >Client</label>
+  
+                    <select  id="client_id" name="client_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="rsc.client_id" #client_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let client of clients.controls; index as i"
+                        [value]="client.value.id">{{client.value.raison_social}}
+                    </option>
+                    </select>
+                    <div *ngIf=" client_id.invalid  && client_id.touched">  
+                      <div *ngIf="client_id.errors.required" class="f55">
+                        client  est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                <div class="form-group "> 
+                    
+                  <label for="date">Date Le </label><input type="date" id="date" name="date" class="form-control label3" size="1"  [(ngModel)]="rsc.date" #date="ngModel" required/>
+                
+                  </div>
+                
+                  
+                  <div class="form-group "> 
+                    
+                    <label for="rs">RS</label><input type="text" id="rs" name="rs" class="form-control label3" size="1"  [(ngModel)]="rsc.rs" #rs="ngModel" required/>
+                    <div *ngIf=" rs.invalid  && rs.touched">  
+                      <div *ngIf="rs.errors.required" class="f55">
+                        rs  est obligatoire
+                      </div>  
+                    </div> 
+                    </div>
+
+                    <div class="form-group"> 
+                      <label for="taux" >Taux</label>
+    
+                      <select  id="taux" name="taux" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="rsc.taux" #taux="ngModel" required>
+                        
+                        <option
+                          
+                          *ngFor="let tva of tvas.controls; index as i"
+                          [value]="tva.value.taux">{{tva.value.taux}}
+                      </option>
+                      </select>
+                      <div *ngIf=" taux.invalid  && taux.touched">  
+                        <div *ngIf="taux.errors.required" class="f55">
+                          taux  est obligatoire
+                        </div>  
+                      </div> 
+                    </div>
+
+                    <div class="form-group ">
+                      <label for=" montant">Montant (dt) </label>
+                      <input type="text" name=montant class="form-control1 label3" id="montant"  [(ngModel)]="rsc.montant" required #montant="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                      <div *ngIf="montant.invalid && (montant.dirty || montant.touched)"
+                      class="f55">
+              
+                      <div *ngIf="montant.errors.required">
+                        champs montant est obligatoire.
+                      </div>
+                      <div *ngIf="montant.errors.minlength">
+                        montant doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.maxlength">
+                        montant doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="form-group "> 
+                    
+                      <label for="net">Net</label>
+                      <input type="text" id="net" name="net" class="form-control label3" size="1"  [(ngModel)]="rsc.net" #net="ngModel" required/>
+                      <div *ngIf=" net.invalid  && net.touched">  
+                        <div *ngIf="net.errors.required" class="f55">
+                          net  est obligatoire
+                        </div>  
+                      </div> 
+                      </div>
+
+                      <div class="form-group">
+                        <label for="etat_pay">Etat Payement:</label>
+                        <select  id="etat_pay" name="etat_pay" class="form-control label3" size="1"  #etat_pay="ngModel"  [(ngModel)]="rsc.etat_pay"  required>
+                    
+                          <option value=0> 0 </option>
+                          <option value=1> 1 </option>  
+                           
+    
+                        </select>
+                              </div>
+                    
+                              <div class="form-group">
+                                <label for="imp">Imp:</label>
+                                <select  id="imp" name="imp" class="form-control label3" size="1"  #imp="ngModel"  [(ngModel)]="rsc.imp"  required>
+                            
+                                  <option value=0> 0 </option>
+                                  <option value=1> 1 </option>  
+                                   
+            
+                                </select>
+                                      </div>
+
+        
+
+                      <div class="form-group "> 
+                    
+                        <label for="debut">Du</label>
+                        <input type="date" id="debut" name="debut" class="form-control label3" size="1"  [(ngModel)]="rsc.debut" #debut="ngModel" required/>
+                        <div *ngIf=" debut.invalid  && debut.touched">  
+                          <div *ngIf="debut.errors.required" class="f55">
+                            debut  est obligatoire
+                          </div>  
+                        </div> 
+                        </div>
+
+                        <div class="form-group "> 
+                    
+                          <label for="fin">Au</label>
+                          <input type="date" id="fin" name="fin" class="form-control label3" size="1"  [(ngModel)]="rsc.fin" #fin="ngModel" required/>
+                          <div *ngIf=" fin.invalid  && fin.touched">  
+                            <div *ngIf="fin.errors.required" class="f55">
+                              fin  est obligatoire
+                            </div>  
+                          </div> 
+                          </div>
+
+                          <div class="form-group"> 
+                            <label for="reglementcls_id" >Reglement</label>
+          
+                            <select  id="reglementcls_id" name="reglementcls_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="rsc.reglementcls_id" #reglementcls_id="ngModel" required>
+                              
+                              <option
+                                
+                                *ngFor="let reglementclt of reglementclts.controls; index as i"
+                                [value]="reglementclt.value.id">{{reglementclt.value.num}}
+                            </option>
+                            </select>
+                            <div *ngIf=" reglementcls_id.invalid  && reglementcls_id.touched">  
+                              <div *ngIf="reglementcls_id.errors.required" class="f55">
+                                reglementcls_id  est obligatoire
+                              </div>  
+                            </div> 
+                          </div>
+                    <button class="b8 btn btn-space btn-primary"  (click)="ajouterRsc()" value="Ajouter" >Ajouter</button>
+                    <button class="btn btn-space btn-primary" type="reset" (click)="reset()" >Annuler</button>
+                </div>
+                </div>
+              </div>
+           
+          <br>
+          <div class="card3" *ngIf="rsc.client_id">
+            <div class="card-header">
+              <h3>Facture Clts</h3>
+            </div>
+            
+              <table class=" t2 table-sm  table-bordered ">
+                <thead class="thead1">
+                  <tr>
+                    
+                    <th><input type="checkbox"></th>
+                    <th >Num Facture</th>
+                    <th >Date Facture</th>
+                    <th >Client</th>
+                    <th >Montant Facture</th>
+                    <th >RS</th>
+                    <th >Montant Net</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td><input type="checkbox"></td>
+                    <td *ngIf="document.num">{{document.num}}</td>
+                    <td *ngIf="document.date">{{document.date}}</td>
+                    <td *ngIf="rsc.client_id">{{rsc.client_id}}</td>
+                    <td *ngIf="rsc.montant">{{rsc.montant}}</td>
+                    <td *ngIf="rsc.rs">{{rsc.rs}}</td>
+                    <td *ngIf="rsc.net">{{rsc.net}}</td>
+                    
+                  </tr>
+                  <tr class="thead1">
+                    <th colspan="4">Total</th>
+                    <th>0.000</th>
+                    <th>0.000</th>
+                    <th>0.000</th>
+                  </tr>  
+                </tbody>
+              </table>
+             <br>
+            </div>
+            <br>
+            <div class="card3" *ngIf="rsc.client_id">
+              <div class="card-header">
+                <h3>Facture Avoir Clts</h3>
+              </div>
+              
+                <table class=" t2 table-sm  table-bordered ">
+                  <thead class="thead1">
+                    <tr>
+                      
+                      <th><input type="checkbox"></th>
+                      <th >Num Facture</th>
+                      <th >Date Facture</th>
+                      <th >Client</th>
+                      <th >Montant Facture</th>
+                      <th >RS</th>
+                      <th >Montant Net</th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr >
+                      <td><input type="checkbox"></td>
+                      <td *ngIf="document.num">{{document.num}}</td>
+                      <td *ngIf="document.date">{{document.date}}</td>
+                      <td *ngIf="rsc.client_id">{{rsc.client_id}}</td>
+                      <td *ngIf="rsc.montant">{{rsc.montant}}</td>
+                      <td *ngIf="rsc.rs">{{rsc.rs}}</td>
+                      <td *ngIf="rsc.net">{{rsc.net}}</td>
+                      
+                    </tr>
+                    <tr class="thead1">
+                      <th colspan="4">Total</th>
+                      <th>0.000</th>
+                      <th>0.000</th>
+                      <th>0.000</th>
+                    </tr>  
+                  </tbody>
+                </table>
+               <br>
+              </div>
+              <br>
+              <div class="card3" *ngIf="rsc.client_id">
+                <div class="card-header">
+                  <h3>Total</h3>
+                </div>
+                
+                  <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                          <th><b>TOTAL</b></th>
+                          <th>0.000</th>
+                          <th>0.000</th>
+                          <th>0.000</th>
+                      </tr>
+            
+                 
+                  </thead>
+                  <tbody>
+                   
+                  
+                 
+                      
+                  </tbody>
+              </table><br>
+              <button class="b6 btn btn-space btn-primary"  type="submit">Valider</button>
+                </div>
+
+          </div>
+         
+
+        </div>
+      </div>
+    </div>
+
+
+  
+

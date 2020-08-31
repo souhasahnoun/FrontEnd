@@ -1,0 +1,45 @@
+<div >
+    
+    <div class="page-head2"  id='sectionAimprimer'>
+        <h1 class="radio33 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">LISTE DES DEVIS </b></a></h1>
+        <h4 class="radio35 f4">Date:{{myDate | date: 'mediumDate' }}</h4><br>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Num devis</th>
+            <th >Date </th>
+            <th >Client</th>
+            <th >Montant devis</th>
+ 
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let document of documents">
+        <tr *ngIf="document.type == 1">
+          <td  >{{document.num}}</td>
+          <td  >{{document.date}}</td>
+          <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>             
+          <td >(mnin)</td>
+      
+          
+</tr> 
+      
+
+            
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class=" tr1" colspan="3"><b>TOTAL</b></td>
+              <td class="td12"><b>0.000 DT</b></td>
+          
+          </tr> 
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

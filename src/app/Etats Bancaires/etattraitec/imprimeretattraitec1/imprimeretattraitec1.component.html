@@ -1,0 +1,50 @@
+<div id="sectionAimprimer">
+    
+    <div class="page-head2">
+      <h1 class="radio39 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">BORDEREAU DES TRAITES </b></a></h1>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead *ngFor="let reglementclt of reglementclts">
+            <tr class="td001" *ngFor="let bordereau of borderaux"  > 
+                <th class="  f4" colspan="5" *ngIf="bordereau.num && reglementclt.mode== 'traite'"><b>BORDEREAU D'ENCAISSEMENT DES TRAITES Nº {{bordereau.num}}</b></th>
+                
+     
+              </tr>
+ 
+         
+        </thead>
+        <tr > 
+          <th >Nº DE TRAITE</th>
+          <th >BANQUE</th>
+          <th >NOM ET PRENOM</th>
+          <th >MONTANT</th>
+          <th >DATE</th>
+       
+
+        </tr>
+        <tbody >
+        <tr *ngFor="let reglementclt of reglementclts">
+          <td   *ngIf="reglementclt.mode== 'traite'">{{reglementclt.num}}</td>
+          <td *ngIf="reglementclt.mode== 'traite'">{{reglementclt.banque}}</td>
+          <td *ngIf="reglementclt.mode== 'traite'">{{reglementclt.client}}</td>
+          <td *ngIf="reglementclt.mode== 'traite'">{{reglementclt.montant}}</td>
+          <td *ngIf="reglementclt.mode== 'traite'">{{reglementclt.date}}</td>
+          
+</tr> 
+      
+
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td   colspan="3"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+          </tr> 
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

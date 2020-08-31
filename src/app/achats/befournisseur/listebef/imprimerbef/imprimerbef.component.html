@@ -1,0 +1,67 @@
+<div >
+    
+    <div class="page-head2"id='sectionAimprimer'>
+        <h1 class="radio3  f4 "><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">LISTE DES BONS D'ENTREE</b></a></h1>
+        <br>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Num BL  </th>
+            <th >Date</th>
+            <th >Fournisseur</th>
+            <th >Montant HT</th>
+            <th >Montant TTC</th>
+            <th >Etat facture </th>
+            <th >Etat paiement</th>
+            
+          </tr>
+         
+         
+        </thead>
+        <tbody *ngFor="let document of documents">
+          <tr class="tr1" *ngFor="let fournisseur of fournisseurss"  >
+
+              <th  colspan="7" *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id" >{{fournisseur.code_frs}}:{{fournisseur.raison_social}}</th> 
+          </tr>
+        <tr *ngIf="document.type== 5 " >
+          <td  >{{document.num}}</td>
+          <td >{{document.date}}</td>
+          <td >{{document.fournisseur_id}}</td>
+          <td >(mnin)</td>
+          <td >(mnin)</td>
+          <td >{{document.etat}}</td>
+          <td >{{document.etat_pay}}</td>
+          
+</tr> 
+<tr class="tr2"  *ngFor="let fournisseur of fournisseurss">
+  <td  colspan="3"  *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id">Total Client ({{fournisseur.raison_social}})</td>
+ 
+  <td *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id">0.000 DT</td>
+  <td *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id">0.000 DT</td>
+  <td *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id"></td>
+  <td *ngIf=" document.type== 5 && document.fournisseur_id== fournisseur.id"></td>
+  
+</tr> 
+          </tbody>
+      
+          <tfoot>
+          
+          <tr class="tr1">
+              <td  colspan="3"><b>Total</b> </td>
+             
+              <td ><b>0.000 DT</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+              <td ></td>
+              
+          </tr>    
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

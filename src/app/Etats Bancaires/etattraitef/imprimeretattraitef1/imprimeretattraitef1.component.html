@@ -1,0 +1,50 @@
+<div id="sectionAimprimer">
+    
+    <div class="page-head2">
+      <h1 class="radio1 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">ORDRE DE PAIEMENT TRAITES</b></a></h1>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead *ngFor="let paiementfrs of paiementfrss">
+            <tr class="td001" *ngFor="let ordrepaiement of ordrepaiements" > 
+                <th class="  f4" colspan="5" *ngIf="paiementfrs.banque && paiementfrs.mode== 'traite'"><b>ORDRE DE PAIEMENT N° {{ordrepaiement.num}}</b></th>
+                
+     
+              </tr>
+         
+         
+        </thead>
+        <tr > 
+          <th >Nº DE TRAITE</th>
+          <th >BANQUE</th>
+          <th >NOM ET PRENOM</th>
+          <th >MONTANT</th>
+          <th >DATE</th>
+       
+
+        </tr>
+        <tbody>
+          <tr *ngFor="let paiementfrs of paiementfrss">
+            <td *ngIf=" paiementfrs.mode== 'traite'">{{paiementfrs.num}}</td>
+            <td *ngIf=" paiementfrs.mode== 'traite'">{{paiementfrs.banque}}</td>
+            <td *ngIf=" paiementfrs.mode== 'traite'">{{paiementfrs.fournisseur}}</td>
+            <td *ngIf=" paiementfrs.mode== 'traite'">{{paiementfrs.montant}}</td>
+            <td *ngIf=" paiementfrs.mode== 'traite'">{{paiementfrs.date}}</td>
+            
+  </tr> 
+      
+ 
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td   colspan="3"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+          </tr>
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

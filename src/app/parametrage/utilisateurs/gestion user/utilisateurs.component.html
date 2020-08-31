@@ -1,0 +1,191 @@
+<app-header></app-header>
+
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION DES UTILISATEURS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Utilisateurs</a></li>
+          <li class="breadcrumb-item"><a href="/utilisateurs">Gestion des utilisateurs</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+                <div class="card-header">
+                  <h3>Ajouter un utilisateur</h3>
+                  
+                </div>
+                <div class="card-body">
+                <div>
+                <div class="form-group "> 
+                    
+                  <label for="designation">Designation</label>
+                  <input class="form-control1 label7" type="text" name="designation"  [(ngModel)]="utilisateur.designation" placeholder=" Enter designation  " #designation="ngModel" name="designation" minlength="5" maxlength="60" pattern="[A-Za-z0-9\s ]*"/>
+                  <div *ngIf="designation.invalid && (designation.dirty || designation.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="designation.errors.required">
+                       champs designation est obligatoire.
+                      </div>
+                      <div *ngIf="designation.errors.minlength">
+                        designation doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="designation.errors.maxlength">
+                        designation doit contenir au maximum 60 caractères.
+                      </div>
+                      <div *ngIf="designation.errors.pattern">
+                        designation doit être une chaîne .
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="magasin_id" >Magasin</label>
+  
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="utilisateur.magasin_id" #magasin_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                    <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                      <div *ngIf="magasin_id.errors.required" class="f55">
+                        magasin est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <div class="form-group "> 
+                    
+                    <label for="login">Login</label>
+                    <input class="form-control1 label3" type="text" name="login"  [(ngModel)]="utilisateur.login" placeholder=" Enter login  " #login="ngModel" name="login" minlength="4" maxlength="25" pattern="[A-Za-z\s ]*"/>
+                    <div *ngIf="login.invalid && (login.dirty || login.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="login.errors.required">
+                       champs login est obligatoire.
+                      </div>
+                      <div *ngIf="login.errors.minlength">
+                        login doit comporter au moins 4 caractères.
+                      </div>
+                      <div *ngIf="login.errors.maxlength">
+                        login doit contenir au maximum 25 caractères.
+                      </div>
+                      <div *ngIf="login.errors.pattern">
+                        login doit être une chaîne .
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="password">Password</label>
+                      <input class="form-control1 label3" type="password" name="password"  [(ngModel)]="utilisateur.password" placeholder=" Enter password  " #password="ngModel" name="password" minlength="8" maxlength="25" />
+                      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="password.errors.required">
+                       champs password est obligatoire.
+                      </div>
+                      <div *ngIf="password.errors.minlength">
+                        password doit comporter au moins 8 caractères.
+                      </div>
+                      <div *ngIf="password.errors.maxlength">
+                        password doit contenir au maximum 25 caractères.
+                      </div>
+                      
+                    </div>
+                      </div>
+                  <div class="form-group "> 
+                    
+                    <label for="retaper_password"> Confirmer Password</label>
+                    <input class="form-control1 label3" type="password" name="retaper_password" equals-to="utilisateur.password" [(ngModel)]="utilisateur.retaper_password" placeholder=" retaper password  " #retaper_password="ngModel" name="retaper_password" minlength="8" maxlength="25" />
+                    <div *ngIf="retaper_password.invalid && (retaper_password.dirty || retaper_password.touched)"
+                    class="f55">
+                
+                  <div *ngIf="retaper_password.errors.required">
+                   champs retaper_password est obligatoire.
+                  </div>
+                  
+                  
+                </div>
+                    </div>
+                  <br><br>
+                    <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterU()">Enregistrer</button>
+                    <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>                  
+                </div>
+                </div>
+              </div>
+           
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des utilisateurs</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                
+              </div>
+                  
+                <br>
+                <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+
+                <table class=" t2 table-sm  table-bordered ">
+                  
+                  <thead class="thead1">
+                    <tr>
+                        
+                      <th>Login</th>
+                      <th>Password</th>
+                      <th>Designation</th>
+                      <th >Magasin </th>
+                      <th>Action</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let utilisateur of utilisateurs | filter:term | orderBy:id">
+                      <td >{{ utilisateur.login}}</td>
+                      <td >{{ utilisateur.password}}</td>
+                      <td >{{ utilisateur.designation}}</td>
+                      <td >{{ utilisateur.magasin_id}}</td>
+                      <td ><a routerLink="/utilisateurs/{{utilisateur.id}}" class="img2 s7-note" title="modifier"></a>
+                        <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(utilisateur.id)"></a>
+                        <a routerLink="/droitaccees/{{utilisateur.id}}" class="img2 s7-lock" title="Accees"></a>
+                      
+                      </td>
+
+                      
+                     
+                    </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

@@ -1,0 +1,122 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>  ETATS DES ORDRES DE PAIEMENTS</h2> 
+          
+          <ol class="breadcrumb">
+		 
+            
+            <li class="breadcrumb-item"><a> Etats Bancaires</a></li>
+          <li class="breadcrumb-item"><a href="/etatordrepaiement">   Etats des ordres de paiements</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher </h3>
+                    </div>
+                    <div class="card-body">
+                      <div>
+                        
+                        <div class="form-group ">
+                          <label for="date">Date début:</label>
+                            <input class="form-control1 label7"  type="date" name="date" [(ngModel)]="ordrepaiement.date" #date="ngModel">
+                        </div>
+                 <div class="form-group ">
+                          <label for="date">Date fin:</label>
+                            <input class="form-control1 label7"  type="date" required="" name="date" [(ngModel)]="ordrepaiement.date" #date="ngModel">
+                        </div>
+                        
+                         
+                 <button class="b8 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                 <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </div>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes etats des ordres de paiements</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead >
+                                <tr class="thead3" *ngFor="let ordrepaiement of ordrepaiements" >
+                                  
+                                    <th>Num: {{ordrepaiement.num}}</th>
+                                    <th>Date: {{ordrepaiement.date}}</th>
+                                    <th>Created: {{ordrepaiement.created}}</th>
+                                    <th colspan="1">Login: {{ordrepaiement.login}}</th >
+                                    <th>  <a href="/imprimeretatordrepaiement" target="_blanc" class="img2 s7-print" title="imprimer"></a></th>
+                    
+                                  </tr>
+                              <tr class="thead1">
+                                  
+                                <th> Fournisseur</th>
+                                <th>Type</th>
+                                <th> Num</th>
+                                <th>Date Echéance</th>
+                                <th>Montant</th>
+                            
+                                
+                               
+                               
+                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let paiementfrs of paiementfrss">
+                              
+                               
+                                <td>{{paiementfrs.fournisseur}}</td>
+                                 <td>{{paiementfrs.mode}}</td>
+                                <td>{{paiementfrs.num}}</td>
+                                <td>{{paiementfrs.date}}</td>
+                                <td>{{paiementfrs.montant}}</td>
+                                
+                            
+                                 
+                                 
+            
+                              </tr>
+                              <tr class="thead1">
+                                  <td colspan="4"><b>Total</b></td>
+                                  <td><b>0.000</b></td>
+                                  
+                              </tr>
+                             
+                                  
+                              </tbody>
+                          </table>
+                          <br>
+                <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

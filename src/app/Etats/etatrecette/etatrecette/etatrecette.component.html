@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>  ETAT DE RECETTE </h2> 
+          
+          <ol class="breadcrumb">
+		 
+            
+            <li class="breadcrumb-item"><a> Etats </a></li>
+          <li class="breadcrumb-item"><a href="/etatrecette">   Etat de recette </a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Recette  </h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="" >
+                        
+                        <div class="form-group radio03">
+                          <label for="date">Date début caisse </label>
+                          <input class="form-control1 label7"  type="date" name="date" [(ngModel)]="caisse.date" #date="ngModel">
+                        </div>
+                 <div class="form-group ">
+                          <label for="date">Date fin caisse </label>
+                          <input class="form-control1 label7"  type="date" name="date" [(ngModel)]="caisse.date" #date="ngModel">
+                        </div>
+                        <div class="form-group ">
+                            <label for="login">Caisse de </label>
+                            <select  id="login" name="login" class="form-control label7" size="1"  #login="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="caisse.login"  required>
+                
+                              <option
+                                
+                                *ngFor="let caisse of caisses.controls; index as i"
+                                [value]="caisse.value.login">{{caisse.value.login}}
+                            </option>
+                            </select>
+                          </div>
+                         
+                 <a class="b8 btn btn-space btn-primary"  href="/imprimeretatrecette" target="_blanc">Imprimer</a>
+                 <button class="btn btn-space btn-primary"  type="submit">Annuler</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 
+                      </div>
+                      </div>
+       
+          
+  
+  

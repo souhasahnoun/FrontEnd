@@ -1,0 +1,50 @@
+<div >
+    
+    <div class="page-head2" id="sectionAimprimer">
+        <h1 class="radio511  f1 f4"><b>Etat des dépenses en règlement  </b>
+            <a href="javascript:imprimer('sectionAimprimer')" class="radio1110"><img src="/assets/img/imprimer.JPG" title="imprimer"></a>
+        </h1>
+        
+        <br><br>
+        <table class="f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Client </th>
+            <th >Date reglement</th>
+            <th >Mode reglement</th>
+            <th >Banque</th>
+            <th >Num reglement</th>
+            <th >Montant</th>
+          
+            
+          </tr>
+         
+        </thead>
+        <tbody>
+          <tr *ngFor="let reglementclt of reglementclts">
+            <td>{{reglementclt.client}}</td>
+            <td>{{reglementclt.date}}</td>
+            <td>{{reglementclt.mode}}</td>
+            <td>{{reglementclt.banque}}</td>
+            <td>{{reglementclt.num}}</td>
+            <td>{{reglementclt.montant}}</td>
+            
+            
+  </tr> 
+<tr class="tr1">
+    <td  colspan="5"><b>MONTANT TOTAL (DT)</b></td>
+   
+    <td ><b>0.000</b></td>
+    
+    
+</tr>  
+            
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

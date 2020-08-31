@@ -1,0 +1,66 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2 "  id="tblData">
+        <div class="trait_dessus">
+           <!-- <b class="radio42 f1 f4">Date d'impression :</b><span >--------------</span>  <b class="f1 f4 radio0000">Boutique:</b><span >--------------</span><b class="f1 f4 radio0000">Par:</b> <span >--------------</span>-->
+
+        </div>
+        
+        <h1 class="radio133 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">Liste des factures des Clients</b></a>
+            <a href="javascript:Export('tblData','Liste des factures des Clt')" class="radio1110"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+            <a href="javascript:exportTableToExcel('tblData','Liste des factures des Clients ')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+
+        <table class=" f4 t44 table-sm t88 table-bordered2  " >
+            <thead >
+                <tr > 
+                    <th >Date Facture </th>
+                    <th >Numero</th>
+                    <th >Client</th>
+                    <th >RS</th>
+                    <th >Total</th>
+                    <th >Balance </th>
+                    <th >Reglement</th>
+                  
+                </tr>
+           
+          </thead>
+         
+
+          <tbody >
+          <tr *ngFor="let document of documents">
+            <td *ngIf=" document.type == 10">{{document.date}}</td>
+            <td *ngIf=" document.type == 10">{{document.num}}</td>
+            <!--<td *ngIf=" document.type == 10" ><span *ngFor="let client of clients"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>   -->          
+            <td *ngIf=" document.type == 10">{{document.client_id}}</td>
+
+            <td *ngIf="  document.type == 10">{{document.rs}}</td>
+            <td *ngIf=" document.type == 10"></td>
+            <td *ngIf="  document.type == 10"></td>
+            <td *ngIf=" document.type == 10"><span *ngFor="let reglementclt of reglementclts"><span *ngFor="let client of clients"><span *ngIf="reglementclt.client == client.raison_social && client.id == document.client_id">{{reglementclt.montant}}</span></span></span></td>
+           
+  </tr> 
+      
+              
+            </tbody>
+            <tfoot>
+                <tr>
+            
+              
+                    <th   colspan="4">TOTAL</th>
+                  
+                    <th >0.000</th> 
+                    <th >0.000</th>   
+                    <th >0.000</th>  
+                      
+                   
+          
+        
+                  </tr>
+            </tfoot>
+  
+        </table>
+  
+    </div>
+
+</div>

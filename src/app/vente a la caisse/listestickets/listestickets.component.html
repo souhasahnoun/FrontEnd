@@ -1,0 +1,164 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>LISTES DES TICKETS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Vente à la caisse</a></li>
+          <li class="breadcrumb-item"><a href="/listestickets">Listes des tickets</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Chercher un ticket </h3>
+              </div>
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                  <div class="form-group ">
+                    <label for="code">Num ticket</label>
+                      <input class="form-control1 label3" name="code" type="text"  [(ngModel)]="ticket.code" #code="ngModel">
+                      
+                  </div>
+                  <div class="form-group "> 
+                    <label for="etat">Facturé</label>
+
+                      <select class="form-control1 label3" name="etat" [(ngModel)]="ticket.etat" #etat="ngModel" (change)="onSelectType($event.target)">
+                        <option value=0>Tous</option>
+                        <option value=1>Facturé</option>
+                        <option value=0>Non Facturé</option>
+                      </select>
+                  </div>
+                <!-- <div class="form-group "> 
+                    <label for="client_id">Client</label>
+
+                    <select  id="client_id" name="client_id" class="form-control label3" size="1" [(ngModel)]="client_id" #client_id="ngModel" (change)="onSelectType($event.target)" required>
+                      <option>--Clients--</option>
+                      <option
+                        
+                        *ngFor="let client of clients.controls; index as i"
+                        [value]="client.value.id">{{client.value.raison_social}}
+                    </option>
+                    </select>
+                  </div>--> 
+                  <div class="form-group">
+                    <label for="date">Du</label>
+                      <input class="form-control1 label3" type="date" name="date" [(ngModel)]="ticket.date" #date="ngModel">
+                      
+                  </div>
+                  <div class="form-group ">
+                    <label for="date">Au</label>
+                      <input class="form-control1 label3" name="date" type="date" [(ngModel)]="ticket.date" #date="ngModel">
+                      
+                  </div>
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                </form>
+              </div>
+            </div>
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des tickets</h3><h4 class=" h5"><b>{{message}}</b></h4>
+              </div>
+                  <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        <th>Total especes</th>
+                        <th >Total chéques</th>
+                        <th >Total traites </th>
+                        <th >Total TPE </th>
+                        <th >Total chéques cadeaux </th>
+                        <th >Total  </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0,000 dt</td>
+                        <td >0,000 dt</td>
+                        <td>0,000 dt</td>
+                        <td >0,000 dt</td>
+                        <td >0,000 dt</td>
+                        <td class="td1" >0,000 dt</td>
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                <br>
+                <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        <th>Num ticket</th>
+                        <th >Date</th>
+                        <th >Client </th>
+                        <th >Montant ticket </th>
+                        <th >Montant réglés </th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let ticket of tickets">
+                      <tr *ngIf="ticket.id>0">
+                        <td> {{ticket.code}}</td>
+                        <td> {{ticket.date}}</td>
+                        <td> </td>
+                        <td> {{ticket.recu}}</td>
+                        <td> {{ticket.rendre}}</td>
+                        <td><a (click)="supprimer(ticket.id)" class="img2 s7-trash" title="supprimer"></a> </td>
+                      </tr>
+                    
+                          
+                    </tbody>
+                    <tr>
+                      <td class="tr1" colspan="2">
+
+                        <select  id="client" name="client" class="f1 form-control label3" size="1" (change)="onSelectType($event.target)" required>
+                          <option>--Clients--</option>
+                          <option
+                            
+                            *ngFor="let client of clients.controls; index as i"
+                            [value]="client.value.raison_social">{{client.value.raison_social}}
+                        </option>
+                        </select>&nbsp;&nbsp;&nbsp;
+                          <input type="date" class=" f1 form-control1 label3">
+                          <br><br>
+                          <input type="checkbox" >&nbsp;&nbsp;Appliquer une marge de 5% sur le prix d'achat
+                         <br> <input type="checkbox" >&nbsp;&nbsp;Appliquer une marge de 10% sur le prix d'achat
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <a class="btn btn-space btn-primary" href="">Facturer</a>
+                      </td>
+                      <td >Total </td>
+                      <td>0,000 dt</td>
+                      <td >0,000 dt</td>
+                      <td class="tr1"></td>
+                    </tr>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

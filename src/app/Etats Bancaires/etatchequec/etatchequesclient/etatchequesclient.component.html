@@ -1,0 +1,200 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2> ETATS CHEQUES CLIENTS </h2>
+    
+          <ol class="breadcrumb">
+     
+            <li class="breadcrumb-item"><a> Etat Bancaires</a></li>
+          <li class="breadcrumb-item"><a href="/etatchequesclient">Etat des chéques client</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher </h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group radio0000 "> 
+                            <label for="client">Client</label>
+                            <select  id="client" name="client" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="reglementclt.client" #client="ngModel" required>
+                    
+                              <option
+                                
+                                *ngFor="let client of clients.controls; index as i"
+                                [value]="client.value.raison_social">{{client.value.raison_social}}
+                            </option>
+                            </select>                         
+                          </div>
+                        <div class="form-group ">
+                          <label for="date">Date début</label>
+                            <input class="form-control1 label3"  type="date" required  id="date" name="date" [(ngModel)]="reglementclt.date" #date="ngModel">
+                        </div>
+                 <div class="form-group ">
+                          <label for="date_echeance">Date fin</label>
+                            <input class="form-control1 label3" name="date_echeance" type="date" required [(ngModel)]="reglementclt.date_echeance"  #date_echeance="ngModel">
+                        </div>
+                        <div class="form-group "> 
+                          <label for="type_date">Date</label><select class="form-control1 label3" name="type_date" (change)="onSelectType($event.target)" required [(ngModel)]="reglementclt.type_date"  #type_date="ngModel">
+                            <option value="Date Echéance">Date Echéance</option>
+                            <option value="Date Reception">Date Reception</option>
+                          </select>
+                        </div>
+                          
+                           <!-- <div class="form-group radio02 "> 
+                              <label for="source">Source</label><select class="form-control1 label7"  required [(ngModel)]="lignebordereau.source">
+                             
+                                <option value="Ticket">Ticket</option>
+                                <option value="Bon de livraison">Bon de livraison</option>
+                                <option value="Facture">Facture</option>
+                              </select>
+                              </div>
+                              <div class="form-group "> 
+                                <label for="type_ch">Type de chéque</label><select class="form-control1 label7"  required [(ngModel)]="lignebordereau.type_ch" >
+                                 
+                                  <option value="versable">versable</option>
+                                  <option value="Echeancé">Echeancé</option>
+                                  <option value="de garentie">de garentie</option>
+                                </select>
+                                </div>-->
+                                <div class="form-group "> 
+                                  <label for="etat_ch">Etat de chéque</label>
+                                  <select class="form-control1 label3"   name="etat_ch"  required [(ngModel)]="reglementclt.etat_ch" #etat_ch="ngModel" (change)="onSelectType($event.target)">
+                                 
+                                    <option value="Soldé">Soldé</option>
+                                    <option value="Non soldé">Non soldé</option>
+                                    <option value="Impayé">Impayé</option>
+                                    <option value="Préavis">Préavis</option>
+                                  </select>
+                                  </div>
+                                 <!-- <div class="form-group "> 
+                                    <label for="login">Utilisateur</label>
+                                    <select  id="login" name="login" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="lignebordereau.login" #login="ngModel" required>
+                    
+                                      <option
+                                        
+                                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                                        [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                                    </option>
+                                    </select>
+                                    </div>-->
+                 <button class="b8 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                 <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Liste des etats des chéques clients
+                        <a routerLink="/imprimeretatchequec/{{reglementclt.id}}{{lignebordereau.source}}{{reglementclt.client}}
+                        {{reglementclt.date}}{{reglementclt.date_echeance}}{{reglementclt.type_date}}{{lignebordereau.type_ch}}
+                        {{reglementclt.etat_ch}}{{lignebordereau.login}}" 
+                        target="_blanc"  class="img4 s7-print" title="imprimer"></a>
+                     </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                 <div class="form-group "> 
+                  <label class="radio00 f1" for="banque">Banque: </label>
+                  <select  id="banque" name="banque" class="f1 form-control label7 radio0000" size="1" (change)="onSelectType($event.target)" [(ngModel)]="reglementclt.banque" #banque="ngModel" required>
+                    
+                    <option
+                      
+                      *ngFor="let banque of banques.controls; index as i"
+                      [value]="banque.value.libelle">{{banque.value.libelle}}
+                  </option>
+                  </select>
+                  <label class="radio0000 f1" for="impression">Date: </label>
+                  <input class="radio0000 f1 form-control label7"  type="date" id="impression" name="impression" [(ngModel)]="reglementclt.impression" #impression="ngModel" required>
+
+                  <a routerLink="/imprimeretatchequec1/{{reglementclt.banque}}" target="_blanc" class="b1 btn btn-space btn-primary" (click)="ajouterBordereau">Nouveau Bordereau</a>
+                  </div>
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                  
+                                <th>Num cheque</th>
+                                <th>Banque </th>
+                                <th >Client</th>
+                               
+                                <th >Date Réception</th>
+                                <th >Date Echéance</th>
+                               <th>Utilisateur</th>
+                               <th>Montant</th>
+                               <th>Soldé</th>
+                               <th>Non Soldé</th>
+                               <th>Etat</th>
+                              
+                
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let reglementclt of reglementclts">
+                                <tr >
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.num}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.banque}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.client}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.date}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.date_echeance}}</td>
+                                    <td  *ngIf=" reglementclt.mode == 'cheque'">{{lignebordereau.login}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.montant}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.solder}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.non_solder}}</td>
+                                    <td *ngIf=" reglementclt.mode == 'cheque'">{{reglementclt.etat}}</td>
+                                    
+                                </tr>
+                             
+                             
+                                  
+                              </tbody>
+                              <tfoot>
+                                <tr class="thead1">
+                              
+                                  <td colspan="6" ><b>Total</b></td>
+                                  
+                                  <td class="d">0.000 dt</td>
+                                  <td class="td2">0.000 dt</td>
+                                  <td class="td3">0.000 dt</td>
+                                  <td></td>
+                        
+                        
+                                  
+                              
+                                   
+                               
+              
+                                </tr>
+                              </tfoot>
+                          </table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

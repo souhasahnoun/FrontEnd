@@ -1,0 +1,298 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>FICHE DE GARENTIE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Produits</a></li>
+          <li class="breadcrumb-item"><a href="/fichegarentie">Fiche de garantie</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Nouvelle fiche de garantie </h3><h3 class=" h5"><b>{{message}}</b></h3>
+              </div>
+              <div class="card-body">
+                <div>
+              
+                  <div class="form-group "> 
+                    
+                    <label for="num">Numero Fiche</label>
+                    <input type="text" name="num" class="form-control1 label3" id="num"   [(ngModel)]="garentie.num" required #num="ngModel" minlength="2" maxlength="20" pattern="[0-9]*"/>
+                    <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                    <div *ngIf="num.errors.required">
+                        Champs numero est obligatoire.
+                    </div>
+                    <div *ngIf="num.errors.minlength">
+                      numero doit comporter au moins 2 caractères.
+                    </div>
+                    <div *ngIf="num.errors.maxlength">
+                      numero doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="num.errors.pattern">
+                      numero doit être un entier.
+                    </div>
+                  </div>
+                  </div>
+                <div class="form-group "> 
+                    
+                  <label for="date">Date</label>
+                  <input type="date" name="date" class="form-control1 label3" id="date"   [(ngModel)]="garentie.date" required #date="ngModel" />
+                  <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                  class="f55">
+              
+                  <div *ngIf="date.errors.required">
+                      Champs date est obligatoire.
+                  </div>
+                  </div>
+                  </div>
+                <div class="form-group "> 
+                    
+                  <label for="nom">Nom & Prénom:</label>
+                  <input type="text" name="nom" class="form-control1 label3" id="nom"   [(ngModel)]="garentie.nom" required #nom="ngModel" minlength="10" maxlength="20" pattern="[A-Za-z\s]*"/>
+                  <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
+                    class="f55">
+                
+                    <div *ngIf="nom.errors.required">
+                        Champs nom est obligatoire.
+                    </div>
+                    <div *ngIf="nom.errors.minlength">
+                      nom doit comporter au moins 10 caractères.
+                    </div>
+                    <div *ngIf="nom.errors.maxlength">
+                      nom doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="nom.errors.pattern">
+                      nom doit être une chaîne.
+                    </div>
+                  </div>
+                  </div>
+                  
+                  <div class="form-group "> 
+                    
+                    <label for="tel">Tél:</label>
+                    <input type="text" name="tel" class="form-control1 label3" placeholder="+000.00.000.000 "  id="tel"  [(ngModel)]="garentie.tel" required #tel="ngModel" minlength="15"  maxlength="15" pattern="[\+][0-9]{3}[\.][0-9]{2}[\.][0-9]{3}[\.][0-9]{3}"/>
+                    <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+                      class="f55">
+                
+                      <div *ngIf="tel.errors.required">
+                        champs tel est obligatoire.
+                      </div>
+                      <div *ngIf="tel.errors.minlength">
+                        tel doit comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.maxlength">
+                        tel doit contenir au maximum 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.pattern">
+                        veuillez respecter le format +000.00.000.000 
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="piece">Pièce:</label>
+                      <input type="text" name="piece" class="form-control1 label3" id="piece"  [(ngModel)]="garentie.piece" required #piece="ngModel" minlength="2"  maxlength="20" pattern="[A-Za-z\s]*"/>
+                      <div *ngIf="piece.invalid && (piece.dirty || piece.touched)"
+                      class="f55">
+                
+                      <div *ngIf="piece.errors.required">
+                        champs piece est obligatoire.
+                      </div>
+                      <div *ngIf="piece.errors.minlength">
+                        piece doit comporter au moins 2 caractères.
+                      </div>
+                      <div *ngIf="piece.errors.maxlength">
+                        piece doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="piece.errors.pattern">
+                        piece doit être une chaîne.
+
+                      </div>
+                    </div>
+                      </div>
+                  <div class="form-group "> 
+                    
+                    <label for="accessoire"> Accessoire:</label>
+                    <input type="text" name="accessoire" class="form-control1 label3" id="accessoire"  [(ngModel)]="garentie.accessoire" required #accessoire="ngModel" minlength="3"  maxlength="20" pattern="[A-Za-z\s]*"/>
+                    <div *ngIf="accessoire.invalid && (accessoire.dirty || accessoire.touched)"
+                      class="f55">
+                
+                      <div *ngIf="accessoire.errors.required">
+                        champs accessoire est obligatoire.
+                      </div>
+                      <div *ngIf="accessoire.errors.minlength">
+                        accessoire doit comporter au moins 3 caractères.
+                      </div>
+                      <div *ngIf="accessoire.errors.maxlength">
+                        accessoire doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="accessoire.errors.pattern">
+                        accessoire doit être une chaîne.
+
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="panne">Panne:</label>
+                      <input type="text" name="panne" class="form-control1 label3" id="panne"  [(ngModel)]="garentie.panne" required #panne="ngModel" minlength="5"  maxlength="40" pattern="[A-Za-z\s]*"/>
+                      <div *ngIf="panne.invalid && (panne.dirty || panne.touched)"
+                      class="f55">
+                
+                      <div *ngIf="panne.errors.required">
+                        champs panne est obligatoire.
+                      </div>
+                      <div *ngIf="panne.errors.minlength">
+                        panne doit comporter au moins 5caractères.
+                      </div>
+                      <div *ngIf="panne.errors.maxlength">
+                        panne doit contenir au maximum 40 caractères.
+                      </div>
+                      <div *ngIf="panne.errors.pattern">
+                        panne doit être une chaîne.
+
+                      </div>
+                    </div>
+                      </div>
+                      <div class="form-group "> 
+                    
+                        <label for="tache"> Taches effectuées:</label>
+                        <input type="text" name="tache" class="form-control1 label3" id="tache"  [(ngModel)]="garentie.tache" required #tache="ngModel" minlength="5"  maxlength="40" pattern="[A-Za-z\s]*"/>
+                        <div *ngIf="tache.invalid && (tache.dirty || tache.touched)"
+                      class="f55">
+                
+                      <div *ngIf="tache.errors.required">
+                        champs tache est obligatoire.
+                      </div>
+                      <div *ngIf="tache.errors.minlength">
+                        tache doit comporter au moins 5caractères.
+                      </div>
+                      <div *ngIf="tache.errors.maxlength">
+                        tache doit contenir au maximum 40 caractères.
+                      </div>
+                      <div *ngIf="tache.errors.pattern">
+                        tache doit être une chaîne.
+
+                      </div>
+                    </div>
+                        </div>
+                        <div class="form-group "> 
+                    
+                          <label for="prix"> Prix(DT):</label>
+                          <input type="text" name=Prix class="form-control1 label3" id="prix"  [(ngModel)]="garentie.prix" required #prix="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}"/>
+                          <div *ngIf="prix.invalid && (prix.dirty || prix.touched)"
+                      class="f55">
+              
+                      <div *ngIf="prix.errors.required">
+                        champs prix est obligatoire.
+                      </div>
+                      <div *ngIf="prix.errors.minlength">
+                        prix doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="prix.errors.maxlength">
+                        prix doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="prix.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                          </div>
+                          <div class="form-group "> 
+                    
+                            <label for="recu_par"> Réçu par:</label>
+                            <input type="text" name="recu_par" class="form-control1 label3" id="recu_par"  [(ngModel)]="garentie.recu_par" required #recu_par="ngModel" minlength="5"  maxlength="40" pattern="[A-Za-z\s]*"/>
+                            <div *ngIf="recu_par.invalid && (recu_par.dirty || recu_par.touched)"
+                      class="f55">
+                
+                      <div *ngIf="recu_par.errors.required">
+                        champs recu est obligatoire.
+                      </div>
+                      <div *ngIf="recu_par.errors.minlength">
+                        recu doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="recu_par.errors.maxlength">
+                        reçu doit contenir au maximum 40 caractères.
+                      </div>
+                      <div *ngIf="recu_par.errors.pattern">
+                        recu doit être une chaîne.
+
+                      </div>
+                    </div>
+                            </div>
+                            <div class="form-group  "> 
+                              <label for="magasin_id" >Magasin</label>
+            
+                              <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.magasin_id" #magasin_id="ngModel" required>
+                                
+                                <option
+                                  
+                                  *ngFor="let magasin of magasins.controls; index as i"
+                                  [value]="magasin.value.id">{{magasin.value.libelle}}
+                              </option>
+                              </select>
+                              <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                                <div *ngIf="magasin_id.errors.required" class="f55">
+                                  magasin est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+                            <div class="form-group  "> 
+                              <label for="login" >login</label>
+            
+                              <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.login" #login="ngModel" required>
+                                
+                                <option
+                                  
+                                  *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                                  [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                              </option>
+                              </select>
+                              <div *ngIf=" login.invalid  && utilisateur_id.touched">  
+                                <div *ngIf="login.errors.required" class="f55">
+                                  login est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+
+                            <div class="form-group  "> 
+                              <label for="utilisateur_id" >ID Utilisateur</label>
+            
+                              <select  id="utilisateur_id" name="utilisateur_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.utilisateur_id" #utilisateur_id="ngModel" required>
+                                
+                                <option
+                                  
+                                  *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                                  [value]="utilisateur.value.id">{{utilisateur.value.id}}
+                              </option>
+                              </select>
+                              <div *ngIf=" login.invalid  && utilisateur_id.touched">  
+                                <div *ngIf="login.errors.required" class="f55">
+                                 ID Utilisateur est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+                            <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterFiche()">Enregistrer</button>
+                  
+                  <button class=" btn btn-space btn-primary" type="reset" (click)="reset()">Annuler</button>
+                  
+                </div>
+                </div>
+              </div>
+           
+          <br>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

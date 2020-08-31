@@ -1,0 +1,58 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2">
+      <h1 class="radio39 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">ORDRE DE PAIEMENT FRS</b></a></h1>
+      <h4 class="radio39 f4 f1"><span>Date Impression: {{myDate | date: 'mediumDate' }}</span> &nbsp; <span *ngIf="magasin.libelle"> Boutique: {{magasin.libelle}}</span> &nbsp; <span *ngIf="ordrepaiement.login">Par: {{ordrepaiement.login}}</span> </h4>
+        <table class="f4 t44 table-sm t88  table-bordered2">
+          <thead *ngFor="let paiementfrs of paiementfrss">
+            <tr class="td001" *ngFor="let banque of banques"> 
+              <th class="  f4" colspan="5" *ngIf="banque.libelle == paiementfrs.banque"><b> {{banque.titulaire_cheque}}    {{banque.rib}}</b></th>
+              
+   
+            </tr>
+            <tr class="td001" *ngFor="let ordrepaiement of ordrepaiements"> 
+                <th class="  f4" colspan="5"  *ngIf="paiementfrs.banque && paiementfrs.mode== 'cheque'" ><b>ORDRE DE PAIEMENT N° {{ordrepaiement.num}}</b></th>
+                
+     
+              </tr>
+     
+         
+        </thead>
+        <tr > 
+          <th >Nº DE CHEQUE</th>
+          <th >BANQUE</th>
+          <th >NOM ET PRENOM</th>
+          <th >MONTANT</th>
+          <th >DATE</th>
+       
+
+        </tr>
+        <tbody>
+          <tr *ngFor="let paiementfrs of paiementfrss">
+            <td *ngIf=" paiementfrs.mode== 'cheque'">{{paiementfrs.num}}</td>
+            <td *ngIf=" paiementfrs.mode== 'cheque'">{{paiementfrs.banque}}</td>
+            <td *ngIf=" paiementfrs.mode== 'cheque'">{{paiementfrs.fournisseur}}</td>
+            <td *ngIf=" paiementfrs.mode== 'cheque'">{{paiementfrs.montant}}</td>
+            <td *ngIf=" paiementfrs.mode== 'cheque'">{{paiementfrs.date}}</td>
+           
+            
+  </tr> 
+        
+      
+
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td   colspan="3"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+          </tr> 
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

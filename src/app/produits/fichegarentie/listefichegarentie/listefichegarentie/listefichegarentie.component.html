@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES FICHES DES GARENTIES</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Produits</a></li>
+            <li class="breadcrumb-item"><a href="/listefichegarentie">Liste fiche garantie</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher fiche de garentie</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                       
+                        <div class="form-group radio1">
+                          <label for="date">Date garentie:</label>
+                            <input class="form-control1 label7" name="date" type="date" required=""  [(ngModel)]="garentie.date" #date="ngModel">
+                        </div>
+                 
+                 <button class="b8 btn btn-space btn-primary"  type="submit"  (click)="search()">Chercher</button>
+               
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3" >
+                 <div class="card-header" >
+                     <h3>Listes fiches des garanties
+                        <a href="/listesfichesgarentiepdf" target="_blanc" class="img4 s7-print" title="imprimer"></a>&nbsp;
+                        <a href="/listesfichesgarentieexcel" target="_blanc" class="img333 s7-next-2" title="exoprter en excel"></a>
+                     </h3> <h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                        <div >
+                          <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+
+                          <table class=" t2 table-sm  table-bordered " id='tblData'>
+                              <thead class="thead1">
+                        
+                              <tr>
+                                
+                                <th>Num fiche </th>
+                                <th>Date </th>
+                                <th >Nom & Prenom</th>
+                               
+                                <th >Tel</th>
+                                <th >Piece</th>
+                                <th >Accessoire</th> 
+                                <th>Recu par</th>
+                                <th>Action</th>
+                
+                              </tr>
+                            </thead>
+                            <tbody  *ngFor="let garentie of garenties | filter:term | orderBy:id">
+                              <tr *ngIf="garentie.id>0">
+                              
+                                <td>{{garentie.num}}</td>    
+                                <td>{{garentie.date}}</td>
+                                <td>{{garentie.nom}}</td>    
+                                <td>{{garentie.tel}}</td>  
+                                <td>{{garentie.piece}}</td>
+                                <td>{{garentie.accessoire}}</td>
+                                <td>{{garentie.recu_par}}</td>
+                      
+                                
+                            
+                                 
+                                  <td ><a  class="img2 s7-note" title="modifier" routerLink="/listefichegarentie/{{garentie.id}}"></a>
+                                    <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(garentie.id)"></a>
+                                      <a  target="_blanc" class="img2 s7-print" title="Imprimer" routerLink="/imprimerfichegarentie/{{garentie.id}}"></a>&nbsp;
+                                      <a  class="img2 s7-like2" title="Approuver"></a>
+                                    </td>
+            
+                              </tr>
+                             
+                                  
+                              </tbody>
+                          </table>
+                          <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

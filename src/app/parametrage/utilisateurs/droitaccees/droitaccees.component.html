@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION DES ACCEES</h2>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+              <div  *ngFor="let acces of access">
+                <div *ngFor="let utilisateur of utilisateurs">
+                  <h4 *ngIf="acces.log_usr == utilisateur.login" >Listes des access pour ({{utilisateur.login}})</h4>
+                </div>
+                </div><h4 class=" h5"><b>{{message}}</b></h4>
+              </div> 
+                <table class=" t2 table-sm  table-bordered ">
+                  
+                    <thead class="thead1">
+                      <tr>
+                          
+                        <th class="td100">Droit</th>
+                        <th>Etat</th>
+                        <th>Action</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let droit of droits">
+                        <!--<tr class="td001" *ngFor="let categdroit of categdroits">
+                            <td colspan="3" *ngIf="droit.categdroit_id == categdroit.id"><b class="radio11" >{{categdroit.categ}}</b></td >
+                        </tr>-->
+                        <tr class="td001" >
+                          <td colspan="3" ><b class="radio11" >{{categdroit.categ}}</b></td >
+                      </tr>
+                      <tr >
+                        <td class="td100 " *ngIf="droit.categdroit_id == categdroit.id"><b class="radio01 tt1"> {{droit.libelle}}</b></td>
+                        <td ><a class="img2 s7-less" ></a></td>
+                        <td ><a (click)="AjouterAccess()" class="img2 s7-plus" title="Affecter"></a></td>
+  
+                        
+                       
+                      </tr>
+
+        </tbody>
+        </table><br>
+    </div>
+           
+          <br>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

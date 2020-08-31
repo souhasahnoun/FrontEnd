@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>ETAT FACTURES FOURNISSEURS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Etats</a></li>
+          <li class="breadcrumb-item"><a href="/etatfacturef">Etat factures fournisseurs</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+              
+                <h3>Etat facture fournisseur </h3>
+              </div>
+              
+              
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                  <div class="form-group radio00"> 
+                    <label for="date"> Date de début:</label>
+                    <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="document.date" #date="ngModel">
+    
+                  </div>
+                  <div class="form-group "> 
+                    <label for="date">Date de fin:</label>
+                    <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="document.date" #date="ngModel">
+    
+                  </div>
+                  <div class="form-group "> 
+                    <label for="etat_pay">Etat de payement:</label>
+
+                      <select class="form-control1 label3">
+                        <option value=0>--tous--</option>
+                        <option value=0>0</option>
+                        <option value=1>1</option>
+                      </select>
+                  </div>
+                  <div class="form-group "> 
+                    <label for="fournisseur_id">Fournisseurs:</label>
+
+                    <select  id="fournisseur_id" name="fournisseur_id" class="form-control label3" size="1"  #fournisseur_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.fournisseur_id"  required>
+                
+                      <option
+                        
+                        *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                        [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+                    </option>
+                    </select>
+                  </div>
+                <br><br>
+                  <a  href="/imprimeretatfacturef" target="_blanc" class="b10 btn btn-space btn-primary">Imprimer</a>
+                  <a  href="/imprimeretatfacturef1"  target="_blanc"  class=" btn btn-space btn-primary" >Exporter Grand Livre</a>
+                   <button class=" btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                </form>
+                </div>
+              </div>
+           
+          

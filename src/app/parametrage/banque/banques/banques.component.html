@@ -1,0 +1,201 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+      <h2>GESTION DES BANQUES</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a >Banques</a></li>
+        <li class="breadcrumb-item"><a href="/banques">Gestion des banques </a></li>
+      </ol>
+    </div>
+    <div class="main-content">
+      <div class="row">
+          
+        <div class="col-md-6">
+          <div class="card3">
+            <div class="card-header">
+              <h3>Ajouter une banque</h3>
+                  
+            </div>
+               
+            <div class="card-body">
+              <div>
+                
+                <div class="form-group "> 
+                    
+                  <label for="libelle">Libéllé</label>
+                  <input [(ngModel)]="banque.libelle"  class="form-control1 label3" type="text" id="libelle" name="libelle"  placeholder="Enter libélé " required #libelle="ngModel" minlength="2" maxlength="20" pattern="[a-zA-Z ]*"/>
+                  <div *ngIf="libelle.invalid && (libelle.dirty || libelle.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="libelle.errors.required">
+                        Champs libelle est obligatoire.
+                      </div>
+                      <div *ngIf="libelle.errors.minlength">
+                        libelle doit comporter au moins 2 caractères.
+                      </div>
+                      <div *ngIf="libelle.errors.maxlength">
+                        libelle doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="libelle.errors.pattern">
+                        libelle doit être une chaîne.
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="rib">RIB</label>
+                  <input [(ngModel)]="banque.rib"  class="form-control1 label3" type="text" id="rib" name="rib"  placeholder="Enter rib " required #rib="ngModel" minlength="23" maxlength="39" pattern="[a-zA-Z_0-9 ]*"/>
+                  <div *ngIf="rib.invalid && (rib.dirty || rib.touched)"
+                  class="f55">
+              
+                    <div *ngIf="rib.errors.required">
+                      Champs rib est obligatoire.
+                    </div>
+                    <div *ngIf="rib.errors.minlength">
+                      rib doit comporter au moins 23 caractères.
+                    </div>
+                    <div *ngIf="rib.errors.maxlength">
+                      rib doit contenir au maximum 39 caractères.
+                    </div>
+                    <div *ngIf="rib.errors.pattern">
+                      rib doit être une chaîne.
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="adresse">Adresse</label>
+                  <input  [(ngModel)]="banque.adresse" id="adresse" class="form-control1 label7"  type="text"  placeholder="Adresse" #adresse="ngModel" name="adresse" minlength="4" maxlength="20" pattern="[A-Za-z0-9\s]+" required/>
+                  <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)"
+                  class="f55">
+            
+                    <div *ngIf="adresse.errors.required">
+                      champs adresse est obligatoire.
+                    </div>
+                    <div *ngIf="adresse.errors.minlength">
+                      adresse doit comporter au moins 4 caractères.
+                    </div>
+                    <div *ngIf="adresse.errors.maxlength">
+                      adresse doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="adresse.errors.pattern">
+                      veuillez respecter le format requis
+                    </div>
+                  </div>   
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="titulaire_cheque">Titulaire chéque</label>
+                  <input [(ngModel)]="banque.titulaire_cheque" id="titulaire_cheque" class="form-control1 label3"  type="text"  placeholder="titulaire cheque" #titulaire_cheque="ngModel" name="titulaire_cheque" minlength="10" maxlength="30" pattern="[A-Za-z]*" required/>
+                  <div *ngIf="titulaire_cheque.invalid && (titulaire_cheque.dirty || titulaire_cheque.touched)"
+                  class="f55">
+            
+                    <div *ngIf="titulaire_cheque.errors.required">
+                      champs titulaire_cheque est obligatoire.
+                    </div>
+                    <div *ngIf="titulaire_cheque.errors.minlength">
+                      titulaire_cheque doit comporter au moins 10 caractères.
+                    </div>
+                    <div *ngIf="titulaire_cheque.errors.maxlength">
+                      titulaire_cheque doit contenir au maximum 30 caractères.
+                    </div>
+                    <div *ngIf="titulaire_cheque.errors.pattern">
+                      titulaire_cheque doit etre une chaine 
+                    </div>
+                  </div>          
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="titulaire_traite">Titulaire traite</label>
+                  <input [(ngModel)]="banque.titulaire_traite" id="titulaire_traite" class="form-control1 label3"  type="text"  placeholder="titulaire traite" #titulaire_traite="ngModel" name="titulaire_traite" minlength="10" maxlength="30" pattern="[A-Za-z]*" required/>
+                  <div *ngIf="titulaire_traite.invalid && (titulaire_traite.dirty || titulaire_traite.touched)"
+                  class="f55">
+            
+                    <div *ngIf="titulaire_traite.errors.required">
+                      champs titulaire_traite est obligatoire.
+                    </div>
+                    <div *ngIf="titulaire_traite.errors.minlength">
+                      titulaire_traite doit comporter au moins 10 caractères.
+                    </div>
+                    <div *ngIf="titulaire_traite.errors.maxlength">
+                      titulaire_traite doit contenir au maximum 30 caractères.
+                    </div>
+                    <div *ngIf="titulaire_traite.errors.pattern">
+                      titulaire_traite doit etre une chaine 
+                    </div>
+                  </div>                     
+                </div><br><br>
+                <button class="b8 btn btn-space btn-primary" (click)="ajouterB()" type="submit">Enregistrer</button>
+                    <button class="btn btn-space btn-primary" type="submit">Annuler</button>   
+                  
+              </div>
+            </div>
+          </div>
+           
+          <br>
+          <div class="card3">
+            <div class="card-header">
+              <h3>Liste des banques</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                
+          </div>
+                  
+          <br>
+          <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" >                 
+          <table class=" t2 table-sm  table-bordered ">
+                  
+            <thead class="thead1">
+              <tr>
+                <th>Libéllé</th>
+                <th>RIB</th>
+                <th>Adresse</th>
+                <th>Titulaire chéque</th>
+                <th>Titulaire traite</th>
+                <th>Action</th>
+      
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let banque of banques | filter:term | orderBy:id">
+                <td >{{ banque.libelle}}</td>
+                <td >{{ banque.rib}}</td>
+                <td >{{ banque.adresse}}</td>
+                <td >{{ banque.titulaire_cheque}}</td>
+                <td >{{ banque.titulaire_traite}}</td>
+                <td ><a  class="img2 s7-note" title="modifier" routerLink="/banques/{{banque.id}}"></a>
+                  <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(banque.id)"></a></td>
+      
+                     
+              </tr>
+            </tbody>
+          </table>
+          <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+
+  
+

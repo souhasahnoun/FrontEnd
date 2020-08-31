@@ -1,0 +1,41 @@
+<div id="tblData">
+    <div class="page-head2" >
+        <h1 class="radio43 f4"><b  class="f1">Liste des fiches de garanties
+        </b>
+            <a href="javascript:Export('tblData','Liste des fiches de garanties
+            ')" class="radio11"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+
+        </h1>  
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+        
+            <tr>
+                                
+                <th>Num fiche </th>
+                <th>Date </th>
+                <th >Nom & Prenom</th>
+               
+                <th >Tel</th>
+                <th >Piece</th>
+                <th >Accessoire</th> 
+                <th>Recu par</th>
+               
+
+              </tr>
+                
+                <tr *ngFor="let garentie of garenties | orderBy:id">
+                    <td>{{garentie.num}}</td>    
+                    <td>{{garentie.date}}</td>
+                    <td>{{garentie.nom}}</td>    
+                    <td>{{garentie.tel}}</td>  
+                    <td>{{garentie.piece}}</td>
+                    <td>{{garentie.accessoire}}</td>
+                    <td>{{garentie.recu_par}}</td>
+                </tr>
+               
+                
+            </table>
+
+
+    </div>
+</div>

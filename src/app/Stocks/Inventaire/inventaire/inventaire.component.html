@@ -1,0 +1,151 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>INVENTAIRE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Stocks</a></li>
+          <li class="breadcrumb-item"><a href="/inventaire">Inventaire</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+                <div class="card-header">
+                  <h3>Chercher produit </h3>
+                </div>
+                    
+                <div class="card-body">
+                    <form role="form" data-parsley-validate="" novalidate="">
+               
+            
+                  <div class="form-group "> 
+
+                    <label for="produit_id" >Produit</label>
+  
+                    <select  id="produit_id" name="produit_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" #produit_id="ngModel"  [(ngModel)]="inventaire.produit_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let produit of produits.controls; index as i"
+                        [value]="produit.value.id">{{produit.value.nom_prod}}
+                    </option>
+                    </select>
+                  </div>
+                  <!--<div class="form-group "> 
+                    <label for="famille_id" >Famille</label>
+  
+                    <select  id="famille_id" name="famille_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.famille_id" #famille_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let famille of familles.controls; index as i"
+                        [value]="famille.value.id">{{famille.value.libelle}}
+                    </option>
+                    </select>
+                  </div>
+                  <div class="form-group "> 
+                    <label for="marque_id" >Marque</label>
+  
+                    <select  id="marque_id" name="marque_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.marque_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let marque of marques.controls; index as i"
+                        [value]="marque.value.id">{{marque.value.libelle}}
+                    </option>
+                    </select>
+                  </div>-->
+                
+                  
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                    </form>
+                </div>
+              </div>
+           
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Inventaire </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimerinventaire" target="_blanc" class="img4 s7-print" title="imprimer"></a>
+
+              </div>
+                  
+                <br>
+                <div class="card-body ">
+                     
+                    <a href="/imprimerinventaire1" target="_blanc"><button class="bb1 btn-primary" type="submit">IMP (Qte<=0)</button></a>
+                    <a href="/imprimerinventaire2"target="_blanc"><button class="btn-primary" type="submit">IMP (Qte>0)</button></a>
+
+                <table class=" t5 table-sm  table-bordered ">
+                  
+                  <thead class="thead1">
+                    <tr>
+                        
+                      <th>Id</th>
+                      <th>Nom/Réf Produit</th>
+                      <th>Code a barre</th>
+                      <th >Famille </th>
+                     
+                      <th >Prix achat</th>
+                      <th >P.M.P.</th>
+                      <th >P.Max</th> 
+                      <th >Stock.theo</th> 
+                       <th>Stock.phys</th>
+                       <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let inventaire of inventaires">
+                    <tr  *ngFor="let produit of produitss">
+                       
+
+                      <td *ngIf="inventaire.produit_id == produit.id">{{inventaire.id}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit.nom_prod}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit.code}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id" ><span *ngFor="let famille of familless"><span *ngIf="famille.id == produit.famille_id">{{famille.libelle}}</span></span></td>             
+
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit.prix_achat}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit.prix_min}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit. prixf}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{produit.stk_alert}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id">{{inventaire.QteStock}}</td>
+                      <td *ngIf="inventaire.produit_id == produit.id" ><a (click)="supprimer(inventaire.id)" class="img2 s7-trash" title="supprimer"></a>
+                      </td>
+
+                     
+                    </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

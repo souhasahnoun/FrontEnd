@@ -1,0 +1,277 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION PERSONELS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Personels</a></li>
+          <li class="breadcrumb-item"><a href="/personels">Gestion personnels</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter Personnel</h3>
+              </div>
+              <div class="card-body">
+                <div>
+                  
+                  <div  class="form-group">
+                    <label for="nom" >Nom</label>   
+                    <input [(ngModel)]="personel.nom" id="nom"  class="form-control label3" type="text"   placeholder="Enter nom  " #nom="ngModel" name="nom" minlength="4" maxlength="15" pattern="[A-Za-z\s ]*" required >
+                    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
+                    class="f55">
+                
+                  <div *ngIf="nom.errors.required">
+                   champs nom est obligatoire.
+                  </div>
+                  <div *ngIf="nom.errors.minlength">
+                    nom doit comporter au moins 4 caractères.
+                  </div>
+                  <div *ngIf="nom.errors.maxlength">
+                    nom doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="nom.errors.pattern">
+                    nom doit être une chaîne de caractère.
+                  </div>
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="prenom">Prénom</label>   
+                    <input [(ngModel)]="personel.prenom" id="prenom"  class="form-control label3" type="text"   placeholder="Enter prenom  " #prenom="ngModel" name="prenom" minlength="4" maxlength="15" pattern="[A-Za-z\s ]*" required >
+                    <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)"
+                    class="f55">
+                
+                  <div *ngIf="prenom.errors.required">
+                   champs prenom est obligatoire.
+                  </div>
+                  <div *ngIf="prenom.errors.minlength">
+                    prenom doit comporter au moins 4 caractères.
+                  </div>
+                  <div *ngIf="prenom.errors.maxlength">
+                    prenom doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="prenom.errors.pattern">
+                    prenom doit être une chaîne de caractère.
+                  </div>
+                </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="dateNaiss">Date Naissance</label>
+                    <input [(ngModel)]="personel.dateNaiss" id="dateNaiss"  class="form-control label3" type="date"   #dateNaiss="ngModel" name="dateNaiss"  required >
+                    <div *ngIf="dateNaiss.invalid && (dateNaiss.dirty || dateNaiss.touched)"
+                    class="f55">
+                
+                  <div *ngIf="dateNaiss.errors.required">
+                   champs dateNaiss est obligatoire.
+                  </div>
+                  
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="cin">Cin</label>
+                    <input [(ngModel)]="personel.cin" id="cin"  class="form-control label3" type="text"   placeholder="Enter cin  " #cin="ngModel" name="cin" minlength="8" maxlength="8" pattern="[0-9]{8}" required >
+                    <div *ngIf="cin.invalid && (cin.dirty || cin.touched)"
+                    class="f55">
+                
+                  <div *ngIf="cin.errors.required">
+                   champs cin est obligatoire.
+                  </div>
+                  <div *ngIf="cin.errors.minlength">
+                    cin doit comporter au moins 8 caractères.
+                  </div>
+                  <div *ngIf="cin.errors.maxlength">
+                    cin doit contenir au maximum 8 caractères.
+                  </div>
+                  <div *ngIf="cin.errors.pattern">
+                    cin doit être un entier.
+                  </div>
+                </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="tel">Tel</label>
+                    <input [(ngModel)]="personel.tel" id="tel" class="form-control label3" type="text"  placeholder="+000.00.000.000 " #tel="ngModel" name="tel" minlength="15"  maxlength="15" pattern="[\+][0-9]{3}[\.][0-9]{2}[\.][0-9]{3}[\.][0-9]{3}" required>
+                    <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+                      class="f55">
+                
+                      <div *ngIf="tel.errors.required">
+                        champs tel est obligatoire.
+                      </div>
+                      <div *ngIf="tel.errors.minlength">
+                        tel doit comporter au moins 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.maxlength">
+                        tel doit contenir au maximum 15 caractères.
+                      </div>
+                      <div *ngIf="tel.errors.pattern">
+                        veuillez respecter le format +000.00.000.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input [(ngModel)]="personel.adresse" id="adresse" class="form-control label3"  type="text"  placeholder="Adresse" #adresse="ngModel" name="adresse" minlength="4" maxlength="20" pattern="[A-Za-z0-9\s]+" required>
+                    <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)"
+                      class="f55">
+                
+                      <div *ngIf="adresse.errors.required">
+                         champs adresse est obligatoire.
+                      </div>
+                      <div *ngIf="adresse.errors.minlength">
+                        adresse doit comporter au moins 4 caractères.
+                      </div>
+                      <div *ngIf="adresse.errors.maxlength">
+                        adresse doit contenir au maximum 20 caractères.
+                      </div>
+                      <div *ngIf="adresse.errors.pattern">
+                        veuillez respecter le format requis
+                      </div>
+                    </div>
+                  </div>
+				          <div class="form-group">
+                    <label for="salaire">Salaire</label>
+                    <input type="text" name="salaire" class="form-control label3" id="salaire" placeholder="salaire" [(ngModel)]="personel.salaire" required #salaire="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    <div *ngIf="salaire.invalid && (salaire.dirty || salaire.touched)"
+                      class="f55">
+              
+                      <div *ngIf="salaire.errors.required">
+                        champs salaire est obligatoire.
+                      </div>
+                      <div *ngIf="salaire.errors.minlength">
+                        salaire doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="salaire.errors.maxlength">
+                        salaire doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="salaire.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="login" >Login</label>
+  
+                    <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="personel.login" #login="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                        [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                    </option>
+                    </select>
+                    <div *ngIf=" login.invalid  && login.touched">  
+                      <div *ngIf="login.errors.required" class="f55">
+                        login est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <div class="form-group"> 
+                    <label for="magasin_id" >Magasin</label>
+  
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="personel.magasin_id" #magasin_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                    <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                      <div *ngIf="magasin_id.errors.required" class="f55">
+                        magasin est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+
+                  <div class="form-group"> 
+                    <label for="utilisateur_id" >Utilisateur</label>
+  
+                    <select  id="utilisateur_id" name="utilisateur_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="personel.utilisateur_id" #utilisateur_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                        [value]="utilisateur.value.id">{{utilisateur.value.login}}
+                    </option>
+                    </select>
+                    <div *ngIf=" utilisateur_id.invalid  && utilisateur_id.touched">  
+                      <div *ngIf="utilisateur_id.errors.required" class="f55">
+                        utilisateur est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterP()">Ajouter</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+                </div>
+              </div>
+            </div>
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des personnels</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                
+
+              </div><br>
+              <input class="form-control label6 glyphicon glyphicon-search" type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+
+                  <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        
+                        <th>Nom</th>
+                        <th >Prénom</th>
+                        <th >Date Ajout</th>
+                        <th >Cin</th>
+                        <th >Salaire</th>
+                        <th >Action</th>
+                       
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let personel of personels| filter:term | orderBy:id">
+                       
+                        <td>{{personel.nom}}</td>
+                        <td >{{personel.prenom}}</td>
+                        <td >{{myDate | date: 'mediumDate' }}</td>
+                        <td>{{personel.cin}}</td>
+                        <td >{{personel.salaire}}</td>
+                        <td ><a  class="img2 s7-note" title="modifier" routerLink="/personels/{{personel.id}}"></a>
+                          <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(personel.id)"></a>
+                          
+                        </td>
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                  <br>
+            <nav aria-label="Page navigation example" class="radio45">
+              <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a class="page-link" (click)="setPage(1)">First</a>
+                </li>
+                <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                  <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+              </ul>
+            </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+

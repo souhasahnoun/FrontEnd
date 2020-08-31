@@ -1,0 +1,64 @@
+
+<DIV id='sectionAimprimer'>
+    <div class="page-head2"  id="tblData">
+        <h1 class="radio1 f4 "><b><a href="javascript:imprimer('sectionAimprimer')"  ><p class="f1">LISTE DE PRIX CARTHAGO + </p></a> 
+          <a href="javascript:exportTableToExcel('tblData','LISTE DE PRIX CARTHAGO + ')"  class=" radio1110" ><img src="/assets/img/excel.JPG" title="exporter en excel"></a></b></h1>
+        <h4 class="radio33 f4 f1">Date:{{myDate | date: 'mediumDate' }}</h4><br>
+
+        <table class=" f4 t44 table-sm t88 table-bordered2  " >
+          <thead >
+    
+          <tr > 
+            <th >Marque </th>
+            <th >produit</th>
+            <th >Code à barre</th>
+            <th >Prix Achat HT </th>
+            <th >TVA</th>
+            <th >Prix revient </th>
+            <th >PV REV TTC</th>
+            <th >PV PUB TTC </th>
+            <th >STOCK</th>
+            <th >Total stock</th>
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let produit of produits">
+        <tr *ngFor="let stock of stocks ">
+          <td *ngIf="produit.id == stock.produit_id && stock.QteStock < 0"><span *ngFor="let marque of marquess"><span *ngIf="marque.id == produit.marque_id">{{marque.libelle}}</span></span></td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0">{{produit.nom_prod}}</td>
+           <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0">{{produit.code}}</td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0" >{{produit.prix_achat}}</td>
+          <td *ngIf="produit.id == stock.produit_id && stock.QteStock < 0"><span *ngFor="let tva of tvass"><span *ngIf="tva.id == produit.tva_id">{{tva.taux}}</span></span></td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0">{{produit.prix_revient}}</td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0" >{{produit.prixfrev}}</td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0" >{{produit.prixf}}</td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0" >{{stock.QteStock}}</td>
+          <td  *ngIf="produit.id == stock.produit_id && stock.QteStock < 0" ></td>
+</tr> 
+     
+            
+          </tbody>
+<tfoot>
+  <tr>
+          
+            
+    <th   colspan="3">TOTAL</th>
+    <th >0.000</th>  
+    <th ></th>  
+    <th >0.000</th>  
+    <th>0.000</th>  
+    <th >0.000</th>  
+    <th >0</th>  
+    <th >0.000</th>  
+    
+
+
+  </tr>
+</tfoot>
+      </table>
+
+
+      </div>
+      
+    </DIV>
+ 

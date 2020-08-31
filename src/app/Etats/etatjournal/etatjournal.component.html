@@ -1,0 +1,88 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>JOURNAL </h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >EtatS</a></li>
+          <li class="breadcrumb-item"><a href="/Journal ">Journal </a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+              
+                <h3>Journal </h3>
+              </div>
+              
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                 
+                  <div class="form-group radio1 "> 
+                    <label>Période de début:</label>
+                    <input class="form-control1 label3" type="date" >
+
+                  </div>
+                  <div class="form-group "> 
+                    <label>Période de fin:</label>
+                    <input class="form-control1 label3" type="date" >
+
+                  </div><br><br>
+                  
+                    <label class="f1 radio000"><b>VENTES</b></label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input  type="checkbox" id="ventes" name="ventes"/>
+                    &nbsp;&nbsp;
+             <label class="f1" >Journal des ventes</label>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <input  type="checkbox" id="ventes1" name="ventes1"/>
+             &nbsp;&nbsp;    
+             <label class="f1">Journal des avoirs de vente</label>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <input type="checkbox" id="ventes2" name="ventes2"/>
+             &nbsp;&nbsp;       
+             <label class="f1">Journal des ventes en suspension</label>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <input type="checkbox" id="ventes3" name="ventes3"/>
+             &nbsp;&nbsp;       
+             <label class="f1">Journal des retenus CLT</label>
+                  
+             
+             <br><br>
+                  <div class="form-group "> 
+                    
+                    <label class="f1 radio0"><b>ACHATS</b></label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" id="ventes" name="ventes"/>
+                    &nbsp;  
+             <label class="f1">Journal des achats</label>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <input type="checkbox" id="ventes1" name="ventes1"/>
+             &nbsp; &nbsp; 
+                   
+             <label class="f1">Journal des avoirs d'achats</label>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <input type="checkbox" id="ventes2" name="ventes2"/>
+             &nbsp; &nbsp;    
+        
+                   
+             <label class="f1">Journal des retenus FRS</label>
+                  </div>
+                  <br>
+                  <div id='tblData'>
+                    <table ></table>
+                  </div>
+                  <a href="javascript:exportTableToExcel('tblData','Journal ')" class="b7 btn btn-space btn-primary" >Exporter Excel</a>
+                   <a href="/exportpdf" target="_blanc" class="b1 btn btn-space btn-primary" >Exporter PDF</a>
+                   <button class="b1 btn btn-space btn-primary" type="submit">Annuler</button>
+                </form>
+              
+                </div>
+                
+                
+              </div>
+           
+          

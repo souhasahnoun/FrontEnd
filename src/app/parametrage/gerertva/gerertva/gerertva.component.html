@@ -1,0 +1,110 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>GERER TVA</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Parametrages</a></li>
+            <li class="breadcrumb-item"><a href="/gerertva">Gérer TVA</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                      <div class="card-header">
+                          <h3>Ajouter TVA</h3>
+                      </div>
+                      <div class="card-body">
+                          <div>
+                            <div class="form-group ">
+                              <label for="taux">Taux(%):</label>
+                                <input [(ngModel)]="tva.taux" id="taux"  class="form-control label7"  type="text"  placeholder="" required #taux="ngModel" minlength="1" maxlength="3" pattern="[0-9]*">
+                                <div *ngIf="taux.invalid && (taux.dirty || taux.touched)"
+                        class="f55">
+                    
+                      <div *ngIf="taux.errors.required">
+                        Champs taux est obligatoire.
+                      </div>
+                      <div *ngIf="taux.errors.minlength">
+                        taux doit comporter au moins 1 caractères.
+                      </div>
+                      <div *ngIf="taux.errors.maxlength">
+                        taux doit contenir au maximum 3 caractères.
+                      </div>
+                      <div *ngIf="taux.errors.pattern">
+                        taux doit être un entier.
+                      </div>
+                    </div>
+                              </div>
+                            <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterT()">Enregistrer</button>
+                            <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                          </div>
+                        </div>
+                    </div>
+                 <br>
+                
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Liste des TVA</h3><h3 class=" h5"><b>{{message}}</b></h3>
+                    </div>
+
+               
+                        
+                         
+  
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                              <tr>
+                                  
+                                <th> Taux TVA</th>
+                               
+                               
+                                <th>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let tva of tvas  "> 
+                                  
+                                  <td>{{tva.taux}}</td>
+                                
+                                
+                                 
+                                  <td ><a  class="img2 s7-note" title="modifier" routerLink="/gerertva/{{tva.id}}"></a>
+                                    <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(tva.id)"></a>
+                                    </td>
+            
+                              </tr>
+                             
+                              </tbody>
+                          </table>
+                          <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+                          </div>
+                      </div>
+       
+                    </div>
+                  </div>
+                </div>
+              
+                 
+  
+  

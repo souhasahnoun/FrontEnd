@@ -1,0 +1,111 @@
+<div id='sectionAimprimer '>
+    
+  <div class="page-head2" id="tblData">
+      <h1 class="radio133 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">ETAT DE STOCK CARTAGO+ </b></a>
+          <a href="javascript:exportTableToExcel('tblData','ETAT DE STOCK CARTAGO+ ')"  class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+      </h1>
+      <h4 class="radio31 f4">Date: {{myDate | date: 'mediumDate' }} 
+        <span class="radio0000">Imprimé par : </span></h4><br>
+      <table class=" f4 t44 table-sm t88 table-bordered2 ">
+        <thead >
+  
+        <tr > 
+          <th >Nom prod </th>
+          <th >Qte</th>
+          <th >P.U.(DT)</th>
+          <th >P.T.HT(DT) </th>
+          <th >TVA(%)</th>
+          <th >P.T.TTC(DT)</th>
+          <th >P.Revient </th>
+          <th >P.Revendeur</th>
+          <th >P.Public</th>
+        </tr>
+       
+      </thead>
+      <tbody *ngFor="let stock of stocks">
+        <tr *ngFor="let produit of produits" >
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.nom_prod}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{stock.QteStock}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prix_min}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prixrispub}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.tva_id}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prixrisrev}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prix_revient}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prixfrev}}</td>
+          <td *ngIf="stock.QteStock > 0 && stock.produit_id == produit.id">{{produit.prixf}}</td>
+          
+</tr>    
+        </tbody>
+        <tfoot>
+          <tr>
+            <td  colspan="3"><b>Valeur de stock</b></td>
+           
+            <td ><b>0,000 DT</b> </td>
+            <td ><b>0,000 DT</b></td>
+            <td ><b>0,000 DT</b></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            
+          </tr> 
+        </tfoot>
+    </table>
+    <br>
+    <table class=" radio1 t4 table-sm t88 table-bordered2 ">
+      <thead >
+
+      <tr > 
+        <th >Taxe </th>
+        <th >Montant TVA</th>
+        <th >Base</th>
+       
+      </tr>
+     
+    </thead>
+    <tbody>
+    <tr>
+      <td >0 %</td>
+      <td >0.000</td>
+      <td >0.000</td>
+      
+      
+</tr> 
+<tr>
+  <td >7 %</td>
+  <td >0.000</td>
+  <td >0.000</td>
+  
+  
+</tr> 
+
+<tr>
+  <td >13 %</td>
+  <td >0.000</td>
+  <td >0.000</td>
+  
+  
+</tr> 
+
+<tr>
+  <td >19 %</td>
+  <td >0.000</td>
+  <td >0.000</td>
+  
+  
+</tr> 
+<tr>
+<td  ><b>Total</b></td>
+
+<td ><b>0,000 DT</b> </td>
+<td ><b>0,000 DT</b></td>
+
+</tr> 
+        
+      </tbody>
+  </table>
+  
+   
+    </div>
+    
+
+</div>   

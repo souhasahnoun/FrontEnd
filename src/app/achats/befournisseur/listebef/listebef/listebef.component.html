@@ -1,0 +1,145 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTE BON ENTREE STOCK</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Achats</a></li>
+            <li class="breadcrumb-item"><a href="/listebef">Liste bon d'entrèe stock</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Chercher BL</h3>
+                    </div>
+                    <div class="card-body">
+                        <form role="form" data-parsley-validate="" novalidate="">
+                          <div class="form-group ">
+                            <label for="num">N°:</label>
+                              <input class="form-control1 label7"  type="text" required="" parsley-type="N°" placeholder=" " id="num" name="num" [(ngModel)]="document.num" #num="ngModel"/>
+                          </div>
+                          <div class="form-group">
+                            <label for="fournisseur_id">Fournisseur:</label>
+                            <select  id="fournisseur_id" name="fournisseur_id" class="form-control label7" size="1"  #fournisseur_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.fournisseur_id"  required>
+                        
+                              <option
+                                
+                                *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                                [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+                            </option>
+                            </select>
+                          
+                          </div>
+                          <div class="form-group ">
+                            <label for="date">Du:</label>
+                              <input class="form-control1 label7"  type="date"  id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                          </div>
+                   <div class="form-group ">
+                            <label for="date_fin">Au:</label>
+                              <input class="form-control1 label7"  type="date" id="date_fin" name="date_fin" #date_fin="ngModel" [(ngModel)]="document.date_fin"  required>
+                          </div>
+                          <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                        </form>
+                      </div>
+                    </div>
+                 <br>
+                 <br>
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Liste des bons d'entrèe 
+                      <a href="/imprimerbef/{{document.fournisseur_id}}{{document.date}}{{document.date_fin}}{{document.num}}" target="_blanc" class="img4 s7-print" title="Imprimer"></a>
+                     </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                        <div >
+                         
+  
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                  
+                                <th>Fact.</th>
+                      <th>Num BL</th>
+                      <th >Date </th>
+                      <th >Fournisseur</th>
+                      <th >Num Import</th>
+                      <th >Montant TTC</th>
+                      <th >Montant HT</th>
+                      
+                      <th >Etat Fact.</th>
+                      <th >Etat Paiement</th>
+                      <th >Suivi Paiement</th> 
+                      <th>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody *ngFor="let document of documents"> 
+                                <tr *ngIf="document.type == 5">
+                                  <td><input class="radio0000" type="checkbox"></td>
+                                    <td >{{document.num}}</td>
+                                    <td >{{document.date}}</td>
+                                    <td ><span *ngFor="let fournisseur of fournisseurss"><span *ngIf="fournisseur.id == document.fournisseur_id">{{fournisseur.raison_social}}</span></span></td>             
+                                    <td  >0</td>
+                                    <td>calculabe dt</td>
+                                    <td  > <span> 0.000 dt</span></td>
+                                    <td >mnin</td>
+                                     <td><a  onclick="open('/saisiereglement','new', 'width=700,height=450')" class="radio0000 img2 s7-cash" title="Saisie réglement" ></a></td>
+                                    <td><a onclick="open('/suivireglement','new', 'width=700,height=350')" class="radio0000 img2 s7-file" title="Suivi réglement"></a></td>
+                                    <td>
+                                      <a href="/ligneblf/{{document.id}}" class="img2 s7-note" title="modifier">
+                                      </a><a  (click)="supprimer(document.id)" title="supprimer" class="img2 s7-trash"></a>
+                                      <a href="/imprimerbef1/{{document.id}}" target="_blanc" class="img2 s7-print" title="Imprimer"></a>
+                                  </td>
+                                </tr> 
+   
+                                     
+                              </tbody>
+                              <tfoot>
+                                <tr class="tr1">
+                                  <td colspan="4">
+                                    <br>
+                                    <input type="number" class="control1 label7  radio01" placeholder="N° Facture frs "><br><br>
+                                    
+                                    <input type="date" class="control1 label7  radio01" placeholder=" " >
+                                    <a class="radio001 btn btn-space btn-primary" href="/befournisseur">Facturer</a>
+                                   
+                                  </td>
+                                  <td  ><b>TOTAL</b></td>
+                                  <td class="td5" ><b>0.000 Dt</b></td>
+                                  <td class="td5" ><b>0.000 Dt</b></td>
+                                  <td colspan="4"  ></td>
+                                  
+                                  </tr> 
+                              </tfoot>
+                          </table>
+                          <br>
+                        
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>                             
+       
+          
+  
+  

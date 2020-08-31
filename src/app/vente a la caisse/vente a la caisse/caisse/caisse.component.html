@@ -1,0 +1,408 @@
+<app-header></app-header>
+<div >
+    
+    <div class="page-head4">
+        <p class="radio02" id="example6"><b class="radio11 tt3 f6">Ticket de caisse</b>
+          <span class="radio38 tt33 f7">N° Ticket: {{ticket.code}}</span>
+          <span *ngFor="let caisse of caisses">
+            <span *ngFor="let utilisateur of utilisateurs">
+              <span class="radio01 tt33 f7" *ngIf="caisse.login == utilisateur.login && caisse.utilisateur_id == utilisateur.id" 
+                name="login" ngModel="ticket.login" >Vendeur:{{caisse.login}}
+              </span>
+            </span>
+          </span>
+          <span class="radio01 tt33 f7" name="date" [(ngModel)]="ticket.date"  #date="ngModel">
+            Date: {{myDate | date: 'short' }}
+          </span>
+        </p>
+        <div >
+            <div class="radio02  rs" id="example7">
+               <span class="radio111 tt44 f7" for="client_id">Client: 
+                  <select  id="client" name="client" class="radio111  select1" size="1"   (change)="onSelectType($event.target)"  #client="ngModel" [(ngModel)]="reglementclt.client"  required>
+                     <option
+                     
+                     *ngFor="let client of clients.controls; index as i"
+                     [value]="client.value.raison_social">{{client.value.raison_social}}
+                     </option>
+                  </select>
+               </span>  
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="reglementclt.client == client.raison_social ">RS : {{client.raison_social}} </span></span>
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="reglementclt.client == client.raison_social  ">Tel : {{client.tel}}   </span></span>
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="reglementclt.client == client.raison_social  ">Solde : {{client.plafond}}  </span></span>
+                  <br >
+               
+               </div>
+            <p class="radio111  rs d" id="example8" ><b class="radio11 tt333 f77" >Total</b><b class="radio51100 tt333 f77" ><input  (change)="calculerRendre()" class="total" type="text" name="montant_final" [(ngModel)]="caisse.montant_final"  #montant_final="ngModel" value="{{prixTTC}} " readonly>DT </b><br><br></p>
+            <p class="radio111  rs" id="example7"><br><span class="radio111 tt44 f7">Montant reçu: <input (change)="calculerRendre()" type="text" class="inp2" name="recu" [(ngModel)]="ticket.recu" required #recu="ngModel"><br ><br><span class="radio111 tt44 f7" >Rendre: <input type="text" class="inp2 radio001"  name="rendre" [(ngModel)]="ticket.rendre" required #rendre="ngModel" readonly ></span><br></span></p>
+       </div>
+       <div>
+      <div class="rs  ">
+        <p  class="radio02 rs" id="example11"><b class="radio1110 f tt3 f6">Detail produits </b><br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7 " >Designation   </b>
+               <span *ngFor="let produit of produitss">
+
+                  <span class="inp22 radio13333" *ngIf="prod  == produit.id || code == produit.code  "> {{produit.designation}} </span>
+               </span>
+                   
+            </span>  
+                  <br><br>
+                  <span class="radio1110 tt33 ">
+                     <b class="f7 " >Qte Stock   </b>
+                     <span *ngFor="let stock of stocks">
+                        <span *ngFor="let produit of produitss">
+                        <span class="inp22 radio13333" *ngIf="prod  == stock.produit_id && stock.produit_id == produit.id || stock.produit_id == produit.id && code == produit.code  "> {{stock.QteStock}} </span>
+                     </span>
+
+                     </span>
+                         
+                  </span> 
+                  <br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7">P.A.HT  </b>
+               <span *ngFor="let produit of produitss">
+                  <span class="inp22 radio001" *ngIf="prod  == produit.id || code == produit.code "> {{produit.prix_achat}} </span>
+               </span>
+            </span>
+                  <br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7">P.Rev.HT   </b>
+               <span *ngFor="let produit of produitss">
+                  <span class="inp22 radio1333" *ngIf="prod  == produit.id || code == produit.code "> {{produit.prix_revient}} </span>
+               </span>
+            </span>
+        </p>
+        <br><br>
+            <div  >
+                <button class="radio0001  t60 "  type="submit" ><b class="tt3 f7">7</b><br></button>
+                <button class=" t60 "  type="submit" ><b class="tt3 f7">8</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">9</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">+/-</b><br></button>
+            
+            </div>
+        
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">4</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">5</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">6</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Remise</b><br></button>
+            
+            </div>
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">1</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7 ">2</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">3</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Qte</b><br></button>
+            </div>
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">C</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">0</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">.</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Prix</b><br></button>
+            </div>
+            <div >
+                <input class="inp radio0001" type="text"><button class="t63" type="submit" ><b class="f7">Valider</b></button>
+             </div><br><br><br><br><br>
+        </div>
+        <div class="rs">
+            <input class="select2 radio111 rs" type="text" placeholder="   Code a barre" id="code" name="code" (change)="calculer()"  [(ngModel)]="code">
+
+            <select  id="prod" name="prod" class="radio111 inp1 f7" size="1" 
+                  (change)="calculer()"   [(ngModel)]="prod"  required >
+               <option
+               
+               *ngFor="let produit of produits.controls; index as i"
+               [value]="produit.value.id">{{produit.value.nom_prod}}
+               </option>
+               
+
+            </select>
+            <br>
+      
+            <table class=" radio1110 t405 rs  f7   table-sm t88 table-bordered2 ">
+            
+               <tr class="tr321" >
+                    <th class="ty1"></th>
+                    <th class="ty2">Designation</th>
+                    <th>Qte</th>
+                    <th>REM %</th>
+                    <th>P.A.HT</th>
+                    <th>TVA</th>
+                    <th>Total TTC</th>
+                </tr>
+               
+               <tbody >
+                
+                <tr   *ngFor="let produit of searchList; let i = index;"  >
+
+                  <td class="ty1"><input class="ch" type="checkbox"    
+                    [value]= "i"   
+                    
+                    ng-init='prod_checked=false'
+                    ng-model='prod_checked' ng-click='doIfChecked(updataListToDelete(i))'
+                    
+                    
+                    
+                    > </td>
+                  <td class="ty2"  >{{produit.designation}}</td>
+                  <td >{{quantites[i].QteStock}}</td>
+                  <!--<td *ngIf="prod  == produit.id && quantites[i].produit_id == produit.id  || code == produit.code && quantites[i].produit_id == produit.id   ">1</td>-->
+
+                  <td >0</td>
+                  <td  >{{produit.prix_achat}}</td>
+                  <td  ><span *ngFor="let tva of tvas"><span *ngIf="tva.id == produit.tva_id">{{tva.taux}}</span></span></td>
+                  <td >{{ quantites[i].QteStock* produitss[i].prix_achat}} </td>
+                       </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="rs">
+                 
+                 <p class="radio111 rs1" id="example12"><span class="radio111 f tt3 f6"><b>Encaissement</b></span><br>
+                    <button class="radio11  t61"  type="submit" (click)="removeFromList()" ><b class="tt33 f7">Supprimer Ligne</b></button>
+                     <button class="radio1110 t61 "  type="submit" ><a href="/listestickets" target="_blanc"><b class="  f7 tt33">Liste des tickets</b></a></button><br><br>
+                     <button class="radio11 t61" type="submit" ><a href="/caisse" target="_blanc"><b class="tt33 f7"> Nouveau caisse</b></a></button>
+                     <button  class="radio1110 t61" type="submit" ><a href="/retraitcaisse" target="_blanc"><b class="tt33  f7">Retrait Caisse</b></a></button><br><br>
+                     <button class="radio11  tx"  type="submit" (click)="ValiderTicket()" ><b class="tt33 f7">Valider ticket</b></button>
+                     <button class="radio1110 t61 "  type="submit" ><a href="/caisse1" target="_blanc"><b class="  f7 tt33">Passer Retour</b></a></button><br><br>
+
+                   
+                 </p>
+                <br>
+                <div class="radio111 rs" id="example13"><span class="radio111 f tt3 f6"><b>Reglement</b></span>
+                    <a class="t65" href="#myModal0"  data-toggle="modal" value="especes"><input class="imgg1"  type="image" src="/assets/img/especes.png" value="especes" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel"  ></a>
+                 <!-- Modal -->
+                 <div class="modal fade" id="myModal0" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <b><p class="i1">Espece</p> </b>
+                        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                      
+                      </div>
+                      <div class="modal-body">
+                        <label class="f1 radio000" for="mode"><b>Mode reglement:</b></label> <select class=" select3 radio1110" type="text"  name="mode" [(ngModel)]="reglementclt.mode"  #mode="ngModel"  > <option value="espece" >Especes</option></select><br>
+
+                       <label class="f1 radio000" for="montant"><b>Valeur Espece:</b></label> <input class="radio1333" type="text"  name="montant" [(ngModel)]="reglementclt.montant"  #montant="ngModel" ><br>
+                      
+                          <br>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                        <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                
+                </div>
+
+
+
+                    
+                    <a class="radio1110 t65" href="#myModal1"  data-toggle="modal"><input type="image" class="imgg2" src="/assets/img/cheques.png" value="cheque" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel"></a>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal1" role="dialog">
+                           <div class="modal-dialog">
+                           
+                             <!-- Modal content-->
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <b><p class="i1">Cheque</p> </b>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               
+                               </div>
+                               <div class="modal-body">
+                                <label class="f1 radio000" for="mode"><b>Mode reglement:</b></label> <select class=" select3 " type="text"  name="mode" [(ngModel)]="reglementclt.mode"  #mode="ngModel"  > <option value="cheque" >Cheque</option></select><br>
+                                <label class="f1 radio000" for="num"><b>Num Cheque:</b></label> <input name="num" [(ngModel)]="reglementclt.num"  #num="ngModel"  class="radio1333" type="text"><br>
+                                <label class="f1 radio000" for="date_echeance"><b>Date Echeance:</b></label> <input name="date_echeance" [(ngModel)]="reglementclt.date_echeance"  #date_echeance="ngModel"  class="radio211" type="date"><br>
+                                <label class="f1 radio000" for="banque"><b>Banque:</b></label> 
+                                    <select class="select3 radio0223" name="banque" [(ngModel)]="reglementclt.banque"  #banque="ngModel">
+                                      <option
+                     
+                                      *ngFor="let banque of banques.controls; index as i"
+                                      [value]="banque.value.libelle">{{banque.value.libelle}}
+                                      </option>
+                                    </select><br>
+                               
+                               </div>
+                               <div class="modal-footer">
+                                 <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                                 <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                               </div>
+                             </div>
+                             
+                           </div>
+                         
+                         
+                         </div>
+
+
+                    <br>
+                    <a class=" t65" href="#myModal2"  data-toggle="modal"  ><input type="image" class="imgg3" src="/assets/img/traite.png" value="traite" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel"></a>
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Traite</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                              <label class="f1 radio000" for="mode"><b>Mode reglement:</b></label> <select class=" select3 " type="text"  name="mode" [(ngModel)]="reglementclt.mode"  #mode="ngModel"  > <option value="traite" >Traite</option></select><br>
+                             <label class="f1 radio000" for="num"><b>Num Traite:</b></label> <input name="num" [(ngModel)]="reglementclt.num"  #num="ngModel" class="radio1333" type="text"><br>
+                             <label class="f1 radio000" for="date"><b>Date :</b></label> <input name="date" [(ngModel)]="reglementclt.date"  #date="ngModel" class="radio77" type="date"><br>
+                             <label class="f1 radio000" for="banque"><b>Banque:</b></label> 
+                             <select class="select3 radio01" name="banque" [(ngModel)]="reglementclt.banque"  #banque="ngModel">
+                              <option
+                  
+                              *ngFor="let banque of banques.controls; index as i"
+                              [value]="banque.value.libelle">{{banque.value.libelle}}
+                              </option>
+                                 </select><br>
+                                
+                            
+                           
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+
+
+                    <a class=" t65" href="#myModal3"  data-toggle="modal"  ><input type="image" class="imgg4" src="/assets/img/tpe.png" value="tpe" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel"></a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal3" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">TPE</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                              <label class="f1 radio000" for="mode"><b>Mode reglement:</b></label> <select class="select3" type="text"  name="mode" [(ngModel)]="reglementclt.mode"  #mode="ngModel"  > <option value="tpe" >TPE</option></select><br>
+                             <label class="f1 radio000" for="num"><b>Num :</b></label> <input  class="radio77" name="num" [(ngModel)]="reglementclt.num"  #num="ngModel"  type="text"><br>
+
+                             <label class="f1 radio000" for="banque"><b>Banque:</b></label> 
+                             <select class="select3 radio01" name="banque" [(ngModel)]="reglementclt.banque"  #banque="ngModel">
+                              <option
+                  
+                              *ngFor="let banque of banques.controls; index as i"
+                              [value]="banque.value.libelle">{{banque.value.libelle}}
+                              </option>
+                                 </select><br>
+                             
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+                    
+                    <br><br>
+                    <a class=" t65" href="#myModal4"  data-toggle="modal" ><input type="image" class="imgg5" src="/assets/img/chequec.png" value="cheque cadeau" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel"></a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal4" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Cheque Cadeau</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                              <label class="f1 radio000" for="mode"><b>Mode reglement:</b></label> <select class="select3" type="text"  name="mode" [(ngModel)]="reglementclt.mode"  #mode="ngModel"  > <option value="cheque cadeau" >Cheque cadeau</option></select><br>
+                                 <label class="f1 radio000" for="num"><b>Num Cheque:</b></label> <input name="num" [(ngModel)]="reglementclt.num"  #num="ngModel"  class="radio1333" type="text"><br>
+                                 <label class="f1 radio000" for="date_echeance"><b>Date Echeance:</b></label> <input name="date_echeance" [(ngModel)]="reglementclt.date_echeance"  #date_echeance="ngModel"  class="radio211" type="date"><br>
+                                 <label class="f1 radio000" for="banque"><b>Banque:</b></label> 
+                                     <select class="select3 radio0223" name="banque" [(ngModel)]="reglementclt.banque"  #banque="ngModel">
+                                       <option
+                      
+                                       *ngFor="let banque of banques.controls; index as i"
+                                       [value]="banque.value.libelle">{{banque.value.libelle}}
+                                       </option>
+                                     </select><br>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+
+
+
+                    <a class="radio11 t65" href="#myModal5"  data-toggle="modal"  ><input type="image" class="imgg4" src="/assets/img/virement.png" value="virement" name="type_reg" [(ngModel)]="ticket.type_reg"  #type_reg="ngModel">></a>
+                       <!-- Modal -->
+                     <div class="modal fade" id="myModal5" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Virement</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                            
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c" (click)="ValiderReg()">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+                   
+                     </div>                     
+                <br><br><br><br>
+                <!--<table class=" radio12 t407  f7   table-sm t88 ">
+                
+                    <tr>
+                        <th class="tr3221 "><b>Total Réglé</b></th>
+                        <th class="tr231 "><b>0.000 DT</b></th>
+                    </tr>
+                </table>-->
+               <br>
+            </div>
+           
+        </div>
+      </div>
+         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+      
+    </div>
+
+</div>

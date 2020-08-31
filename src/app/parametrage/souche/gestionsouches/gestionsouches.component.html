@@ -1,0 +1,149 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>GESTION SOUCHES</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Parametrages</a></li>
+            <li class="breadcrumb-item"><a href="/gestionsouches">Gestion souche</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Ajouter souche</h3>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                          <div class="form-group ">
+                            <label for="num">Num Souche:</label>
+                              <input [(ngModel)]="souche.num" id="num" class="form-control1 label3"  type="text"  placeholder="numero" #num="ngModel" name="num" minlength="4" maxlength="20" pattern="[A-Za-z0-9\s]*" required>
+                              <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                              class="f55">
+                        
+                              <div *ngIf="num.errors.required">
+                                 champs num est obligatoire.
+                              </div>
+                              <div *ngIf="num.errors.minlength">
+                                num doit comporter au moins 4 caractères.
+                              </div>
+                              <div *ngIf="num.errors.maxlength">
+                                num doit contenir au maximum 20 caractères.
+                              </div>
+                              <div *ngIf="num.errors.pattern">
+                                veuillez respecter le format requis
+                              </div>
+                            </div>
+                            </div>
+                            <div class="form-group"> 
+                              <label for="banque_id" >Banque</label>
+            
+                              <select  id="banque_id" name="banque_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="souche.banque_id" #banque_id="ngModel" required>
+                                
+                                <option
+                                  
+                                  *ngFor="let banque of banques.controls; index as i"
+                                  [value]="banque.value.id">{{banque.value.libelle}}
+                              </option>
+                              </select>
+                              <div *ngIf=" banque_id.invalid  && banque_id.touched">  
+                                <div *ngIf="banque_id.errors.required" class="f55">
+                                  banque est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+                          <div class="form-group ">
+                            <label for="du">DU:</label>
+                              <input [(ngModel)]="souche.du" id="du" class="form-control1 label3"  type="date"  #du="ngModel" name="du" required>
+                              <div *ngIf=" du.invalid  && du.touched">  
+                                <div *ngIf="du.errors.required" class="f55">
+                                  date debut est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+                          <div class="form-group ">
+                            <label for="au">AU:</label>
+                              <input [(ngModel)]="souche.au" id="au" class="form-control1 label3"  type="date"  #au="ngModel" name="au" required>
+                              <div *ngIf=" au.invalid  && au.touched">  
+                                <div *ngIf="au.errors.required" class="f55">
+                                  date fin est obligatoire
+                                </div>  
+                              </div> 
+                            </div>
+                          <button class="b1 btn btn-space btn-primary" type="submit" (click)="ajouterSouche()">Enregistrer</button>
+                          <button class="b1 btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                        </div>
+                      </div>
+                    </div>
+                <br>
+                    <div class="card3">
+                    <div class="card-header">
+                        <h3>Liste des souches</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                    </div>
+
+                 <br>
+                        <div >
+                          <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+  
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                              <tr>
+                                  
+                                <th> Num Souche</th>
+                               <th>Banque</th>
+                                <th>Du</th>
+                                <th>Au</th>
+                                <th>Etat</th>
+                                <th>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let souche of souches | filter:term | orderBy:id">
+                           
+                                  <td>{{ souche.num}}</td>
+                                  <td>{{ souche.banque_id}}</td>
+                                  <td>{{ souche.du}}</td>
+                                  <td>{{ souche.au}}</td>
+                                  <td>{{ souche.etat}}</td>
+                                 
+                                
+                                 
+                                  <td ><a  routerLink="/gestionsouches/{{souche.id}}" class="img2 s7-note" title="modifier"></a>
+                                    <a (click)="supprimer(souche.id)" class="img2 s7-trash"></a>
+                                    <a *ngIf="souche.etat == 0 " (click)="archiver(souche)" class="img2 s7-folder" title="Archiver"></a>
+                                    <a *ngIf="souche.etat == 1 " (click)="desarchiver(souche)" class="img2 s7-albums" title="Desarchiver"></a>                                   
+                                  </td>
+            
+                              </tr>
+                             
+                              </tbody>
+                          </table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

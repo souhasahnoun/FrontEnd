@@ -1,0 +1,44 @@
+<div >
+    
+    <div class="page-head2" id="sectionAimprimer">
+        <h1 class="radio38 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b  class="f1">REÇU ENTREES CAISSE
+        </b></a></h1>
+       <br>
+        
+        <table class=" t44 table-sm t88 table-bordered2 f4 " >
+          <thead >
+    
+          <tr > 
+            <th >  Caissier   </th>
+            <th >  Beneficiaire </th>
+            <th >Montant</th>
+            <th >Type paiement </th>
+            <th >Date</th>
+            
+            
+            
+          </tr>
+         
+        </thead>
+        <tbody>
+        <tr *ngIf="entreecaisse.id ">
+          <td >{{entreecaisse.login}}</td>
+          <td >{{entreecaisse.beneficiaire}}</td>
+          <td >{{entreecaisse.montant}}</td>
+          <td >{{entreecaisse.type}}</td>
+          <td >{{entreecaisse.date}}</td>
+          
+         
+          
+</tr> 
+         
+            
+          </tbody>
+      </table>
+      <br>
+      <p class="radio41" id="example2"><b class="radio111">Signature du beneficiaire</b></p>
+     
+      </div>
+      
+  
+</div>   

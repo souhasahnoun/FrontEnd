@@ -1,0 +1,139 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES RETENUS A LA SOURCE FOURNISSEUR</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Achats</a></li>
+            <li class="breadcrumb-item"><a href="/listeretenuesourcef">Liste retenus à la source fournisseur</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Retenus à la source fournisseur</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group radio00">
+                          <label for="fournisseur_id" >Fournisseur</label>
+  
+                          <select  id="fournisseur_id" name="fournisseur_id" class="form-control label3" size="1" (change)="onSelectType($event.target)"   #fournisseur_id="ngModel" [(ngModel)]="rsf.fournisseur_id"  required>
+                            
+                            <option
+                              
+                              *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                              [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+                          </option>
+                          </select>
+                          </div>
+                        <div class="form-group ">
+                          <label for="date">Depuis le </label>
+                            <input class="form-control1 label7"  type="date" id="date" name="date" [(ngModel)]="rsf.date"  #date="ngModel">
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Jusqu'au</label>
+                            <input class="form-control1 label7"  type="date" id="date" name="date" [(ngModel)]="rsf.date" #date="ngModel">
+                        </div>
+                 <button class="b8 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                 <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes retenus à la source fournisseur
+                        <a routerLink="/imprimerrsf/{{rsf.debut}}{{rsf.fin}}" target="_blanc" class="img4 s7-print" title="imprimer"></a>&nbsp;
+                     </h3>
+                 </div>
+                 <br>
+                        <div >
+
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                  
+                                <th>Date</th>
+                                <th>Factures </th>
+                                <th >Fournisseur</th>
+                               
+                                <th >Montant</th>
+                                <th >RS</th>
+                                <th >Montant Net</th> 
+                                <th>Réglé par</th>
+                                <th>Action</th>
+                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let rsf of rsfs">
+                              
+                                <td>{{rsf.date}}</td>    
+                               <td >
+                                  
+                                   Facture N°: <span *ngIf="document.type == 12 && document.fournisseur_id == rsf.fournisseur_id"> {{ document.num}}</span><br>
+                                    Facture avoir N°:<span *ngIf="document.type == 11 && document.fournisseur_id == rsf.fournisseur_id">{{ document.num}}</span> 
+                                </td>
+                                <td ><span *ngFor="let fournisseur of fournisseurss"><span *ngIf="fournisseur.id == rsf.fournisseur_id">{{fournisseur.raison_social}}</span></span></td>             
+                                <td>{{rsf.montant}}</td>  
+                                <td>{{rsf.rs}}</td>
+                                <td>{{rsf.net}}</td>
+                                <td >{{document.login}}</td>
+                      
+                                
+                            
+                                 
+                                  <td ><a routerLink="/listeretenuesourcef/{{rsf.id}}" class="img2 s7-note"></a>
+                                    <a (click)="supprimer(rsf.id)" class="img2 s7-trash"></a>
+                                      <a href="/retenuepdf" target="_blanc" class="img2 s7-next-2" title="Exporter en pdf"></a>
+                                    </td>
+            
+                              </tr>
+                 
+                                  
+                              </tbody>
+                              <tfoot>
+                                             <tr class="thead1">
+                              
+                                <td colspan="3"><b>Total</b></td>    
+                                  
+                                <td><b>0.000</b></td>  
+                                <td><b>0.000</b></td>
+                                <td><b>0.000</b></td>
+                                <td colspan="2"></td>
+                                 
+            
+                              </tr>
+                              </tfoot>
+                          </table><br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

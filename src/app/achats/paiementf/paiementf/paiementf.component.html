@@ -1,0 +1,154 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>PAIEMENTS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Achats</a></li>
+          <li class="breadcrumb-item"><a href="/paiementf">Paiements</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+              
+                <h3>Chercher</h3>
+              </div>
+              
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                  <!--<div class="form-group "> 
+                    <label>Cherche etat par année:</label>
+
+                      <select class="form-control1 label3">
+                        <option value="Tous">Tous</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                      </select>
+                  </div>
+                  <div class="form-group "> 
+                    <label>Cherche etat par mois:</label>
+
+                      <select class="form-control1 label3">
+                        <option value="Janvier">Janvier</option>
+                        <option value="Fevrier">Fevrier</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Avril">Avril</option>
+                        <option value="Mai">Mai</option>
+                        <option value="Juin">Juin</option>
+                        <option value="Juiliet">Juiliet</option>
+                        <option value="Aout">Aout</option>
+                        <option value="Septembre">Septembre</option>
+                        <option value="Octobre">Octobre</option>
+                        <option value="Nouvembre">Nouvembre</option>
+                        <option value="Decembre">Decembre</option>
+                      </select>
+                  </div>-->
+                  <div class="form-group ">
+                    <label for="date">Du</label>
+                      <input class="form-control1 label3" type="date" id="date" name="date"[(ngModel)]="paiementfrs.date" #date="ngModel" >
+                      
+                  </div>
+                  <div class="form-group ">
+                    <label for="date_echeance">Au</label>
+                      <input class="form-control1 label3" type="date"  id="date_echeance" name="date_echeance"  #date_echeance="ngModel"  [(ngModel)]="paiementfrs.date_echeance">
+                      
+                  </div>
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                </form>
+                </div>
+              </div>
+           
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des Paiements </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimerpaiementf" target="_blanc" class="img4 s7-print"></a>
+              </div>
+                  
+                <!--<br>
+                <div class="form-group radio1">
+                    
+                    <label class="f1" >Etat</label>&nbsp;&nbsp;
+                    <select class="form-control1 ">
+                        <option>Tous</option>
+                      </select>                      
+                      &nbsp;&nbsp;
+                    <label class="f1"  >Type</label>&nbsp;&nbsp;
+    
+                      <select class="form-control1 ">
+                        <option>Tous</option>
+                      </select>
+                  </div>-->
+                <table class=" t2 table-sm  table-bordered ">
+                  
+                  <thead class="thead1">
+                    <tr>
+                      
+                      <th>Fournisseur</th>
+                      <th>Date paiement</th>
+                      <th >Mode paiement </th>
+                     
+                      <th >Banque</th>
+                      <th >num paiement</th>
+                      <th >Etat paiement</th> 
+                      <th >Montant</th> 
+                      <th >Action</th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let paiementfrs of paiementfrss">
+                      <td>{{paiementfrs.fournisseur}}</td>
+                      <td>{{paiementfrs.date}}</td>
+                      <td>{{paiementfrs.mode}}</td>
+                      <td>{{paiementfrs.banque}}</td>
+                      <td>{{paiementfrs.num}}</td>
+                      <td>{{paiementfrs.etat}}</td>
+                      <td>{{paiementfrs.montant}}</td>
+                      <td ><a (click)="supprimer(paiementfrs.id)" class="img2 s7-trash"></a></td>
+                    </tr>
+                    <tr class="thead1">
+                  
+                      <td colspan="6"><b>TOTAL</b></td>
+                      <td >0.000</td>
+                      <td ></td>
+                     
+                    </tr>
+                    </tbody>
+                  </table> 
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

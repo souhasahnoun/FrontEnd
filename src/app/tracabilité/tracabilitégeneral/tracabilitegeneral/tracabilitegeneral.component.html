@@ -1,0 +1,119 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>Historique</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Traçabilité</a></li>
+            <li class="breadcrumb-item"><a href="/tracabilitegeneral">Consulter l'historique</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher Historique</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group "> 
+                          <label for="login">Responsable</label>
+                          <select  id="login" name="login" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="tracabilite.login" #login="ngModel" required>
+                    
+                            <option
+                              
+                              *ngFor="let tracabilite of tracabilites.controls; index as i"
+                              [value]="tracabilite.value.login">{{tracabilite.value.login}}
+                          </option>
+                          </select>   
+                          </div>
+                          <div class="form-group "> 
+                            <label for="objet">Module</label>
+                            <select  id="objet" name="objet" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="tracabilite.objet" #objet="ngModel" required>
+                      
+                              <option
+                                
+                                *ngFor="let tracabilite of tracabilites.controls; index as i"
+                                [value]="tracabilite.value.objet">{{tracabilite.value.objet}}
+                            </option>
+                            </select>   
+                            </div>
+                            <div class="form-group ">
+                              <label for="date">Du:</label>
+                                <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="tracabilite.date" #date="ngModel">
+                            </div>
+                            <div class="form-group ">
+                              <label for="date">Au:</label>
+                                <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="tracabilite.date" #date="ngModel">
+                            </div>
+                    <button class="b1 btn btn-space btn-primary"  type="submit" (click)="search()" >Chercher</button>
+               
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header" >
+                     <h3>Historique
+                        <a href="/historiquepdf" target="_blanc" class="img4 s7-print" title="Imprimer"></a>&nbsp;
+                        <a href="/historiqueexcel" target="_blanc" class="img333 s7-next-2" title="Exporter"></a>
+                     </h3><h3 class=" h5"><b>{{message}}</b></h3>
+                 </div>
+                 <br>
+                        
+                          <table class=" t2 table-sm  table-bordered "id="tblData">
+                              <thead class="thead1">
+                        
+                              <tr> 
+                                <th>Date/Heure </th>
+                                <th>Responsable</th>
+                                <th >Action</th>
+                                <th >Source</th>
+                                
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let tracabilite of tracabilitess">
+                              
+                                <td>{{tracabilite.date}}{{tracabilite.time}}</td>    
+                                <td>{{tracabilite.login}}</td>
+                                <td>{{tracabilite.action}}</td>    
+                                <td>{{tracabilite.objet}}</td>  
+                      
+            
+                              </tr>
+                             
+                                  
+                              </tbody>
+                          </table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                    
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

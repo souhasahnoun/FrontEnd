@@ -1,0 +1,291 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>ENTREE CAISSE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Vente à la caisse</a></li>
+          <li class="breadcrumb-item"><a href="/entreecaisse">Entrée caisse</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Entrée caisse</h3>
+              </div>
+              <div class="card-body">
+                <div>
+                  
+                  <div  class="form-group">
+                    <label for="montant">Montant (dt)</label>   
+                    <input class="form-control label3" type="text" placeholder="montant" [(ngModel)]="entreecaisse.montant" required #montant="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                    <div *ngIf="montant.invalid && (montant.dirty || montant.touched)"
+                      class="f55">
+              
+                      <div *ngIf="montant.errors.required">
+                        champs montant est obligatoire.
+                      </div>
+                      <div *ngIf="montant.errors.minlength">
+                        montant doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.maxlength">
+                        montant doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group "> 
+                    <label for="type">Type d'entrée</label>
+
+                      <select class="form-control label3" [(ngModel)]="entreecaisse.type" required #type="ngModel" >
+                        
+                        <option value="Especes">Especes</option>
+                        <option value="Virement">Virement</option>
+                        <option value="Cheque">Cheque</option>
+                        <option value="Traites">Traites</option>
+                        <option value="Cheque cadeaux">Cheque cadeaux</option>
+                      </select>
+                  </div>
+                  <div  class="form-group">
+                    <label for="date">Date </label>   
+                    <input [(ngModel)]="entreecaisse.date" id="date"  class="form-control label3" type="date"   #date="ngModel" name="date"  required> 
+                    <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                    class="f55">
+                
+                  <div *ngIf="date.errors.required">
+                   champs date est obligatoire.
+                  </div>
+                  
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="designation">Désignation </label>   
+                    <input [(ngModel)]="entreecaisse.designation" id="designation"  class="form-control label7" type="text"   placeholder="Enter designation  " #designation="ngModel" name="designation" minlength="4" maxlength="15" pattern="[A-Za-z0-9\s ]*" required > 
+                    <div *ngIf="designation.invalid && (designation.dirty || designation.touched)"
+                    class="f55">
+                
+                  <div *ngIf="designation.errors.required">
+                   champs designation est obligatoire.
+                  </div>
+                  <div *ngIf="designation.errors.minlength">
+                    designation doit comporter au moins 4 caractères.
+                  </div>
+                  <div *ngIf="designation.errors.maxlength">
+                    designation doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="designation.errors.pattern">
+                    designation doit être une chaîne de caractère.
+                  </div>
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="beneficiaire">Bénificiaire </label>   
+                    <input [(ngModel)]="entreecaisse.beneficiaire" id="beneficiaire"  class="form-control label3" type="text"   placeholder="Enter beneficiaire  " #beneficiaire="ngModel" name="beneficiaire" minlength="4" maxlength="15" pattern="[A-Za-z0-9\s ]*" required > 
+                    <div *ngIf="beneficiaire.invalid && (beneficiaire.dirty || beneficiaire.touched)"
+                    class="f55">
+                
+                  <div *ngIf="beneficiaire.errors.required">
+                   champs beneficiaire est obligatoire.
+                  </div>
+                  <div *ngIf="beneficiaire.errors.minlength">
+                    beneficiaire doit comporter au moins 4 caractères.
+                  </div>
+                  <div *ngIf="beneficiaire.errors.maxlength">
+                    beneficiaire doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="beneficiaire.errors.pattern">
+                    beneficiaire doit être une chaîne de caractère.
+                  </div>
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="num_cheque">Num Cheque </label>   
+                    <input [(ngModel)]="entreecaisse.num_cheque" id="num_cheque"  class="form-control label3" type="text"   placeholder="Enter num_cheque  " #num_cheque="ngModel" name="num_cheque" minlength="15" maxlength="15" pattern="[0-9\s ]*" required > 
+                    <div *ngIf="num_cheque.invalid && (num_cheque.dirty || num_cheque.touched)"
+                    class="f55">
+                
+                  <div *ngIf="num_cheque.errors.required">
+                   champs num_cheque est obligatoire.
+                  </div>
+                  <div *ngIf="num_cheque.errors.minlength">
+                    num_cheque doit comporter au moins 15 caractères.
+                  </div>
+                  <div *ngIf="beneficiaire.errors.maxlength">
+                    num_cheque doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="num_cheque.errors.pattern">
+                    num_cheque doit être un entier.
+                  </div>
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="banque">Banque </label>   
+                    <input [(ngModel)]="entreecaisse.banque" id="banque"  class="form-control label3" type="text"   placeholder="Enter banque  " #banque="ngModel" name="banque" minlength="3" maxlength="15" pattern="[A-Za-z\s ]*" required> 
+                    <div *ngIf="banque.invalid && (banque.dirty || banque.touched)"
+                    class="f55">
+                
+                  <div *ngIf="banque.errors.required">
+                   champs banque est obligatoire.
+                  </div>
+                  <div *ngIf="banque.errors.minlength">
+                    banque doit comporter au moins 3 caractères.
+                  </div>
+                  <div *ngIf="banque.errors.maxlength">
+                    banque doit contenir au maximum 15 caractères.
+                  </div>
+                  <div *ngIf="banque.errors.pattern">
+                    banque doit être une chaine.
+                  </div>
+                </div>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="login" >Login</label>
+  
+                    <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="entreecaisse.login" #login="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let caisse of caisses.controls; index as i"
+                        [value]="caisse.value.login">{{caisse.value.login}}
+                    </option>
+                    </select>
+                    <div *ngIf=" login.invalid  && login.touched">  
+                      <div *ngIf="login.errors.required" class="f55">
+                        login est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <div class="form-group"> 
+                    <label for="caisse_id" >Caisse</label>
+  
+                    <select  id="caisse_id" name="caisse_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="entreecaisse.caisse_id" #caisse_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let caisse of caisses.controls; index as i"
+                        [value]="caisse.value.id">{{caisse.value.id}}
+                    </option>
+                    </select>
+                    <div *ngIf=" caisse_id.invalid  && caisse_id.touched">  
+                      <div *ngIf="caisse_id.errors.required" class="f55">
+                        caisse est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+
+                  <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterE()">Enregistrer</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                </div>
+              </div>
+            </div>
+          
+          <br>
+            <div class="card3">
+              <div class="card-header" >
+                <h3>Listes des entrées caisses</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/entreecaissepdf" target="_blanc" class="img4 s7-print" title="imprimer"></a>&nbsp; 
+                <a href="/entreecaisseexcel" target="_blanc" class="img333 s7-next-2" title="exporter"></a>
+              </div>
+              <br>
+              <div class="radio0">
+                  <div class="form-group">
+                    <label for="date">Du</label>
+                      <input class="form-control1 label2" type="date" [(ngModel)]="entreecaisse.date" #date="ngModel">
+                      
+                  </div>
+                  <div class="form-group ">
+                    <label for="date">Au</label>
+                      <input class="form-control1 label2" type="date" [(ngModel)]="entreecaisse.date" #date="ngModel">
+                      
+                  </div>
+                  <div class="form-group "> 
+                    <label for="login" >Caisse</label>
+    
+                    <select  id="login" name="login" class="form-control label2" size="1" (change)="onSelectType($event.target)" [(ngModel)]="entreecaisse.login" #login="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let caisse of caisses.controls; index as i"
+                        [value]="caisse.value.login">{{caisse.value.login}}
+                    </option>
+                    </select>
+                  </div>
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+                </div> 
+              
+              <br>
+                  <table class=" t2 table-sm  table-bordered "id="tblData">
+                    <thead class="thead1">
+                      <tr>
+                        <th>Beneficiare</th>
+                        <th >Date </th>
+                        <th >Type d'entree </th>
+                        <th >Caissier </th>
+                        <th >Montant</th>
+                        <th >Action</th>
+
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let entreecaisse of entreecaisses| orderBy:id">
+                      <tr *ngIf="entreecaisse.id>0" >
+                        <td>{{entreecaisse.beneficiaire}}</td>
+                        <td >{{entreecaisse.date}}</td>
+                        <td>{{entreecaisse.type}}</td>
+                        <td >{{entreecaisse.login}}</td>
+                        <td >{{entreecaisse.montant}}</td>
+                        <td >
+                          <a routerLink="/imprimerentreecaisse1/{{entreecaisse.id}}" target="_blanc" class="img2 s7-print" title="Imprimer"></a> 
+                          <a routerLink="/entreecaisse/{{entreecaisse.id}}" class="img2 s7-note" title="modifier"></a>
+                          <a (click)="supprimer(entreecaisse.id)" class="img2 s7-trash" title="supprimer"></a>
+                          
+                        </td>
+
+                      </tr>
+            
+                          
+                    </tbody>
+                    <tfoot>
+                      <tr class="thead1">
+                        <td colspan="4"><b>TOTAL</b></td>
+                       
+                        <td ><b>0.000</b></td>
+                        <td ></td>
+                          
+                      
+
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+  </div>
+  
+

@@ -1,0 +1,117 @@
+<div >
+    
+    <div class="page-head2" id="sectionAimprimer">
+        <br><br><br>
+        <h4 class="radio41 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1"> DEVIS CLIENT </b></a></h4>
+        <br> <br>
+        <div class="ff1">
+        <table class="  tr44  txx table-sm  t88 table-bordered2 radio004">
+            <thead  >
+            <tr >
+                <th colspan="4">Devis</th>
+            </tr>    
+            <tr >
+         
+              <th  >Numero </th>
+              <th >Date  </th>
+              <th >Page  </th>
+             
+            </tr>
+        
+          </thead>
+          <tbody *ngFor="let document of documents">
+            <tr *ngIf="document.type == 1">
+              <td>{{document.num}}</td>
+              <td>{{document.date}}</td>
+              <td>1/1</td>
+            </tr>
+          </tbody>
+            </table>
+          </div>
+          <div class="ff1">
+            <table class="    table-sm  t88 table-bordered2 radio1333">
+              <thead *ngFor="let document of documents">
+              <tr *ngFor="let client of clients">
+                  <td  class="ccc  txx22" *ngIf="document.id == id && document.client_id == client.id">
+      
+                   <b> Code Client:</b> {{client.code_clt}} <br>
+                     <b> Nom Client:</b>  {{client.raison_social}} <br>
+                     <b> M.F: </b> {{client.mf}}<br>
+                     <b>  Tel Client:</b>  {{client.tel}}<br>
+                     <b> Adresse: </b> {{client.adresse}} <br>
+                  </td>
+              </tr>    
+             
+            </thead>
+           
+              </table>
+            </div><br>
+        <div class="ff1">
+        <table class="  tr44  txx4 table-sm  t88 table-bordered2 radio004">
+            <thead  >
+             
+            <tr >
+         
+              <th  >Reference </th>
+              <th >Designation </th>
+              <th >Qte  </th>
+              <th  >P.U.H.T </th>
+              <th >Rem </th>
+              <th >TVA %  </th>
+              <th  >P.T.H.T </th>
+             
+            </tr>
+        
+          </thead>
+          <tbody *ngFor="let produit of produits">
+            <tr *ngFor="let lignedocument of lignedocuments">
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{produit.ref_prod}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{lignedocument.designation}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{lignedocument.qte}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{lignedocument.prix}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{lignedocument.remise}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id">{{lignedocument.tva}}</td>
+              <td *ngIf="id == lignedocument.document_id  && produit.id == lignedocument.produit_id"></td>
+            </tr>
+          </tbody>
+            </table>
+          </div>
+          <br>
+          
+
+            <div class="ff1">
+              <table class="  tr44  txx2 table-sm  t88 table-bordered2 radio004">
+                  <thead  >
+                  <tr >
+                      <th >Signature & Cachet <br><br><br></th>
+                      
+                      
+                  </tr>    
+                  <tr >
+               
+                </thead>
+              </table>  
+              </div>
+
+              <div class="ff1">
+                <table class=" ccc tr44  txx3 table-sm  t88 table-bordered2 radio99">
+                    <thead  >
+                    <tr >
+                        <th >P.T.H.T : </th>
+                    </tr>    
+                    <tr >
+                      <th >Remise : </th>
+                  </tr>    
+                  <tr >
+                    <th >TVA : </th>
+                </tr>    
+                <tr >
+                  <th >Prix TTC : </th>
+              </tr>    
+                 
+                  </thead>
+                </table>  
+                </div>
+              
+    </div>
+</div>

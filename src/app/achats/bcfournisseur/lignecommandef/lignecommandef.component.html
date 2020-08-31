@@ -1,0 +1,210 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Ajouter les lignes de commande</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                    </div>
+                    
+                    <div class="card-body">
+                      <div ALIGN="CENTER">
+                      <b  class="tt radio1110" *ngIf="document.id == id ">Commande N°{{document.num}}</b>
+                
+                        </div>
+                        &nbsp;  &nbsp;   &nbsp;   &nbsp;
+                
+                      <div>
+                        <div class="radio05">
+                      <div class="center fieldset1">
+                        
+                
+                           
+                        <div class="card-body">
+
+                            <div class="form-group radio11 ">
+                              <label for="date">Date Commande:</label>
+                                <input class="form-control label3"  type="date" id="date" name="date" [(ngModel)]="document.date"  required>
+                            </div>
+                            <div class="form-group radio11 ">
+                              <label for="date_prev">Date  Prévisionnelle:</label>
+                                <input class="form-control label3"  type="date" id="date_prev" name="date_prev"[(ngModel)]="document.date_prev"   required>
+                            </div>
+                          
+                                      
+                            <div class="form-group "> 
+                              <label for="fournisseur_id" >Fournisseur</label>
+  
+                              <select  id="fournisseur_id" name="fournisseur_id" class="form-control label3" size="1"   (change)="onSelectType($event.target)" [(ngModel)]="document.fournisseur_id"  required>
+                                
+                                <option
+                                  
+                                  *ngFor="let fournisseur of fournisseurs.controls; index as i"
+                                  [value]="fournisseur.value.id">{{fournisseur.value.raison_social}}
+                              </option>
+                              </select>
+                            </div><br>
+                         
+                            <span class="form-group radio1110" *ngFor="let document of documentss" >
+                              <span *ngFor="let fournisseur of fournisseurss">
+                               <span  *ngIf=" document.id == id && document.fournisseur_id == fournisseur.id">
+                                 <label class="f1 " >Code TVA:</label>
+                                 <input  type="text" disabled class=" f1 form-control label7 radio1110"  value="{{fournisseur.mf}}" >
+                                 <label class="f1 radio0000" >Adresse:</label>
+                                 <input type="text" disabled class=" f1 form-control label7 radio1110"  value="{{fournisseur.email}}" >
+                               </span>
+                              </span>
+                            </span>
+                                <button class="b13 btn btn-space btn-primary"  type="submit" (click)="modifierCommande()">Modifier</button>
+                                                            
+                         </div></div>  </div>  
+                      </div>            
+                    
+                                            
+                     
+                        <div class="card-header"></div>
+                      <br><br>
+                                   
+                                         
+                    <div>
+                        <div class="radio110">
+                            <div class="center fieldset">
+                                <div class="card-body">
+                                        <a  class="radio11" href="/produit" class="img2 s7-plus" title="Ajouter produit"></a>
+                                    <div class="form-group "> 
+                                            <label>Code a barre</label><input class="form-control label3"   >   
+                                    </div> 
+                                    <div class="form-group "> 
+                                      <label for="ref_prod" >Ref Produit</label>
+  
+                                      <select  id="ref_prod" name="ref_prod" class="form-control label3" size="1"   (change)="onSelectType($event.target)" [(ngModel)]="ref_prod"  required>
+                                        
+                                        <option
+                                          
+                                          *ngFor="let produit of produits.controls; index as i"
+                                          [value]="produit.value.ref_prod">{{produit.value.ref_prod}}
+                                      </option>
+                                      </select>
+                                    </div> 
+                                     
+                                    <div class="form-group "> 
+                                      <label for="produit_id" >Nom Produit</label>
+  
+                                      <select  id="produit_id" name="produit_id" class="form-control label3" size="1"   (change)="onSelectType($event.target)" [(ngModel)]="lignedocument.produit_id" #produit_id="ngModel" required>
+                                        
+                                        <option
+                                          
+                                          *ngFor="let produit of produits.controls; index as i"
+                                          [value]="produit.value.id">{{produit.value.nom_prod}}
+                                      </option>
+                                      </select>
+                                    </div> 
+                                     
+                                    <div class="form-group "> 
+                                      <label for="tva" >TVA</label>
+  
+                                      <select  id="tva" name="tva" class="form-control label2" size="1"   (change)="onSelectType($event.target)" [(ngModel)]="lignedocument.tva" #tva="ngModel" required>
+                                        
+                                        <option
+                                          
+                                          *ngFor="let tva of tvas.controls; index as i"
+                                          [value]="tva.value.taux">{{tva.value.taux}}
+                                      </option>
+                                      </select>
+                                    </div> 
+
+                                    <div class="form-group "> 
+                                        <label for="qte">Qte</label>
+                                        <input class="form-control label7"  required  id="qte" name="qte"[(ngModel)]="lignedocument.qte" #qte="ngModel">   
+                                    </div> 
+                                    <div class="form-group "> 
+                                        <label for="remise">Remise (%)</label><input class="form-control label3"  required  id="remise"#remise="ngModel" name="remise"[(ngModel)]="lignedocument.remise">   
+                                    </div> 
+                                    <div class="form-group "> 
+                                      <label for="prix">PUHT(FRS)</label>
+                                      <input class="form-control label3"  required id="prix" name="prix"[(ngModel)]="lignedocument.prix" #prix="ngModel">   
+                                 </div> 
+                                    <div class="form-group " > 
+                                         <label>P.U.H.T</label><input class="form-control label2" disabled value=""> 
+                                    </div> 
+                                    <div class="form-group "> 
+                                        <label>P.U.T.T.C</label><input class="form-control label7"   disabled value="">   
+                                   </div> 
+                                   <div class="form-group " > 
+                                    <label for="document_id" >Document</label>
+
+                                    <select  id="document_id" name="document_id" class="form-control label3" size="1"   (change)="onSelectType($event.target)" [(ngModel)]="lignedocument.document_id" #document_id="ngModel" required>
+                                      
+                                      <option
+                                        
+                                      *ngIf="document.id == id " 
+                                        [value]="document.id "><span  >{{document.num}}</span>
+                                    </option>
+                                    </select>
+                                  </div>  
+                                   <div class="form-group ">
+                                            
+                                   <label for="designation">Designation</label>
+                                    <input class="form-control label7"  type="text" required id="designation" name="designation"[(ngModel)]="lignedocument.designation" #designation="ngModel">
+                               </div>
+                            <br><br> 
+                            <div ALIGN="right"> 
+                         <button class="btn btn btn-space btn-primary"  type="submit" (click)="ajouterLigneDoc()">Enregistrer</button>
+                         <button class="btn btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button></div>
+                    </div> 
+                </div>  
+                </div>    
+                    </div>   
+                    <br>
+                   <!-- <table class=" t2 table-sm  table-bordered " *ngIf="ajouter == true" id="table1">
+                      <thead class="thead1">
+                        <tr>
+                          
+                          <th>Reference</th>
+                          <th >Nom produit</th>
+                          <th >TVA</th>
+                          <th >Quantité</th>
+                          <th >PUHT</th>
+                          <th >Remise</th>
+                          <th >PTHT</th>
+                      
+                          <th>Action</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let lignedocument of lignedocuments | orderBy:id">
+                        <tr >
+                          <td>{{ ref_prod}}</td>
+                          <td *ngIf="modif == true"><input type="text" disabled></td>
+                          <td >{{ lignedocument.designation}}</td>
+                          <td *ngIf="modif == true"><input type="text" value="{{ lignedocument.designation}}" ></td>
+                          <td >{{ lignedocument.tva}}</td>
+                          <td *ngIf="modif == true"><b>{{ lignedocument.tva}}</b></td>
+                          <td>{{ lignedocument.qte}}</td>
+                          <td *ngIf="modif == true"><input type="text" value="{{ lignedocument.qte}}" ></td>
+                          <td >{{ lignedocument.prix}}</td>
+                          <td *ngIf="modif == true"><input type="text" value="{{ lignedocument.prix}}" ></td>
+                          <td >{{ lignedocument.remise}}</td>
+                          <td *ngIf="modif == true"><input type="text" value="{{ lignedocument.remise}}" ></td>
+                          <td></td>
+                          <td *ngIf="modif == true"><input type="text" disabled ></td>
+                          <td ><a class="img2 s7-note" title="modifier"  (click)="modifier()" ></a>
+
+                            <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(lignedocument.id)"></a>
+                          </td>
+                          <td *ngIf="modif == true"><a class="img2 s7-diskette" title="modifier"  (click)="modifierLigne()"></a>
+                            
+                            <a  class="img2 s7-trash" title="supprimer" (click)="supprimer(lignedocument.id)"></a>
+                          </td>
+                        </tr>
+                            
+                      </tbody>
+                    </table>  -->  
+                                                 
+                                            
+                       
+                                                 
+                                            

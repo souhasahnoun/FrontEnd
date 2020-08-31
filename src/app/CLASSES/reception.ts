@@ -1,0 +1,30 @@
+export interface Reception{
+    id?:number;
+    num:string;
+    date:Date;
+    piece:string;
+    accessoire:string;
+    nom:string;
+    tel:string;
+    recu_par:string;
+    panne:string;
+    tache:string;
+    prix:Float32Array;
+    code:string;
+    avance:Float32Array;
+    type:string;
+    etat_pay:number;
+    etat:number;
+    login:string;
+    client_id:number;
+    casier_id:number;
+    magasin_id:number;
+    contact_clt:number;
+    affect:string;
+    partde:string;
+    frais:Float32Array;
+    designation:string;
+    created_at?:string;
+    updated_at?:string;
+
+}

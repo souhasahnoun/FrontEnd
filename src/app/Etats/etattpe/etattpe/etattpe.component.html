@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>ETATS DES TPE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Etats</a></li>
+          <li class="breadcrumb-item"><a href="/etattpe">Etats des TPE</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Etats des TPE</h3>
+              </div>
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="" >
+              
+               
+                <div class="form-group radio1"> 
+                    
+                  <label for="date">Période de début etat</label>
+                  <input class="form-control label7"  type="date" name="date" [(ngModel)]="reglementclt.date" #date="ngModel">
+                
+                  </div>
+                  <div class="form-group "> 
+                    
+                    <label for="date_echeance">Période de fin</label>
+                    <input class="form-control label7"  type="date" name="date_echeance" [(ngModel)]="reglementclt.date_echeance" #date_echeance="ngModel">
+                  
+                    </div>
+                
+                    <!--<div class="form-group "> 
+                <label>Sources</label>
+                <select class="form-control1 label7"  required="" >
+                  <option>facture</option>
+                </select>
+                </div>-->
+                
+                  
+           
+                            <a class="b8 btn btn-space btn-primary" href="/imprimeretattpe" target="_blanc">Imprimer</a>
+                  
+                  <button class=" btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                  
+                </form>
+                </div>
+              </div>
+           
+          <br>
+          
+          
+        </div>
+      </div>
+    </div>
+
+
+  
+

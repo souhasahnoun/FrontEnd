@@ -1,0 +1,156 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>PAIEMENTS PERSONEL </h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Personnels</a></li>
+          <li class="breadcrumb-item"><a href="/paiementpersonel ">Paiements personels </a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                   
+                <h3>Ajouter Paiement </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div class="card-body">
+                <div>
+                  <div class="form-group"> 
+                    <label for="personnel_id" >Personels</label>
+  
+                    <select  id="personnel_id" name="personnel_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="paiementpersonel.personnel_id" #personnel_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let personel of personels.controls; index as i"
+                        [value]="personel.value.id">{{personel.value.nom}}
+                    </option>
+                    </select>
+                    <div *ngIf=" personnel_id.invalid  && personnel_id.touched">  
+                      <div *ngIf="personnel_id.errors.required" class="f55">
+                        personel  est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                    <div class="form-group "> 
+                      <label for="date">Date</label>
+                      <input [(ngModel)]="paiementpersonel.date" id="date"  class="form-control label3" type="date"   #date="ngModel" name="date"  required  >
+                      <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                      class="f55">
+                  
+                    <div *ngIf="date.errors.required">
+                     champs date est obligatoire.
+                    </div>
+                     </div> 
+                    </div>
+                      <div class="form-group"> 
+                        <label for="date_salaire">Date Salaire</label>
+                        <input [(ngModel)]="paiementpersonel.date_salaire" id="date_salaire"  class="form-control label3" type="date"   #date_salaire="ngModel" name="date_salaire"  required >
+                        <div *ngIf="date_salaire.invalid && (date_salaire.dirty || date_salaire.touched)"
+                      class="f55">
+                  
+                    <div *ngIf="date_salaire.errors.required">
+                     champs date_salaire est obligatoire.
+                    </div>
+                     </div> 
+                      </div>
+              
+                <div class="form-group "> 
+                    
+                  <label for="montant">Montant Paiement(DT)</label>
+                  <input type="text" name="montant" class="form-control label3" id="montant" placeholder="montant" [(ngModel)]="paiementpersonel.montant" required #montant="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}">
+                  <div *ngIf="montant.invalid && (montant.dirty || montant.touched)"
+                      class="f55">
+              
+                      <div *ngIf="montant.errors.required">
+                        champs montant est obligatoire.
+                      </div>
+                      <div *ngIf="montant.errors.minlength">
+                        montant doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.maxlength">
+                        montant doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="montant.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="remarque">Remarque</label>
+                  <input type="text" name="remarque" class="form-control label7" id="remarque" placeholder="remarque" [(ngModel)]="paiementpersonel.remarque" required #remarque="ngModel" minlength="5"  maxlength="20" pattern="[A-Za-z0-9\s]+">
+                  <div *ngIf="remarque.invalid && (remarque.dirty || remarque.touched)"
+                  class="f55">
+          
+                  <div *ngIf="remarque.errors.required">
+                    champs remarque est obligatoire.
+                  </div>
+                  <div *ngIf="remarque.errors.minlength">
+                    remarque doit comporter au moins 5 caractères.
+                  </div>
+                  <div *ngIf="remarque.errors.maxlength">
+                    remarque doit contenir au maximum 20 caractères.
+                  </div>
+                  <div *ngIf="remarque.errors.pattern">
+                    prenom doit être une chaîne de caractère.
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-group"> 
+                  <label for="login" >Login</label>
+
+                  <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="paiementpersonel.login" #login="ngModel" required>
+                    
+                    <option
+                      
+                      *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                      [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                  </option>
+                  </select>
+                  <div *ngIf=" login.invalid  && login.touched">  
+                    <div *ngIf="login.errors.required" class="f55">
+                      login est obligatoire
+                    </div>  
+                  </div> 
+                </div>
+                <div class="form-group"> 
+                  <label for="magasin_id" >Magasin</label>
+
+                  <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="paiementpersonel.magasin_id" #magasin_id="ngModel" required>
+                    
+                    <option
+                      
+                      *ngFor="let magasin of magasins.controls; index as i"
+                      [value]="magasin.value.id">{{magasin.value.libelle}}
+                  </option>
+                  </select>
+                  <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                    <div *ngIf="magasin_id.errors.required" class="f55">
+                      magasin est obligatoire
+                    </div>  
+                  </div> 
+                </div>
+                
+           
+                            <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterPP()">Ajouter</button>
+                  
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                  
+                </div>
+                </div>
+              </div>
+           
+          <br>
+          
+          </div>
+        </div>
+      
+
+  
+

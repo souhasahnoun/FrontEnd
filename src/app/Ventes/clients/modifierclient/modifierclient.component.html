@@ -1,0 +1,99 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier Client </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              <div class="form-group radio0000"> 
+                <label for="type">Type de client:</label><select class="form-control1 label2" [(ngModel)]="client.type" id="type" required="" >
+                  <option value="Passager">Passager</option>
+                  <option value="Société">Société</option>
+                  <option value="Revendeur">Revendeur</option>
+                  <option value="Sous Revendeur">Sous Revendeur</option>
+                </select> 
+            </div> 
+            <div  class="form-group">
+              <label for="raison_social">Raison sociale</label>   
+              <input [(ngModel)]="client.raison_social" id="raison_social" class="form-control1 label3"  type="text"   placeholder=" Enter raison  " autocomplete="off">
+            </div>
+    
+              <div  class="form-group">
+                <label for="tel">Tel</label>   
+                <input [(ngModel)]="client.tel" id="tel" class="form-control1 label3" type="text"   placeholder=" Enter Tel " autocomplete="off">
+              </div>
+              <div  class="form-group">
+                <label for="fax">Fax</label>
+                <input [(ngModel)]="client.fax" id="fax" class="form-control1 label3"  name="Fax" type="text" placeholder=" fax" required="">
+              </div>
+              <div class="form-group">
+                <label for="email ">Email</label>
+                <input [(ngModel)]="client.email" id="email" class="form-control1 label3"   name="Email" type="text" required="" placeholder=" Email">
+              </div>
+              <div class="form-group ">
+                <label for="site_web">Site web</label>
+                <input [(ngModel)]="client.site_web" id="site_web" class="form-control1 label3"   name="Site web" type="text" required="" placeholder=" Site web">
+              </div>
+       <div class="form-group radio0000">
+                <label for="gsm">GSM</label>
+                <input [(ngModel)]="client.gsm" id="gsm" class="form-control1 label2"   name="GSM" type="text" required="" placeholder=" GSM">
+              </div>
+              <div class="form-group">
+                <label for="personne_contacter ">Personne à contacter</label>
+                <input [(ngModel)]="client.personne_contacter" id="personne_contacter" class="form-control1 label3"   name="Personne" type="text" required="" placeholder=" Personne">
+              </div>
+      <div class="form-group">
+                <label for="mf">M.F</label>
+                <input [(ngModel)]="client.mf" id="mf" class="form-control1 label3"   name=" M.F" type="text" required="" placeholder=" M.F">
+              </div>
+      <div class="form-group">
+                <label for="rc">R.C</label>
+                <input [(ngModel)]="client.rc" id="rc" class="form-control1 label3"   name=" R.C" type="text" required="" placeholder=" R.C">
+              </div>
+      <div class="form-group ">
+                <label for="adresse">Adresse</label>
+                <input [(ngModel)]="client.adresse" id="adresse" class="form-control1 label3"   name="Adresse" type="text" required="" placeholder=" Adresse">
+              </div>
+              <div  class="form-group ">
+                <label  for="plafond">Plafond</label>   
+                <input [(ngModel)]="client.plafond" id="plafond" class="form-control1 label3"  type="text" name=" Raison sociale" parsley-trigger change required="" placeholder="  " autocomplete="off">
+              </div>
+              <div class="form-group radio0000">
+                <label for="exonere">Exonéré:</label>
+               
+              <input type="radio" name="Exonéré" value="ds" /> Non
+              <input type="radio" name="Exonéré" value="dsf" class="radio11" /> Oui</div>
+              <div class="form-group radio01">
+              <label for="timbre" >Timbre:</label>
+              <input [(ngModel)]="client.timbre" id="timbre" type="radio" name="Timbre" value="ds" /> 0.600
+              <input [(ngModel)]="client.timbre" id="timbre" type="radio" name="Timbre" value="dsf" class="radio11"/> 0.000
+            </div>
+              
+              <button class="btn1 btn btn-space btn-primary radio0000" (click)="modifierClient()"  type="submit">Modifier</button>
+              <button class="btn1 btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+              <br> <br>
+          </div>
+                  
+                  
+                </div>
+              </div>
+           
+         
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

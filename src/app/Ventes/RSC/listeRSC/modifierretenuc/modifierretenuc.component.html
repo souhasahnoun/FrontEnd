@@ -1,0 +1,179 @@
+<p>modifierretenuc works!</p>
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier RS CLTS</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <br>
+                <div>
+              
+                  <div class="form-group"> 
+                    <label for="client_id" >Client</label>
+  
+                    <select  id="client_id" name="client_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="rsc.client_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let client of clients.controls; index as i"
+                        [value]="client.value.id">{{client.value.raison_social}}
+                    </option>
+                    </select>
+                  </div>
+                <div class="form-group "> 
+                    
+                  <label for="date">Date Le </label><input type="date" id="date" name="date" class="form-control label3" size="1"  [(ngModel)]="rsc.date" required/>
+                
+                  </div>
+                
+                  
+                  <div class="form-group "> 
+                    
+                    <label for="rs">RS</label><input type="text" id="rs" name="rs" class="form-control label3" size="1"  [(ngModel)]="rsc.rs"  required/>
+                  
+                    </div>
+                   
+        
+     
+              <button class="btn1 btn btn-space btn-primary radio0000"  type="submit" (click)="modifierrsc()">Modifier</button>
+              <button class="btn1 btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+           
+                </div>
+                  
+                  
+                </div>
+             
+           
+                <br>
+                <div class="card3" *ngIf="rsc.client_id">
+                  <div class="card-header">
+                    <h3>Facture Clts</h3>
+                  </div>
+                  
+                    <table class=" t2 table-sm  table-bordered ">
+                      <thead class="thead1">
+                        <tr>
+                          
+                          <th><input type="checkbox"></th>
+                          <th >Num Facture</th>
+                          <th >Date Facture</th>
+                          <th >Client</th>
+                          <th >Montant Facture</th>
+                          <th >RS</th>
+                          <th >Montant Net</th>
+                          
+                          
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let rsc of rscs">
+                        <tr *ngFor="let document of documents">
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id"><input type="checkbox"></td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{document.num}}</td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{document.date}}</td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{rsc.client_id}}</td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{rsc.montant}}</td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{rsc.rs}}</td>
+                          <td *ngIf="document.type == 10 && document.client_id == rsc.client_id">{{rsc.net}}</td>
+                          
+                        </tr>
+                        
+                      </tbody>
+                      <tfoot>
+
+                        <tr class="thead1">
+                          <th colspan="4">Total</th>
+                          <th>0.000</th>
+                          <th>0.000</th>
+                          <th>0.000</th>
+                        </tr> 
+                      </tfoot>
+                    </table>
+                   <br>
+                  </div>
+                  <br>
+                  <div class="card3" *ngIf="rsc.client_id">
+                    <div class="card-header">
+                      <h3>Facture Avoir Clts</h3>
+                    </div>
+                    
+                      <table class=" t2 table-sm  table-bordered ">
+                        <thead class="thead1">
+                          <tr>
+                            
+                            <th><input type="checkbox"></th>
+                            <th >Num Facture</th>
+                            <th >Date Facture</th>
+                            <th >Client</th>
+                            <th >Montant Facture</th>
+                            <th >RS</th>
+                            <th >Montant Net</th>
+                            
+                            
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let rsc of rscs">
+                          <tr *ngFor="let document of documents">
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id"><input type="checkbox"></td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{document.num}}</td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{document.date}}</td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{rsc.client_id}}</td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{rsc.montant}}</td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{rsc.rs}}</td>
+                            <td *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{rsc.net}}</td>
+                            
+                          </tr>
+                         
+                        </tbody>
+                        <tfoot>
+                          <tr class="thead1">
+                            <th colspan="4">Total</th>
+                            <th>0.000</th>
+                            <th>0.000</th>
+                            <th>0.000</th>
+                          </tr> 
+                        </tfoot>
+                      </table>
+                     <br>
+                    </div>
+                    <br>
+                    <div class="card3" *ngIf="rsc.client_id">
+                      <div class="card-header">
+                        <h3>Total</h3>
+                      </div>
+                      
+                        <table class=" t2 table-sm  table-bordered ">
+                          <thead class="thead1">
+                            <tr>
+                                <th><b>TOTAL</b></th>
+                                <th>0.000</th>
+                                <th>0.000</th>
+                                <th>0.000</th>
+                            </tr>
+                  
+                       
+                        </thead>
+                        <tbody>
+                         
+                        
+                       
+                            
+                        </tbody>
+                    </table><br>
+                    <button class="b6 btn btn-space btn-primary"  type="submit">Valider</button>
+                      </div>
+      
+                </div>
+         
+                   
+  
+  
+
+
+  
+

@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier TVA</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              
+              <div class="form-group radio0000 ">
+                            <label for="taux">Taux(%):</label>
+                              <input [(ngModel)]="tva.taux" id="taux" class="form-control1 label7"  type="text" required  placeholder="">
+                          </div>
+                  
+                   
+        
+              <button class="btn1 btn btn-space btn-primary radio0000"  type="submit" (click)="modifierTva()">Modifier</button>
+              <button class="btn1 btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+              <br> <br>
+                        </div>
+                  
+                  
+                </div>
+              </div>
+           
+         
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

@@ -1,0 +1,179 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION DES FAMILLES</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Produits</a></li>
+          <li class="breadcrumb-item"><a href="/famille">Gestion des familles</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter une famille</h3>
+              </div>
+              <div class="card-body">
+                <div>
+                 
+                  <div class="form-group  "> 
+                    <label for="categorie_id" >Catégorie</label>
+  
+                    <select  id="categorie_id" name="categorie_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="famille.categorie_id" #categorie_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let categorie of categories.controls; index as i"
+                        [value]="categorie.value.id">{{categorie.value.libelle}}
+                    </option>
+                    </select>
+                    <div *ngIf=" categorie_id.invalid  && categorie_id.touched">  
+                      <div *ngIf="categorie_id.errors.required" class="f55">
+                        categorie est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <div  class="form-group">
+                    <label for="libelle">Libélé</label>   
+                    <input type="text" name="libelle" class="form-control1 label3" id="libelle"  [(ngModel)]="famille.libelle" required #libelle="ngModel" minlength="3"  maxlength="20" pattern="[A-Za-z0-9\s]*">
+                    <div *ngIf="libelle.invalid && (libelle.dirty || libelle.touched)"
+                    class="f55">
+                
+                    <div *ngIf="libelle.errors.required">
+                        Champs libelle est obligatoire.
+                    </div>
+                    <div *ngIf="libelle.errors.minlength">
+                      libelle doit comporter au moins 3 caractères.
+                    </div>
+                    <div *ngIf="libelle.errors.maxlength">
+                      libelle doit contenir au maximum 20 caractères.
+                    </div>
+                    <div *ngIf="libelle.errors.pattern">
+                      libelle doit être une chaîne.
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group "> 
+                    
+                    <label for="prix"> Prix(DT):</label>
+                    <input type="text" name=Prix class="form-control1 label3" id="prix"  [(ngModel)]="famille.prix" required #prix="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}"/>
+                    <div *ngIf="prix.invalid && (prix.dirty || prix.touched)"
+                class="f55">
+        
+                <div *ngIf="prix.errors.required">
+                  champs prix est obligatoire.
+                </div>
+                <div *ngIf="prix.errors.minlength">
+                  prix doit comporter au moins 5 caractères.
+                </div>
+                <div *ngIf="prix.errors.maxlength">
+                  prix doit contenir au maximum 10 caractères.
+                </div>
+                <div *ngIf="prix.errors.pattern">
+                  veuillez respecter le format 0.000 
+                </div>
+              </div>
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="merg_ben"> Merge Benefice :</label>
+                      <input type="text" name=merg_ben class="form-control1 label3" id="merg_ben"  [(ngModel)]="famille.merg_ben" required #merg_ben="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}"/>
+                      <div *ngIf="merg_ben.invalid && (merg_ben.dirty || merg_ben.touched)"
+                  class="f55">
+          
+                  <div *ngIf="merg_ben.errors.required">
+                    champs merg_ben est obligatoire.
+                  </div>
+                  <div *ngIf="merg_ben.errors.minlength">
+                    merg_ben doit comporter au moins 5 caractères.
+                  </div>
+                  <div *ngIf="merg_ben.errors.maxlength">
+                    merg_ben doit contenir au maximum 10 caractères.
+                  </div>
+                  <div *ngIf="merg_ben.errors.pattern">
+                    veuillez respecter le format 0.000 
+                  </div>
+                </div>
+                      </div>
+                  <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterFamille()">Ajouter</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+                </div>
+              </div>
+            </div>
+          
+<br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des familles</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimerfamille" target="_blanc" title="Imprimer" class="img4 s7-print"></a>
+              </div>
+              <br>
+              <div class="form-group radio1 ">
+                <label for="etat">Etat Famille</label>
+                <select class="form-control1 label1"  name="etat" (change)="onSelectType($event.target)"  [(ngModel)]="famille.etat" #etat="ngModel" >
+                  <option  value=0>Tous</option>
+                  <option  value=0>Marques non archivées</option>
+
+                  <option  value=1>Marques  archivées</option>
+
+                </select>
+                  <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+              </div>
+              
+               
+                  <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        
+                        <th>Id</th>
+                        <th >Catégorie</th>
+                        <th >Libélé famille</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let famille of familles | orderBy:id ">
+                      <tr *ngIf="famille.id>0">
+                        <td>{{famille.id}}</td>
+                        <td ><span *ngFor="let categorie of categoriess"><span *ngIf="categorie.id == famille.categorie_id">{{categorie.libelle}}</span></span></td>
+                        <td >{{famille.libelle}}</td>
+                        <td >
+                          <a routerLink="/famille/{{famille.id}}" title="Modifier" class="img2 s7-note"></a>
+                          <a (click)="supprimer(famille.id)" class="img2 s7-trash" title="supprimer"></a>
+                          <a *ngIf="famille.etat == 0 " (click)="archiver(famille)" class="img2 s7-folder" title="Archiver"></a>
+                          <a *ngIf="famille.etat == 1 " (click)="desarchiver(famille)" class="img2 s7-albums" title="Desarchiver"></a>
+                        </td>
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+  

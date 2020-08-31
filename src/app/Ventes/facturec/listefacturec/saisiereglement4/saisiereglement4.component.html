@@ -1,0 +1,146 @@
+
+<html>
+    <body>
+        <br>
+        <p class="p1"><b>Saisie votre réglement</b></p>
+      <!-- <br> <br>
+       <p class="p2"><b>Retenue à la source </b></p>
+       
+       <div class="form-group radio001 ">
+        <label>Montant Facture</label>
+        <input class="form-control1 label3" disabled value="{{rsc.montant}}"/>
+       </div>
+       <div class="form-group radio001">
+            <label>R/S</label>
+            <input type="checkbox" required=""  placeholder=" "/>&nbsp;&nbsp;Oui&nbsp;&nbsp;
+            <input type="checkbox" required=""  placeholder=" "/>&nbsp;&nbsp;Non&nbsp;&nbsp;&nbsp; Taux<br>
+            <input type="text" required=""  placeholder=" " class="form-control1 label4" value="  0.000 dt"/>
+
+            <input type="text" required=""  placeholder=" " class="form-control1 label5 radio1110" value="  1.5 %"/>
+        </div>
+        <div class="form-group radio001 ">
+            <label>Montant Restant</label>
+            <input class="form-control1 label3" disabled value="{{rsc.montant}}"/>
+       </div>
+       <br><br>
+       <p class="p2"><b>Saisie réglement</b></p>--> 
+       <br>
+       <div class="form-group radio20 ">
+        <label>Montant Reglé</label>
+            <input class="form-control1 label7" value="{{rsc.montant}}" type="text"  id="montant" name="montant" #montant="ngModel" [(ngModel)]="reglementclt.montant"/>
+   </div>
+  
+    <div class="form-group radio01 ">
+        <label>Client</label>
+        <input class="form-control1 label3"  type="text" id="client" name="client" #client="ngModel" [(ngModel)]="reglementclt.client"/>
+   </div>
+       <br><br>
+       <div class="form-group ">
+        <input name="mode" value="espece" #mode="ngModel" [(ngModel)]="reglementclt.mode" type="radio" required=""  placeholder=" "class="radio01"/>Especes 
+        <input name="mode" value="cheque" #mode="ngModel" [(ngModel)]="reglementclt.mode" type="radio" required=""  placeholder=" " class="radio0000"/>Chéques
+        <input name="mode" value="tpe" #mode="ngModel" [(ngModel)]="reglementclt.mode"type="radio" required=""  placeholder=" "class="radio0000"/>TPE
+        <input name="mode" value="traite" #mode="ngModel" [(ngModel)]="reglementclt.mode"type="radio" required=""  placeholder=" "class="radio0000"/>Traite
+        <input  name="mode" value="cheque cadeau" #mode="ngModel" [(ngModel)]="reglementclt.mode"type="radio" required=""  placeholder=" "class="radio0000"/>Chéque cadeau
+        <input  naname="mode" value="virement" #mode="ngModel" [(ngModel)]="reglementclt.mode"type="radio" required=""  placeholder=" "class="radio0000"/>Virement
+
+        </div><br>
+        <h4 class=" h5"><b>{{message}}</b></h4>
+        <form *ngIf="reglementclt.mode == 'espece'">
+            <fieldset>
+             <legend>Especes</legend>
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="reglementclt.date">
+            </fieldset>
+           </form>
+
+
+           <form *ngIf="reglementclt.mode == 'cheque'">
+            <fieldset>
+             <legend>Cheques</legend>
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="reglementclt.banque">
+             <label for="num">Num Cheque:</label>
+             <input type="text" id="num" name="num" #num="ngModel" [(ngModel)]="reglementclt.num">
+             <label for="date_echeance">Echeance:</label>
+             <input type="date" id="date_echeance" name="date_echeance" #date_echeance="ngModel" [(ngModel)]="reglementclt.date_echeance"><br>
+             <label for="type_ch">Type cheque:</label>
+             <input  name="type_ch" type="radio" value="Cheque versable" #type_ch="ngModel" [(ngModel)]="lignebordereau.type_ch"/>Cheque versable <br>
+             <input name="type_ch"type="radio" value="Chéque echeancé" #type_ch="ngModel" [(ngModel)]="lignebordereau.type_ch"/>Chéque echeancé<br>
+             <input name="type_ch" type="radio" value="Cheque de garentie" #type_ch="ngModel" [(ngModel)]="lignebordereau.type_ch"/>Cheque de garentie
+            </fieldset>
+           </form>
+
+           <form *ngIf="reglementclt.mode == 'tpe'">
+            <fieldset>
+             <legend>TPE</legend>
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="reglementclt.banque">
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="reglementclt.date"><br>
+            </fieldset>
+           </form>
+
+           <form *ngIf="reglementclt.mode == 'traite'">
+            <fieldset>
+             <legend>Traite</legend>
+             <label for="type_traite">Type traite:</label>
+             <input  name="type_traite" type="radio" value="Traite bancaire" #type_traite="ngModel" [(ngModel)]="reglementclt.type_traite"/>Traite bancaire  <br>
+             <input name="type_traite" type="radio" value="Traite manuelle" #type_traite="ngModel" [(ngModel)]="reglementclt.type_traite" />Traite manuelle<br>
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="reglementclt.banque">
+             <fieldset class="field">
+                <legend>Ajouter Traite</legend>  
+                <label for="num">Num traite:</label>
+                <input type="text" id="num" name="num" #num="ngModel" [(ngModel)]="reglementclt.num">
+                <label for="montant">Montant:</label>
+                <input type="text" id="montant" name="montant" #montant="ngModel" [(ngModel)]="reglementclt.montant">
+                <label for="date_echeance">Echeance:</label>
+                <input type="date" id="date_echeance" name="date_echeance" #date_echeance="ngModel" [(ngModel)]="reglementclt.date_echeance"><br><br><br>
+                <input class="btn btn-primary radio0000 " type="submit" value="Ajouter" (click)="ajouterTraite()">
+                <br><br>
+                <table class=" f4  table-sm t88 table-bordered2 ">
+                    <tr>
+                        <th>Num Traite</th>
+                        <th>Montant</th>
+                        <th>Echéance</th>
+                        <th>supp.</th>
+                    </tr>
+                    <tr *ngIf="reglementclt.mode == 'traite'">
+                        <td>{{reglementclt.num}}</td>
+                        <td>{{reglementclt.montant}}</td>
+                        <td>{{reglementclt.date_echeance}}</td>
+                        <td><a title="Supprimer" class="img2 s7-trash " (click)="supprimerTraite(reglementclt.id)"  ></a></td>
+                    </tr>
+                </table>
+               </fieldset>
+            </fieldset>
+           </form>
+
+           <form *ngIf="reglementclt.mode == 'cheque cadeau'">
+            <fieldset>
+             <legend>Cheque cadeau</legend>
+             <label for="nom">Societe:</label>
+             <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="societe.nom">
+             <label for="num">Num Cheque:</label>
+             <input type="text" id="num" name="num" #num="ngModel" [(ngModel)]="reglementclt.num">
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="reglementclt.date"><br>
+            </fieldset>
+           </form>
+
+           <form *ngIf="reglementclt.mode == 'virement'">
+            <fieldset>
+             <legend>Virement</legend>
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="reglementclt.banque">
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="reglementclt.date"><br>
+            </fieldset>
+           </form>
+           <br><br>
+           <input *ngIf="reglementclt.mode" class="radio1001 btn btn-primary"type="submit" value="Submit" (click)="ajouterPaiement()">
+             <input *ngIf="reglementclt.mode" class="btn btn-primary radio1110" type="submit" value="Annuler" (click)="reset()">
+        <button class="b55 btn btn-dark" onClick="self.close()">Fermer</button>
+    </body>
+</html> 
+

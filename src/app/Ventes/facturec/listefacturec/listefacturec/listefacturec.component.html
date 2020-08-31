@@ -1,0 +1,149 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2> LISTES FACTURES CLIENTS</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Ventes</a></li>
+            <li class="breadcrumb-item"><a href="/listefacturec"> Listes factures clients</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher facture client</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group ">
+                          <label for="num">Chercher par num </label>
+                            <input class="form-control1 label2"  type="text" required=""   id="num" name="num" #num="ngModel" [(ngModel)]="document.num"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="client_id">Chercher par client:</label>
+                            <select  id="client_id" name="client_id" class="form-control label2" size="1"  #client_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.client_id"  required>
+                        
+                              <option
+                                
+                                *ngFor="let client of clients.controls; index as i"
+                                [value]="client.value.id">{{client.value.raison_social}}
+                            </option>
+                            </select>
+                          
+                        </div>
+                <div class="form-group">
+                  <label for="etat_pay">Chercher par etat payement:</label>
+                  <select  id="etat_pay" name="etat_pay" class="form-control label3" size="1"  #etat_pay="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.etat_pay"  required>
+              
+                    <option value=0>Tous</option>
+                    <option value=0>0</option>
+                    <option value=1>1</option>
+                  </select>
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Depuis le:</label>
+                              <input class="form-control1 label3"  type="date"id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                        </div>
+                 <div class="form-group ">
+                  <label for="date_dec">Jusqu'au:</label>
+                  <input class="form-control1 label3"  type="date" id="date_dec" name="date_dec" #date_dec="ngModel" [(ngModel)]="document.date_dec"  required>
+                        </div>
+                        <button class="b1 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                        <button class="b1 btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes factures clients
+                        <a href="/imprimerfacturec" target="_blanc" class="img4 s7-print" title="Imprimer"></a>
+                     </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                        <div >
+                         
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                              
+                            <th>N° fact</th>
+                            <th>Date </th>
+                            <th >Déclaration </th>
+                            <th >Client</th>
+                            <th >Origine</th>
+                            <th >Montant TTC</th>
+                            <th >Bénéfice HT</th>
+                            <th >Etat Paiement</th>
+                            <th >Suivi réglement</th> 
+                                <th>Action</th>
+                
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let document of documents">
+                            <tr *ngIf="document.type === 10 ">
+                               <td >{{document.num}}</td>
+                               <td >{{document.date}}</td>  
+                               <td >{{document.date_dec}}</td>  
+                               <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>             
+                               <td>(mnin)</td>
+                               <td>(mnin)</td>
+                               <td>(mnin)</td>
+                               <td><a onclick="open('/saisiereglement4','new', 'width=700,height=475')" class="radio0000 img2 s7-cash" title="Saisie réglement"></a>
+                               </td>
+                               <td><a onclick="open('/suivireglement4','new', 'width=700,height=400')" class="radio0000 img2 s7-file" title="Suivi réglement"></a></td>
+                               
+                               <td ><a href="/lignefacturec/{{document.id}}" title="modifier" class="img2 s7-note"></a>
+                                <a (click)="supprimer(document.id)" class="img2 s7-trash"></a>
+                                      <a href="/imprimerfacturec1/{{document.id}}" target="_blanc" class="img2 s7-print" title="Imprimer"></a> &nbsp;
+                                      <a href="/listefacturec" class="img2 s7-note2" title="avoir"></a>
+                                    </td>
+      
+                              </tr>
+                    
+                              </tbody>
+                              <tfoot>
+                                <tr class="thead1">
+                                  <td colspan="5" ><b>Total</b></td>
+                                    
+                                  <td ><b>0.000 dt</b></td>
+                                  <td ><b>0.000 dt</b></td>
+                                  <td ><b>0.000 dt</b></td>
+                                  <td ><b>0.000 dt</b></td>
+                                   <td></td>  
+                                     </tr> 
+                              </tfoot>
+                          </table>
+
+                          <br>
+                        
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

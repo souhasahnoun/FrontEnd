@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>BON ENTREE STOCKS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Achats</a></li>
+          <li class="breadcrumb-item"><a href="/befournisseur">Bon d'entrèe stock</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3 *ngIf="document.type == 6">Editer bon d'entrèe stock N° {{document.num}}</h3>
+              </div>
+              <div class="card-body">
+                <div>
+             
+                  <div  class="form-group radio1">
+                    <label class="f1" for="num">Bon de commande frs: </label>   
+                    <select id="num" name="num" class="form-control label1" size="1"  #num="ngModel" (change)="onSelectType($event.target)"
+                     [(ngModel)]="document.num"  required >
+                        
+                      <option
+                      *ngFor="let document of documents.controls; index as i"
+                        [value]="document.value.id"><span *ngIf="document.value.type == 6">{{document.value.num}}</span>
+                    </option>
+                    </select>
+                    <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                  <div *ngIf="num.errors.required">
+                   champs num est obligatoire.
+                  </div>
+                  </div>
+                  </div>
+                  <br><br><br>
+                  <table class=" tx2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                        <tr > 
+                          <th class="thead3" colspan="8">Lignes Commandes</th> 
+                        </tr>
+                        <tr>
+                        
+                        <th><input type="checkbox"></th>
+                        <th >Ref</th>
+                        <th >Designation</th>
+                        <th >Qte</th>
+                        <th >P.U.H.T (dt)</th>
+                        <th  >Quantité</th>
+                        
+                    
+                        
+                      </tr>
+                    </thead>
+                    <tbody *ngFor=" let lignedocument of lignedocuments">
+                      <tr *ngFor="let document of documentss">
+                        <td><input type="checkbox" ></td>
+                        <td *ngIf=" document.num && document.id == lignedocument.document_id && produit.id == lignedocument.produit_id">{{produit.ref_prod}}</td>
+                        <td><input type="text" disabled *ngIf="document.num &&  document.id == lignedocument.document_id && produit.id == lignedocument.produit_id" value="{{produit.nom_prod}}"></td>
+                        <td><input type="text" disabled *ngIf="document.num &&  document.id == lignedocument.document_id" value="{{lignedocument.qte}}" ></td>
+                        <td ><input type="text" *ngIf="document.num &&  document.id == lignedocument.document_id " value="{{lignedocument.prix}}"></td>
+                        <td ><input type="text" *ngIf="document.num && document.id == lignedocument.document_id " value="{{lignedocument.qte}}"></td>
+                        
+                       
+                       
+                      </tr>
+                          
+                    </tbody>
+                  </table>  
+                  <br><br>   
+                <button routerLink="/listebef" class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterbe()">Ajouter</button>
+                <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

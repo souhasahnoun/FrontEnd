@@ -1,0 +1,124 @@
+
+<html>
+    <body>
+        <br><br>
+        <p class="p1"><b>Saisie votre paiement</b></p>
+       <!-- <br> <br>
+       <p class="p2"><b>Retenue à la source </b></p>
+       <p class="p4">Le retenue à la source est déja saisie</p>
+       <div class="form-group radio20 ">
+            <label>Montant Facture</label>
+            <input class="form-control1 label3" disabled value="{{rsf.montant}}"/>
+       </div>
+      
+        <div class="form-group radio01 ">
+            <label>Montant Restant</label>
+            <input class="form-control1 label3" disabled value="{{rsf.montant}}"/>
+       </div>
+       <br><br>
+       <p class="p2"><b>Saisie paiement</b></p>-->
+       <br>
+       <div class="form-group radio0 ">
+            <label>Montant Reglé</label>
+            <input class="form-control1 label7" value="{{rsf.montant}}" type="text"  id="montant" name="montant" #montant="ngModel" [(ngModel)]="paiementfrs.montant"/>
+       </div>
+       <br><br>
+       <div class="form-group radio000">
+        <input name="mode" value="espece" #mode="ngModel" [(ngModel)]="paiementfrs.mode" type="radio" required=""  placeholder=" "class="radio01"/>Especes 
+        <input name="mode" value="cheque" #mode="ngModel" [(ngModel)]="paiementfrs.mode" type="radio" required=""  placeholder=" " class="radio0000"/>Chéques
+        <input name="mode" value="traite" #mode="ngModel" [(ngModel)]="paiementfrs.mode"type="radio" required=""  placeholder=" "class="radio0000"/>Traite
+        <input  naname="mode" value="virement" #mode="ngModel" [(ngModel)]="paiementfrs.mode"type="radio" required=""  placeholder=" "class="radio0000"/>Virement
+
+        </div><br><br>
+        <h4 class=" h5"><b>{{message}}</b></h4>
+        <form *ngIf="paiementfrs.mode == 'espece'">
+            <fieldset>
+             <legend>Especes</legend>
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="paiementfrs.date">
+            </fieldset>
+           </form>
+
+           <form *ngIf="paiementfrs.mode == 'cheque'">
+            <fieldset>
+             <legend>Cheques</legend>
+             <label for="banque">Banque:</label>
+             <select  id="banque" name="banque" size="1"  #banque="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="paiementfrs.banque"  required>
+                
+                <option
+                  
+                  *ngFor="let banque of banques.controls; index as i"
+                  [value]="banque.value.id">{{banque.value.libelle}}
+              </option>
+              </select>
+              <label for="num">Num Souche:</label>
+              <select  id="num" name="num" size="1"  #num="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="souche.num"  required>
+                 
+                 <option
+                   
+                   *ngFor="let souche of souches.controls; index as i"
+                   [value]="souche.value.num">{{souche.value.num}}
+               </option>
+               </select>
+             <label for="num">Num Cheque:</label>
+             <input type="text" id="num" name="num" #num="ngModel" [(ngModel)]="paiementfrs.num">
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="paiementfrs.date"><br>
+             
+            </fieldset>
+           </form>
+
+           <form *ngIf="paiementfrs.mode == 'virement'">
+            <fieldset>
+             <legend>Virement</legend>
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="paiementfrs.banque">
+             <label for="date">Date:</label>
+             <input type="date" id="date" name="date" #date="ngModel" [(ngModel)]="paiementfrs.date"><br>
+            </fieldset>
+           </form>
+
+           <form *ngIf="paiementfrs.mode == 'traite'">
+            <fieldset>
+             <legend>Traite</legend>
+             
+             <label for="banque">Banque:</label>
+             <input type="text" id="banque" name="banque" #banque="ngModel" [(ngModel)]="paiementfrs.banque">
+             <fieldset class="field">
+                <legend>Ajouter Traite</legend>  
+                <label for="num">Num traite:</label>
+                <input type="text" id="num" name="num" #num="ngModel" [(ngModel)]="paiementfrs.num">
+                <label for="montant">Montant:</label>
+                <input type="text" id="montant" name="montant" #montant="ngModel" [(ngModel)]="paiementfrs.montant">
+                <label for="date_echeance">Echeance:</label>
+                <input type="date" id="date_echeance" name="date_echeance" #date_echeance="ngModel" [(ngModel)]="paiementfrs.date_echeance"><br><br><br>
+                <input class="btn btn-primary radio0000 " type="submit" value="Ajouter" (click)="ajouterTraite()">
+                <br><br>
+                <table class=" f4  table-sm t88 table-bordered2 ">
+                    <tr>
+                        <th>Num Traite</th>
+                        <th>Montant</th>
+                        <th>Echéance</th>
+                        <th>supp.</th>
+                    </tr>
+                    <tr *ngIf="paiementfrs.mode == 'traite'">
+                        <td>{{paiementfrs.num}}</td>
+                        <td>{{paiementfrs.montant}}</td>
+                        <td>{{paiementfrs.date_echeance}}</td>
+                        <td><a title="Supprimer" class="img2 s7-trash " (click)="supprimerTraite(paiementfrs.id)"  ></a></td>
+                    </tr>
+                </table>
+               </fieldset>
+            </fieldset>
+           </form>
+           <br><br>
+           <input *ngIf="paiementfrs.mode" class="radio1001 btn btn-primary"type="submit" value="Submit" (click)="ajouterPaiement()">
+           <input *ngIf="paiementfrs.mode" class="btn btn-primary radio1110" type="submit" value="Annuler" (click)="reset()">
+           <br><br>
+        <p class="p5"><b>Si vous etes sùrs que cette facture est bien soldée, cliquer sur ce bouton</b></p>
+       
+        <button class="b56 btn btn-dark">Solder facture</button>
+        <button class="b55 btn btn-dark" onClick="self.close()">Fermer</button>
+    </body>
+</html> 
+

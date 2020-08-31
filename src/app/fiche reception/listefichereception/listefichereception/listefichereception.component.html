@@ -1,0 +1,141 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES BON DE RECEPTION</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Fiche de réception</a></li>
+            <li class="breadcrumb-item"><a href="/listefichereception">Liste des bon de réception</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher fiche de réception</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group ">
+                          <label for="date">Du:</label>
+                            <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="reception.date" #date="ngModel">
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Au:</label>
+                            <input class="form-control1 label3"  type="date" name="date" [(ngModel)]="reception.date" #date="ngModel">
+                        </div>
+                        <div class="form-group "> 
+                          <label for="casier_id">Casier</label><select class="form-control label3" size="1" (change)="onSelectType($event.target)" required name="casier_id" [(ngModel)]="reception.casier_id" #casier_id="ngModel" >
+                            <option
+                              
+                            *ngFor="let casier of casiers.controls; index as i"
+                            [value]="casier.value.id">{{casier.value.num}}
+                        </option>
+                          </select>
+                          </div>
+                          <div class="form-group "> 
+                            <label for="affect">Affecter a: </label><select class="form-control label3" size="1" (change)="onSelectType($event.target)" required name="affect" [(ngModel)]="reception.affect" #affect="ngModel" >
+                              <option
+                                
+                              *ngFor="let reception of receptions.controls; index as i"
+                              [value]="reception.value.affect">{{reception.value.affect}}
+                          </option>
+                            </select>
+                            </div>
+                            <!--<div class="form-group "> 
+                                <label>Etat</label><select class="form-control1 label3"  required="" >
+                                  <option>--tous--</option>
+                                </select>
+                                </div>-->
+                    <button class="b1 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+               
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes des bons de réception
+                        <a href="/imprimerfichereception" target="_blanc" class="img4 s7-print" title="Imprimer"></a>&nbsp;
+                        <a href="javascript:exportTableToExcel('tblData','imp-receptions ')" class="img333 s7-next-2" title="Exporter"></a>
+                     </h3>
+
+                     <h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                 <div >
+                    <label class="td31 radio0000 f1  ">   En urgence</label>
+                    <label class="td6 radio11  f1">   Non réparé & récuperer par le client</label>
+                    <label class="thead1 radio11  f1">   Réparé & récuperer par le client</label>
+                    <label class="td7 radio11  f1">   Non réparable</label>
+                    <label class="td8 radio11  f1">   En attente du piéce</label>
+                    <label class="td9 radio11  f1">   Terminer</label>
+                    <label class="td10 radio11  f1">   En cours</label>
+                    <label class="td11 radio11  f1">   En attente</label>
+
+                    <input class="form-control label6 glyphicon glyphicon-search" type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr> 
+                                <th>N° bon de reception </th>
+                                <th>Date récuperation </th>
+                                <th >Nom & Prénom </th>
+                                <th >Piéce</th>
+                                <th >Montant</th>
+                                <th >Suivi réglement</th>
+                                <th >Contact client avant reparation</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let reception of receptionss | filter:term | orderBy:id">
+                              
+                                <td>{{reception.num}}</td>    
+                                <td>{{reception.date}}</td>
+                                <td>{{reception.nom}}</td>    
+                                <td>{{reception.piece}}</td>  
+                                <td>{{reception.prix}}</td>
+                                <td>{{reception.etat_pay}}</td>    
+                                <td>{{reception.contact_clt}}</td> 
+                                  <td >
+                                  <a (click)="supprimer(reception.id)" class="img2 s7-trash"></a>
+                                      
+                                    </td>
+            
+                              </tr>
+                             
+                                  
+                              </tbody>
+                          </table><br>
+                          <table id="tblData"></table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+                   
+  
+  

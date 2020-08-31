@@ -1,0 +1,43 @@
+<div>
+    <div class="page-head2" id="tblData">
+        <h1 class="radio33 f4"><b  class="f1">Entrées Caisse</b>
+            <a href="javascript:Export('tblData','Entrées Caisse')" class="radio11"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+        </h1>
+        <br>
+
+        <table class=" f4  t44 table-sm t88 table-bordered2 ">
+            <thead >
+            <tr>
+                <th>Beneficiare</th>
+                <th >Date </th>
+                <th >Type d'entree </th>
+                <th >Caissier </th>
+                <th >Montant</th>
+            
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr  *ngFor="let entreecaisse of entreecaisses| orderBy:id">
+                <td> {{entreecaisse.beneficiaire}}</td>
+                <td > {{entreecaisse.date}}</td>
+                <td>{{entreecaisse.type}}</td>
+                <td >{{entreecaisse.login}}</td>
+                <td >{{entreecaisse.montant}}</td>
+            
+
+            </tr>
+            <tr >
+                <td colspan="4"><b>TOTAL</b></td>
+            
+                <td ><b>0.000</b></td>
+             
+                
+            
+
+            </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

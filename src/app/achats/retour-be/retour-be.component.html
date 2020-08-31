@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>RETOUR DES BON D'ENTREE </h2>
+        
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Retour bon entrée N° <span  *ngIf="document.type == 3">{{document.num}}</span> </h3>
+              </div>
+              <div >
+                <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        
+                        <th><input type="checkbox"></th>
+                        <th >Ref</th>
+                        <th >Designation </th>
+                        <th >Qte </th>
+                        <th >P.U.H.T (dt) </th>
+                        <th > </th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="document.type == 3 && document.id == lignedocument.document_id && lignedocument.produit_id == produit.id">
+                        <td ><input type="checkbox"></td>
+                        <td>{{produit.ref_prod}}</td>
+                        <td >{{produit.nom_prod}}</td>
+                        <td>{{lignedocument.qte}}</td>
+                        <td >{{lignedocument.prix}}</td>
+                        
+                        <td ></td>
+                       
+                      </tr>
+                          
+                    </tbody>
+                  </table><br>
+                  <a class="b8 btn btn-space btn-primary" (click)="ajouterBRFrs()">Valider</a>
+                  <a class=" btn btn-space btn-primary" (click)="reset()">Annuler</a><br><br>
+              </div>
+            </div>
+          
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+  
+

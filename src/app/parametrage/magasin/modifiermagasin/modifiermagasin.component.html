@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier  magasin</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              
+              <div class="form-group radio0000"> 
+                <label for="region_id">Région:</label>
+
+                <select  id="region_id" name="region_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="magasin.region_id"  required>
+                    
+                  <option
+                    
+                    *ngFor="let region of regions.controls; index as i"
+                    [value]="region.value.id">{{region.value.libelle}}
+                </option>
+                </select>
+              </div>
+              
+                
+                <div class="form-group "> 
+                  
+                  <label for="libelle">Magasin:</label>
+                  <input type="text"  class="form-control1 label7"  id="libelle" [(ngModel)]="magasin.libelle"/>
+                
+                  </div>
+                  <div class="form-group "> 
+                  
+                    <label for="ordre">Ordre:</label>
+                    <input type="text"  class="form-control1 label7" [(ngModel)]="magasin.ordre"  id="ordre"/>
+                  
+                  </div>
+         
+              <button class="btn1 btn btn-space btn-primary radio0000"  type="submit" (click)="modifierMagasin()">Modifier</button>
+              <button class="btn1 btn btn-space btn-primary"  type="submit" (click)="reset()" >Annuler</button>
+              <br><br>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+           
+          
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

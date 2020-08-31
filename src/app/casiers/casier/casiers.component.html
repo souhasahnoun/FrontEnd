@@ -1,0 +1,136 @@
+<app-header></app-header>
+
+<div ng-controller="casiersController">
+  <div class="am-content">
+    <div class="page-head">
+        <h2>GESTION DES CASSIERS</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Vente à la caisse</a></li>
+          <li class="breadcrumb-item"><a href="/casiers">Gestion des casiers</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Ajouter un casier</h3>
+              </div>
+              <div class="card-body" >
+                <div >
+                  
+                  <div  class="form-group radio0" >
+                    <label for="num">Numero</label>   
+                    <input   class="form-control label7" type="text"   placeholder="Enter numero " [(ngModel)]="casier.num" id="num"  required #num="ngModel" minlength="1" maxlength="5" pattern="[0-9]*">
+                    <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                    <div *ngIf="num.errors.required">
+                        Champs numero est obligatoire.
+                    </div>
+                    <div *ngIf="num.errors.minlength">
+                      numero doit comporter au moins 1 caractères.
+                    </div>
+                    <div *ngIf="num.errors.maxlength">
+                        Magasin doit contenir au maximum 5 caractères.
+                    </div>
+                    <div *ngIf="num.errors.pattern">
+                      numero doit être un entier.
+                    </div>
+                  </div>
+                  </div>
+                  <div  class="form-group" >
+                    <label for="date" >Date</label>   
+                    <input class="form-control label7" type="date"  [(ngModel)]="casier.date" id="date"  required #date="ngModel"  >
+                    <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                    class="f55">
+                
+                    <div *ngIf="date.errors.required">
+                        Champs date est obligatoire.
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group  "> 
+                    <label for="magasin_id" >Magasin</label>
+  
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="casier.magasin_id" #magasin_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                    <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                      <div *ngIf="magasin_id.errors.required" class="f55">
+                        magasin est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <br><br>
+                  <button class="b8 btn btn-space btn-primary" type="submit" value="Ajouter" (click)="ajouterCase()" >Ajouter</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                </div>
+              </div>
+            </div> 
+         
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Listes des casiers</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                <a href="/imprimercasiers" target="_blanc" class="img4 s7-print" title="Imprimer"></a>
+              </div>
+              <br>
+              <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+              <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr >
+                        
+                        <th>Id</th>
+                        <th >numero casier</th>
+                        <th >Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let casier of casiers | filter:term | orderBy:id">
+                        <td>{{casier.id}}</td>
+                        <td >{{casier.num}}</td>
+                        <td >{{casier.date}}</td>
+                        <td ><a title="Supprimer" class="img2 s7-trash " (click)="supprimer(casier.id)" ></a>
+                         
+                        </td>
+                        
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+-->
+  

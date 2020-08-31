@@ -1,0 +1,55 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio5110 f4"><a href="javascript:imprimer('sectionAimprimer')"> <b  class="f1">RETENUS A LA SOURCE FRS </b></a>
+          <a href="javascript:Export('tblData','RETENUS A LA SOURCE FRS')" class="radio11"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+          <a href="javascript:exportTableToExcel('tblData','imp-ret-frs')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Date</th>
+            <th >Fournisseur</th>
+            <th >Montant</th>
+            <th >RS </th>
+            <th >Montant Net</th>
+            <th>Regle par</th>
+         
+            
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let rsf of rsfs">
+        <tr >
+          <td >{{rsf.date}}</td>
+          <td >{{rsf.fournisseur_id}}</td>
+          <td >{{rsf.montant}}</td>
+          <td>{{rsf.rs}}</td>
+          <td >{{rsf.net}}</td>
+          <td ><span *ngIf="document.fournisseur_id == rsf.fournisseur_id">{{document.login}}</span></td>
+        
+          
+</tr> 
+   
+            
+          </tbody>
+          <tfoot>
+            <tr>
+              <td  colspan="2"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+            
+              
+          </tr>  
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

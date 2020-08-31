@@ -1,0 +1,44 @@
+<div>
+    <div class="page-head2" id="tblData">
+        <h1 class="radio33 f4"><b  class="f1">Retrait Caisse</b>
+            <a href="javascript:exportTableToExcel('tblData','Retrait Caisse ')" class="radio11"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+
+        </h1>
+        <!--<h4 class="radio38 f4 f1">Periode: Du ----------------  Au--------------</h4>-->        <br>
+
+        <table class=" f4  t44 table-sm t88 table-bordered2 ">
+            <thead >
+            <tr>
+                <th>Beneficiare</th>
+                <th >Date </th>
+                <th >Type d'entree </th>
+                <th >Caissier </th>
+                <th >Montant</th>
+            
+
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let retraitcaisse of retraitcaisses| orderBy:id">
+                    <td> {{retraitcaisse.beneficiaire}}</td>
+                    <td > {{retraitcaisse.date}}</td>
+                    <td>{{retraitcaisse.type}}</td>
+                    <td >{{retraitcaisse.login}}</td>
+                    <td >{{retraitcaisse.montant}}</td>
+                
+    
+                </tr>
+            <tr >
+                <td colspan="4"><b>TOTAL</b></td>
+            
+                <td ><b>0.000</b></td>
+             
+                
+            
+
+            </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

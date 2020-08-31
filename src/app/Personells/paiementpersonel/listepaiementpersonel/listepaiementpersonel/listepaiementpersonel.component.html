@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES PAIEMENTS PERSONELS</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Personnels</a></li>
+            <li class="breadcrumb-item"><a href="/listepaiementpersonnel">Liste paiements personnels</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher Personnel</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group "> 
+                          <label for="personnel_id">Personnel:</label>
+                          <select  id="personnel_id" name="personnel_id" class="form-control label2" size="1"  #personnel_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="paiementpersonel.personnel_id"  required>
+                        
+                            <option
+                              
+                              *ngFor="let personnel of personels.controls; index as i"
+                              [value]="personnel.value.id">{{personnel.value.nom}}
+                          </option>
+                          </select>
+                          </div>
+                        <div class="form-group ">
+                          <label for="date">Du:</label>
+                            <input class="form-control1 label7"  type="date" id="date" name="date" #date="ngModel" [(ngModel)]="paiementpersonel.date">
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Au:</label>
+                          <input class="form-control1 label7"  type="date" id="date" name="date" #date="ngModel" [(ngModel)]="paiementpersonel.date">
+                        </div>
+
+                    <button class="b1 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+               
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes paiements personnels
+                        <a href="/paiementpersonelpdf" target="_blanc" class="img4 s7-print" title="Imprimer"></a>&nbsp;
+                        <a href="/paiementpersonelexcel" target="_blanc" class="img333 s7-next-2" title="Exporter"></a>
+                     </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                 <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+
+                          <table class=" t2 table-sm  table-bordered " id="tblData">
+                              <thead class="thead1">
+                        
+                              <tr> 
+                                <th>Personnel </th>
+                                <th>Montant </th>
+                                <th >Date</th>
+                                <th >Remarque</th>
+                                <th >Responsable</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let paiementpersonel of paiementpersonels | filter:term | orderBy:id">
+                              
+                                <td ><span *ngFor="let personel of personelss"><span *ngIf="personel.id == paiementpersonel.personnel_id">{{personel.nom}}</span></span></td>             
+                                <td>{{paiementpersonel.montant}}</td>
+                                <td>{{paiementpersonel.date}}</td>    
+                                <td>{{paiementpersonel.remarque}}</td>  
+                                <td>{{paiementpersonel.login}}</td>
+
+                                  <td ><a  class="img2 s7-note" routerLink="/listepaiementpersonel/{{paiementpersonel.id}}"></a>
+                                    <a  class="img2 s7-trash" (click)="supprimer(paiementpersonel.id)"></a>
+                                      <a routerLink="/imprimerpaiementpersonel1/{{paiementpersonel.id}}" target="_blanc" class="img2 s7-print" title="Imprimer"></a>
+                                    </td>
+            
+                              </tr>
+                             
+                                  
+                              </tbody>
+                          </table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

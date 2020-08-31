@@ -1,0 +1,343 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>JOURNAL DE CAISSE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Vente à la caisse</a></li>
+          <li class="breadcrumb-item"><a href="/journalcaisse">Journal de caisse</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Journal de caisse </h3>
+              </div>
+              <div class="card-body">
+                <form role="form" data-parsley-validate="" novalidate="">
+                  <div class="form-group ">
+                    <label >Date Deb Caisse</label>
+                      <input class="form-control1 label3" type="date" >
+                      
+                  </div>
+                  <div class="form-group ">
+                    <label >Date Fin Caisse</label>
+                      <input class="form-control1 label3" type="date" >
+                      
+                  </div>
+                  <div class="form-group "> 
+                    <label>Caisse de</label>
+
+                      <select class="form-control1 label3">
+                        <option></option>
+                      </select>
+                  </div>
+                  
+                  <button class="b1 btn btn-space btn-primary" type="submit">Chercher</button>
+                </form>
+              </div>
+            </div>
+          <br>
+            <div class="card3">
+              <div class="card-header">
+                <h3>Journal de caisse</h3>
+                <a href="/journalcaissepdf" target="_blanc" class="img4 s7-print"></a> 
+                <a href="/journalcaisseexcel" target="_blanc" class="img333 s7-next-2" title="Exporter en excel"></a>
+
+
+              </div>
+                  <table class=" t2 table-sm  table-bordered " >
+                    <thead class="thead1">
+                      <tr>
+                        <th>Total especes + Fond</th>
+                        <th >Total chéques</th>
+                        <th >Total traites </th>
+                        <th >Total TPE </th>
+                        <th >Total chéques cadeaux </th>
+                        <th >Total virement  </th>
+                        <th >Total caisse  </th>
+                        <th >Entree </th>
+                        <th >Retrait </th>
+                        <th >Rapport caisse </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0,000 dt</td>
+                        <td >0,000 dt 
+                          <a  href="#myModal"  data-toggle="modal" ><img src="assets/img/icon2.png" class="ic1"/></a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <b><p class="i1">Listes des chéques</p> </b>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                                </div>
+                                <div class="modal-body">
+                                  <table class=" t33 table-sm  table-bordered ">
+                                    <thead class="thead2">
+                                      <tr>
+                                        <th>Date Saisie</th>
+                                        <th >Echéance</th>
+                                        <th >Type Paiement </th>
+                                        <th >Montant (dt) </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="tdd">
+                                       <td colspan="3">Total Paiement</td>
+                                        <td class="td00">0,000 dt</td>
+                        
+                                      </tr>
+                                          
+                                    </tbody>
+                                  </table> 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          
+                          
+                          </div>
+                        
+                        </td>
+                        <td >0,000 dt 
+                          <a  href="#myModal5"  data-toggle="modal" ><img src="assets/img/icon2.png" class="ic1"/></a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="myModal5" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <b><p class="i1">Listes des traites</p> </b>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                                </div>
+                                <div class="modal-body">
+                                  <table class=" t33 table-sm  table-bordered ">
+                                    <thead class="thead2">
+                                      <tr>
+                                        <th>Date Saisie</th>
+                                        <th >Echéance</th>
+                                        <th >Type Paiement </th>
+                                        <th >Montant (dt) </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="tdd">
+                                       <td colspan="3">Total Paiement</td>
+                                        <td class="td00">0,000 dt</td>
+                        
+                                      </tr>
+                                          
+                                    </tbody>
+                                  </table> 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          
+                          
+                          </div>
+                        </td>
+                        <td >0,000 dt 
+                          <a  href="#myModal6"  data-toggle="modal" ><img src="assets/img/icon2.png" class="ic1"/></a>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal6" role="dialog">
+                           <div class="modal-dialog">
+                           
+                             <!-- Modal content-->
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <b><p class="i1">Listes des TPE</p> </b>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               
+                               </div>
+                               <div class="modal-body">
+                                 <table class=" t33 table-sm  table-bordered ">
+                                   <thead class="thead2">
+                                     <tr>
+                                       <th>Date Saisie</th>
+                                       <th >Echéance</th>
+                                       <th >Type Paiement </th>
+                                       <th >Montant (dt) </th>
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                     <tr class="tdd">
+                                      <td colspan="3">Total Paiement</td>
+                                       <td class="td00">0,000 dt</td>
+                       
+                                     </tr>
+                                         
+                                   </tbody>
+                                 </table> 
+                               </div>
+                               <div class="modal-footer">
+                                <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                              </div>
+                             </div>
+                             
+                           </div>
+                         
+                         
+                         </div>
+                        </td>
+                        <td >0,000 dt 
+                          <a  href="#myModal7"  data-toggle="modal" ><img src="assets/img/icon2.png" class="ic1"/></a>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal7" role="dialog">
+                           <div class="modal-dialog">
+                           
+                             <!-- Modal content-->
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <b><p class="i1">Listes des chéques cadeaux</p> </b>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               
+                               </div>
+                               <div class="modal-body">
+                                 <table class=" t33 table-sm  table-bordered ">
+                                   <thead class="thead2">
+                                     <tr>
+                                       <th>Date Saisie</th>
+                                       <th >Echéance</th>
+                                       <th >Type Paiement </th>
+                                       <th >Montant (dt) </th>
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                     <tr class="tdd">
+                                      <td colspan="3">Total Paiement</td>
+                                       <td class="td00">0,000 dt</td>
+                       
+                                     </tr>
+                                         
+                                   </tbody>
+                                 </table> 
+                               </div>
+                               <div class="modal-footer">
+                                <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                              </div>
+                             </div>
+                             
+                           </div>
+                         
+                         
+                         </div>
+                        </td>
+                        <td >0,000 dt 
+                          <a  href="#myModal8"  data-toggle="modal" ><img src="assets/img/icon2.png" class="ic1"/></a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="myModal8" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <b><p class="i1">Listes des virements</p> </b>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                                </div>
+                                <div class="modal-body">
+                                  <table class=" t33 table-sm  table-bordered ">
+                                    <thead class="thead2">
+                                      <tr>
+                                        <th>Date Saisie</th>
+                                        <th >Echéance</th>
+                                        <th >Type Paiement </th>
+                                        <th >Montant (dt) </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="tdd">
+                                       <td colspan="3">Total Paiement</td>
+                                        <td class="td00">0,000 dt</td>
+                        
+                                      </tr>
+                                          
+                                    </tbody>
+                                  </table> 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          
+                          
+                          </div>
+                        </td>
+                        <td class="td0">0,000 dt</td>
+                        <td class="td2">0,000 dt</td>
+                        <td class="td3">0,000 dt</td>
+                        <td class="td4">0,000 dt</td>
+
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+                <br>
+                <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        
+                        <th>Réference</th>
+                        <th >Désignation</th>
+                        <th >Date </th>
+                        <th >Client </th>
+                        <th >Entrées </th>
+                        <th >Sorties </th>
+                        <th >Rapport de caisse </th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td >----- </td>
+                        <td>Fond de caisse</td>
+                        <td ></td>
+                        <td >-----</td>
+                        <td >0.000 dt</td>
+                        <td >----</td>
+                        <td >0.000 dt</td>
+                      </tr>
+                      <tr class="thead1 ">
+                        <th   colspan="3" class="img6"> CAISSE CLOTURE </th>
+                        
+                        
+                        <th >Total</th>
+                        <th >0.000 dt</th>
+                        <th >0.000 dt </th>
+                        <th >0.000 dt </th>
+                       
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  <br><br> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

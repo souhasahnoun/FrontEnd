@@ -1,0 +1,162 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2> ETATS DES TRAITES FOURNISSEURS</h2>
+          <ol class="breadcrumb">
+		 
+            
+            <li class="breadcrumb-item"><a> Etats Bancaires</a></li>
+          <li class="breadcrumb-item"><a href="/etattraitesfournisseur">  Etats des traites fournisseurs</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group radio02"> 
+                          <label for="type_date">Date</label><select class="form-control1 label7" (change)="onSelectType($event.target)" #type_date="ngModel" required [(ngModel)]="paiementfrs.type_date" name="type_date" >
+                            <option value="Date Echéance">Date Echéance</option>
+                            <option value="Date Reception">Date Reception</option>
+                          </select>
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Période de début:</label>
+                          <input class="form-control1 label7"  type="date" required [(ngModel)]="paiementfrs.date" name="date" #date="ngModel">
+                        </div>
+                        <div class="form-group ">
+                          <label for="date_echeance" >Période de fin:</label>
+                          <input class="form-control1 label7"  type="date" required [(ngModel)]="paiementfrs.date_echeance" name="date_echeance" #date_echeance="ngModel">
+                        </div>
+                        <div class="form-group "> 
+                          <label for="etat_traite">Etat traite:</label>
+                          <select class="form-control1 label7"  required [(ngModel)]="paiementfrs.etat_traite" name="etat_traite" #etat_traite="ngModel">
+                                 
+                            <option value="Soldé">Soldé</option>
+                            <option value="Non soldé">Non soldé</option>
+                            <option value="Impayé">Impayé</option>
+                            <option value="Préavis">Préavis</option>
+                          </select>
+                        </div>
+                         
+                 <button class="b8 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                 <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes des etats des traites fournisseurs
+                      <a routerLink="/imprimeretattraitef/{{paiementfrs.id}}
+                      {{paiementfrs.date}}{{paiementfrs.date_echeance}}{{paiementfrs.type_date}}
+                      {{paiementfrs.etat_traite}}" target="_blanc" class="img4 s7-print" title="imprimer"></a>
+
+                     </h3>
+                 </div>
+                 <br>
+                 <div class="form-group radio0 "> 
+                  
+                 
+                    <input type="text" class="  f1 form-control label7"  required="" value="0.000" disabled>
+                       
+                    <input class="radio0000 f1 form-control label7"  type="date"   required>
+  
+                    <a href="/imprimeretattraitef1" target="_blanc" class="b1 btn btn-space btn-primary" (click)="ajouterOrdre" >Nouveau ordre paiement</a>
+                  </div>
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                  
+                                <th>Num facture </th>
+                                <th>Num Traite</th>
+                                <th>Banque </th>
+                                <th >Fournisseur</th>
+                               
+                                <th >Date Réception</th>
+                                <th >Date Echéance</th>
+                               <th>Utilisateur</th>
+                               <th>Montant</th>
+                               <th>Soldé</th>
+                               <th>Non Soldé</th>
+                               <th>Etat</th>
+                               <th>Impression</th>
+                            
+                
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let paiementfrs of paiementfrss">
+                              <tr >
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.num_fact}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.num}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.banque}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.fournisseur}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.date}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.date_echeance}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{ordrepaiement.login}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.montant}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.solder}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.non_solder}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.etat}}</td>
+                                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.impression}}</td>
+                            </tr>
+              
+                               
+                      
+                             
+                                  
+                              </tbody>
+                              <tfoot>
+                                <tr class="thead1">
+                              
+                                  <td colspan="7" ><b>Total</b></td>
+                                  
+                                  <td class="d">0.000 dt</td>
+                                  <td class="td2">0.000 dt</td>
+                                  <td class="td3">0.000 dt</td>
+                              
+                        <td></td>
+                        
+                                  
+                              
+                                   
+                                    <td >
+                                      </td>
+              
+                                </tr>
+                              </tfoot>
+                          </table>
+                          <br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

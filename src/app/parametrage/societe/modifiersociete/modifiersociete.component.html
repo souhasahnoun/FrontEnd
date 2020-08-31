@@ -1,0 +1,129 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier  société</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              
+              <div class="form-group radio01"> 
+                    
+                <label for="prefixe">Prefix société:</label>
+                <input type="text" name="prefixe" class="form-control1 label2" [(ngModel)]="societe.prefixe" id="prefixe" />
+              
+                </div>
+                
+                <div class="form-group "> 
+                  
+                  <label for="nom">Nom société:</label>
+                  <input type="text" name="nom" class="form-control1 label7" [(ngModel)]="societe.nom" id="nom"/>
+                
+                  </div>
+                  <div class="form-group "> 
+                  
+                    <label for="adresse">Adresse:</label>
+                    <input type="text" name="adresse" class="form-control1 label7" [(ngModel)]="societe.adresse" id="adresse"/>
+                  
+                    </div>
+                <div class="form-group "> 
+                  
+                  <label for="tel"> Tel:</label>
+                  <input type="text" name="tel" class="form-control1 label7" [(ngModel)]="societe.tel" id="tel"/>
+                
+                  </div>
+                  <div class="form-group "> 
+                  
+                    <label for="fax" >Fax:</label>
+                    <input type="text" name="fax" class="form-control1 label7" [(ngModel)]="societe.fax" id="fax"/>
+                  
+                    </div>
+                    <div class="form-group radio01"> 
+                  
+                      <label for="gsm"> GSM:</label>
+                      <input type="text" name="gsm" class="form-control1 label2" [(ngModel)]="societe.gsm" id="gsm"/>
+                    
+                      </div>
+                      <div class="form-group "> 
+                  
+                        <label for="email"> E-mail:</label>
+                        <input type="text" name="email" class="form-control1 label7" [(ngModel)]="societe.email" id="email"/>
+                      
+                        </div>
+                        <div class="form-group "> 
+                  
+                          <label for="site_web">Site web:</label>
+                          <input type="text" name=" site_web" class="form-control1 label7" [(ngModel)]="societe.site_web" id="site_web"/>
+                        
+                          </div>
+                          <div class="form-group "> 
+                  
+                            <label for="mf"> MF:</label>
+                            <input type="text" name="mf" class="form-control1 label7" [(ngModel)]="societe.mf" id="mf"/>
+                          
+                            </div>
+                            <div class="form-group "> 
+                  
+                              <label for="rc"> RC:</label>
+                              <input type="text" name="rc" class="form-control1 label7" [(ngModel)]="societe.rc" id="rc"/>
+                            
+                              </div>
+                              <div class="form-group radio01"> 
+                  
+                                <label for="rib"> RIB:</label>
+                                <input type="text" name="rib" class="form-control1 label11" [(ngModel)]="societe.rib" id="rib"/>
+                              
+                                </div>
+                                <div class="form-group "> 
+                  
+                                  <label for="iban"> IBAN:</label>
+                                  <input type="text" name="iban" class="form-control1 label3" [(ngModel)]="societe.iban" id="iban"/>
+                                
+                                  </div>
+                                  <div class="form-group "> 
+                  
+                                    <label for="cd" > C.D:</label>
+                                    <input type="text" name="cd" class="form-control1 label3" [(ngModel)]="societe.cd" id="cd"/>
+                                  
+                                    </div>
+                                    <div class="form-group"> 
+                                      <label for="magasin_id" >Magasin</label>
+                    
+                                      <select  id="magasin_id" name="magasin_id" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="societe.magasin_id">
+                                        
+                                        <option
+                                          
+                                          *ngFor="let magasin of magasins.controls; index as i"
+                                          [value]="magasin.value.id">{{magasin.value.libelle}}
+                                      </option>
+                                      </select>
+                                     
+                                    </div>
+                                    <br>
+                                  <button class="b8 btn btn-space btn-primary "  type="submit" (click)="modifierSociete()">Modifier</button>
+                                  <button class=" btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+                                  <br><br>
+                                    </div>
+                  
+                  
+                </div>
+              </div>
+           
+          
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

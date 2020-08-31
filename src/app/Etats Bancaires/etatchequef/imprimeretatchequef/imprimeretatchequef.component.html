@@ -1,0 +1,77 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio43 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">ETAT CHEQUES FRS
+        </b></a>
+            <a href="javascript:exportTableToExcel('tblData','ETAT CHEQUES FOURNISSEURS ')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+        <h4 class="radio39 f4 f1"><span>Date Impression: {{myDate | date: 'mediumDate' }}</span> &nbsp; <span *ngIf="magasin.libelle"> Boutique: {{magasin.libelle}}</span> &nbsp; <span *ngIf="ordrepaiement.login">Par: {{ordrepaiement.login}}</span> </h4>
+        <br><br>
+        <table class="tr33  t44 table-sm t88  table-bordered2">
+          <thead *ngFor="let paiementfrs of paiementfrss">
+    
+          <tr *ngIF="paiementfrs.mode == 'cheque' && paiementfrs.id == id && paiementfrs.date == datedeb && paiementfrs.date_echeance == datefin && paiementfrs.type_date == type_dat && paiementfrs.etat_ch == etat_ch"> 
+          
+            <th >Selon: {{paiementfrs.type_date}}</th>
+            <th >Date Debut: {{paiementfrs.date}}</th>
+            <th >Date Fin:{{paiementfrs.date_echeance}} </th>
+           <th>Etat Cheque: {{paiementfrs.etat_ch}}</th>
+          </tr>
+          
+        </thead>
+        
+          </table>
+        
+        <table class="f4  t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Num Facture </th>
+            <th >Num Cheque</th>
+            <th >Banque</th>
+            <th >Fournisseur </th>
+            <th >Date Reception</th>
+            <th >Date Echeance</th>
+            <th >Recu Par </th>
+            <th >Montant</th>
+            <th >Solder</th>
+            <th >Non Solder</th>
+            
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let paiementfrs of paiementfrss">
+            <tr>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.num_fact}}</td>
+                <td *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.num}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.banque}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.fournisseur}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.date}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.date_echeance}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{ordrepaiement.login}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.montant}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.solder}}</td>
+                <td  *ngIf="paiementfrs.mode== 'cheque'">{{paiementfrs.non_solder}}</td>
+                
+              </tr> 
+           
+         
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td  colspan="7"><b>TOTAL</b></td>
+              
+              <td ><b>0.000</b></td>
+              <td ><b>0.000</b></td>
+              <td ><b>0.000</b></td>
+            </tr>   
+  
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

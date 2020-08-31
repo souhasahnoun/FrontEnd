@@ -1,0 +1,175 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    <div class="page-head">
+        <h2>VENTE A LA CAISSE</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Vente à la caisse</a></li>
+          <li class="breadcrumb-item"><a href="/la-caisse">Vente à la caisse</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Demarrer caisse du jour</h3>
+              </div>
+              <div class="card-body">
+                <div>
+                  
+                  <div  class="form-group">
+                    <label for="date">Date caisse</label>   
+                    <input class="form-control label3" type="date" name="date" id="date" [(ngModel)]="caisse.date"  #date="ngModel"  required >
+                    <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                    class="f55">
+                
+                  <div *ngIf="date.errors.required">
+                   champs date est obligatoire.
+                  </div>
+                  
+                </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="fond_caisse">Fond de caisse (dt) </label>   
+                    <input class="form-control label3" type="text" name="fond_caisse"  id="fond_caisse" placeholder="fond caisse" [(ngModel)]="caisse.fond_caisse" required #fond_caisse="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}"> 
+                    <div *ngIf="fond_caisse.invalid && (fond_caisse.dirty || fond_caisse.touched)"
+                      class="f55">
+              
+                      <div *ngIf="fond_caisse.errors.required">
+                        champs fond_caisse est obligatoire.
+                      </div>
+                      <div *ngIf="fond_caisse.errors.minlength">
+                        fond_caisse doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="fond_caisse.errors.maxlength">
+                        fond_caisse doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="fond_caisse.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="form-group">
+                    <label for="montant_final">Montant final (dt) </label>   
+                    <input class="form-control label3" type="text" name="montant_final"  id="montant_final" placeholder="montant final" [(ngModel)]="caisse.montant_final" required #montant_final="ngModel" minlength="5"  maxlength="10" pattern="[0-9]{1,4}[\.][0-9]{3}"> 
+                    <div *ngIf="fond_caisse.invalid && (fond_caisse.dirty || fond_caisse.touched)"
+                      class="f55">
+              
+                      <div *ngIf="montant_final.errors.required">
+                        champs montant_final est obligatoire.
+                      </div>
+                      <div *ngIf="montant_final.errors.minlength">
+                        montant_final doit comporter au moins 5 caractères.
+                      </div>
+                      <div *ngIf="montant_final.errors.maxlength">
+                        montant_final doit contenir au maximum 10 caractères.
+                      </div>
+                      <div *ngIf="montant_final.errors.pattern">
+                        veuillez respecter le format 0.000 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="login" >Login</label>
+  
+                    <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="caisse.login" #login="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                        [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                    </option>
+                    </select>
+                    <div *ngIf=" login.invalid  && login.touched">  
+                      <div *ngIf="login.errors.required" class="f55">
+                        login est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                  <div class="form-group"> 
+                    <label for="magasin_id" >Magasin</label>
+  
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="caisse.magasin_id" #magasin_id="ngModel" required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                    <div *ngIf=" magasin_id.invalid  && magasin_id.touched">  
+                      <div *ngIf="magasin_id.errors.required" class="f55">
+                        magasin est obligatoire
+                      </div>  
+                    </div> 
+                  </div>
+                <br>
+                  <button class="b8 btn btn-space btn-primary" type="submit" (click)="ajouterCais()">Enregistrer</button>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                </div>
+              </div>
+            </div>
+          
+          <br><br>
+          <div class="card3">
+              <div class="card-header">
+                <h3>Listes des caisses</h3><h4 class=" h5"><b>{{message}}</b></h4>
+              </div><br>
+              <input class="form-control label6 glyphicon glyphicon-search"  type="text" name="search"   placeholder=" Search..." [(ngModel)]="term" > 
+                  <table class=" t2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                      <tr>
+                        <th>N°</th>
+                        <th >Date</th>
+                        <th >Fond de caisse </th>
+                        <th >Solde final </th>
+                        <th >Cloture </th>
+                        <th >Vendeur </th>
+                        <th >Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let caisse of caisses | filter: term | orderBy:id">
+                        <td >{{caisse.id}}</td>
+                        <td>{{caisse.date}}</td>
+                        <td >{{caisse.fond_caisse}}</td>
+                        <td>{{caisse.montant_final}}</td>
+                        <td ><a *ngIf="caisse.cloture == 0" class="btn btn-space btn-primary" href="journalcaisse">Ouvert</a>
+                        <a *ngIf="caisse.cloture == 1"  class="btn btn-space btn-primary" href="journalcaisse1">Cloturé</a></td>
+                        <td >{{caisse.login}}</td>
+                        <td ><a  title="Modifier" class="img2 s7-note" routerLink="/la-caisse/{{caisse.id}}"></a>
+                          <a  title="supprimer" class="img2 s7-trash" (click)="supprimer(caisse.id)"></a></td>
+                      </tr>
+                     
+     
+                    </tbody>
+                  </table>
+                  <br>
+                  <nav aria-label="Page navigation example" class="radio45">
+                    <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                      </li>
+                      <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                    </ul>
+                  </nav>
+              
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

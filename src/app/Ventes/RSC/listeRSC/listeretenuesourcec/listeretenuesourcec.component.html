@@ -1,0 +1,139 @@
+
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES RETENUS A LA SOURCE CLIENT</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Ventes</a></li>
+            <li class="breadcrumb-item"><a href="/listeretenuesourcec">Liste retenus à la source client</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Retenus à la source client</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group radio00">
+                          <label for="client_id" >Client</label>
+  
+                          <select  id="client_id" name="client_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" #client_id="ngModel" [(ngModel)]="rsc.client_id"  required>
+                            
+                            <option
+                              
+                              *ngFor="let client of clients.controls; index as i"
+                              [value]="client.value.raison_social">{{client.value.raison_social}}
+                          </option>
+                          </select>
+                          </div>
+                        <div class="form-group ">
+                          <label for="date">Depuis le </label>
+                            <input class="form-control1 label7"  type="date" id="date" name="date" [(ngModel)]="rsc.date" #date="ngModel">
+                        </div>
+                 <div class="form-group ">
+                          <label  for="date">Jusqu'au</label>
+                            <input class="form-control1 label7"  type="date"  id="date" name="date" [(ngModel)]="rsc.date" #date="ngModel">
+                        </div>
+                 <button class="b8 btn btn-space btn-primary"  type="submit" (click)="search()">Chercher</button>
+                 <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3>Listes retenus à la source client
+                        <a routerLink="/imprimerrsc/{{rsc.debut}}{{rsc.fin}}" target="_blanc" class="img4 s7-print" title="imprimer"></a>&nbsp;
+                     </h3>  <h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                        <div >
+
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                  
+                                <th>Date</th>
+                                <th>Factures </th>
+                                <th >Client</th>
+                               
+                                <th >Montant</th>
+                                <th >RS</th>
+                                <th >Montant Net</th> 
+                                <th>Réglé par</th>
+                                <th>Action</th>
+                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let rsc of rscs">
+                              
+                                <td>{{rsc.date}}</td>    
+                                <td>
+                                  Facture N°: <span *ngIf="document.type == 10 && document.client_id == rsc.client_id"> {{ document.num}}</span><br>
+                                  Facture avoir N°:<span *ngIf="document.type == 9 && document.client_id == rsc.client_id">{{ document.num}}</span> 
+                                </td>
+                                <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == rsc.client_id">{{client.raison_social}}</span></span></td>             
+                                <td>{{rsc.montant}}</td>  
+                                <td>{{rsc.rs}}</td>
+                                <td>{{rsc.net}}</td>
+                                <td >{{document.login}}</td>
+                      
+                                
+                            
+                                 
+                                  <td ><a routerLink="/listeretenuesourcec/{{rsc.id}}" class="img2 s7-note"></a>
+                                    <a (click)="supprimer(rsc.id)" class="img2 s7-trash"></a>
+                                      <a href="/retenuepdf" target="_blanc" class="img2 s7-next-2" title="Exporter en pdf"></a>
+                                    </td>
+            
+                              </tr>
+        
+                                  
+                              </tbody>
+                              <tfoot>
+                                <tr class="thead1">
+                              
+                                  <td colspan="3"><b>Total</b></td>    
+                                    
+                                  <td><b>0.000</b></td>  
+                                  <td><b>0.000</b></td>
+                                  <td><b>0.000</b></td>
+                                  <td colspan="2"></td>
+                                   
+              
+                                </tr>
+                              </tfoot>
+                          </table><br>
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

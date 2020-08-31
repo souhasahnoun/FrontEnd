@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier fournisseur </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              <div  class="form-group radio0000">
+                <label for="raison_social">Raison sociale</label>   
+                    <input [(ngModel)]="fournisseur.raison_social" id="raison_social"  class="form-control label3" type="text"    >
+              </div>
+              <div  class="form-group">
+                <label for="Tel">Tel</label>   
+                <input [(ngModel)]="fournisseur.tel" id="tel" class="form-control label3" type="text"  >
+              </div>
+              <div  class="form-group">
+                <label for="Fax">Fax</label>
+                    <input [(ngModel)]="fournisseur.fax" id="fax" class="form-control label3"  type="text" placeholder="fax" required="">
+              </div>
+              <div class="form-group">
+                <label for="Email">Email</label>
+                    <input [(ngModel)]="fournisseur.email" id="email" class="form-control label7"   type="text"  >
+              </div>
+              <div class="form-group">
+                <label for="Site_web">Site web</label>
+                    <input [(ngModel)]="fournisseur.site_web" id="site_web" class="form-control label7"  value="http://"  type="text" required="" >
+              </div>
+       <div class="form-group radio0000">
+        <label for="GSM">GSM</label>
+        <input [(ngModel)]="fournisseur.gsm" id="gsm" class="form-control label3"   type="text" required="" >
+              </div>
+              <div class="form-group ">
+                <label for="personne_contacter ">Personne à contacter</label>
+                    <input [(ngModel)]="fournisseur.personne_contacter" id="personne_contacter" class="form-control label3"  type="text" required="" >
+              </div>
+      <div class="form-group">
+        <label for="MF">M.F</label>
+        <input [(ngModel)]="fournisseur.mf" id="mf" class="form-control label3"   type="text" required="" >
+              </div>
+      <div class="form-group">
+        <label for="RC">R.C</label>
+        <input [(ngModel)]="fournisseur.rc" id="rc" class="form-control label3"   type="text" required="" >
+              </div>
+      <div class="form-group">
+        <label for="Adresse">Adresse</label>
+        <input [(ngModel)]="fournisseur.adresse" id="adresse" class="form-control label1"  type="text" required="" >
+              </div>
+             <br>
+              <button class="b8 btn btn-space btn-primary "  type="submit" (click)="modifierFournisseur()">Modifier</button>
+              <button class="btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+              <br><br>
+            </div>
+                  
+                  
+                </div>
+              </div>
+           
+          
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+
+

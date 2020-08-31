@@ -1,0 +1,33 @@
+
+    
+    <div class="page-head2" id='sectionAimprimer'>
+        <h1 class="radio32 f4"><b><a href="javascript:imprimer('sectionAimprimer')" ><p class="f1">LISTE DES MARQUES </p> </a></b></h1>
+        <br>
+        
+        <table class="f4 t44 table-sm t88 table-bordered2" id="tblData">
+          <thead >
+    
+          <tr> 
+            <th >Libelle </th>
+            <th >Logo</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let marque of marques | orderBy:id">
+
+            <td >{{marque.libelle}}</td>
+            <td >{{marque.logo}}</td>
+            
+  
+
+          </tr>
+         
+              
+          </tbody>
+      </table>
+      
+
+      </div>
+      
+ 

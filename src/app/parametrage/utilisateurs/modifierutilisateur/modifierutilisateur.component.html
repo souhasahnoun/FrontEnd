@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier Mot de passe</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              
+              <div class="form-group radio0000 "> 
+                    
+                <label for="designation">Designation:</label>
+                <input type="text"  class="form-control1 label3 " id="designation"  [(ngModel)]="utilisateur.designation" />
+              
+                </div>
+                <div class="form-group "> 
+                    
+                  <label for="magasin_id" >Magasin</label>
+  
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="utilisateur.magasin_id" >
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                </div>
+                  
+                 
+        
+                <div class="form-group "> 
+                  
+                  <label for="login">Login:</label>
+                  <input type="text"  class="form-control1 label3 " id="login"  [(ngModel)]="utilisateur.login" disabled/>
+                
+                  </div>
+                  <div class="form-group "> 
+                  
+                    <label for="password">Password:</label>
+                    <input   class="form-control1 label3 " type="password" id="password"  [(ngModel)]="utilisateur.password"/>
+                  
+                    </div>
+                <div class="form-group "> 
+                  
+                  <label for="retaper_password"> Confirmer Password:</label>
+                  <input  class="form-control1 label3 " type="password" name="retaper_password " equals-to="utilisateur.password" [(ngModel)]="utilisateur.retaper_password"/>
+                
+                  </div>
+              <br>
+              <button class="b8 btn btn btn-space btn-primary "  type="submit" (click)="modifierUser()">Modifier</button>
+              <button class="btn btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+              <br> <br>  
+           
+                </div>
+           
+                  
+                </div>
+              </div>
+           
+         
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

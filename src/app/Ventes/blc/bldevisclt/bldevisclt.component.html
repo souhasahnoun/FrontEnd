@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>BON DE LIVRAISON</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Ventes</a></li>
+          <li class="breadcrumb-item"><a href="/blclient">Bon de livraison</a></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3 *ngIf="document.type == 7">Editer bon de livraison N° {{document.num}}</h3>
+              </div>
+              <div class="card-body">
+                <div>
+             
+                  <div  class="form-group radio1001">
+                    <label class="f1" for="num">Devis: </label>   
+                    <select id="num" name="num" class="radio0000 form-control label1 f1" size="1"  #num="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.num"  required>
+                        
+                      <option
+                      *ngFor="let document of documents.controls; index as i" 
+                        [value]="document.value.id"><span *ngIf="document.value.type == 1">{{document.value.num}}</span>
+                    </option>
+                    </select>
+                    <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                    class="f55">
+                
+                  <div *ngIf="num.errors.required">
+                   champs num est obligatoire.
+                  </div>
+                  </div>
+                  </div>
+                  <br><br><br>
+                  <table class=" tx2 table-sm  table-bordered ">
+                    <thead class="thead1">
+                        <tr > 
+                          <th class="thead3" colspan="8">Lignes Des Devis</th> 
+                        </tr>
+                        <tr>
+                        
+                        <th><input type="checkbox"></th>
+                        <th >Ref</th>
+                        <th >Designation</th>
+                        <th >Qte</th>
+                        <th >P.U.H.T (dt)</th>
+                        <th >Quantité</th>
+                        
+                    
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr >
+                        <td><input type="checkbox"></td>
+                        <td  *ngIf="produit.id == lignedocument.produit_id">{{produit.ref_prod}}</td>
+                        <td><input type="text" disabled *ngIf="produit.id == lignedocument.produit_id" value="{{produit.nom_prod}}"></td>
+                        <td><input type="text" disabled *ngIf="lignedocument.qte" value="{{lignedocument.qte}}" ></td>
+                        <td ><input type="text" *ngIf="lignedocument.prix" value="{{lignedocument.prix}}"></td>
+                        <td ><input type="text" *ngIf="lignedocument.qte" value="{{lignedocument.qte}}"></td>
+                        
+                       
+                       
+                      </tr>
+                          
+                    </tbody>
+                  </table>  
+                  <br><br>   
+                <button routerLink="/listeblc" class="b9 btn btn-space btn-primary" type="submit" (click)="ajouterbl()" >Ajouter </button>
+                <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

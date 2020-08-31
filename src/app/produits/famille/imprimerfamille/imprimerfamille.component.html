@@ -1,0 +1,31 @@
+<div >
+    
+    <div class="page-head2 " id='sectionAimprimer'>
+        <h1 class="radio32 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">LISTE DES FAMILLES </b></a></h1>
+        <br>
+        
+        <table class=" f4 t44 table-sm  t88 table-bordered2">
+          <thead >
+    
+          <tr> 
+            <th ><b >Libelle </b></th>
+           
+            
+          </tr >
+        </thead>
+        <tbody>
+          <tr *ngFor="let famille of familles">
+
+            <td >{{famille.libelle}}</td>  
+ 
+          </tr>
+         
+              
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

@@ -1,0 +1,37 @@
+<div >
+    
+    <div class="page-head2"id='sectionAimprimer'>
+        <h2 class="radio3 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">INVENTAIRE DE STOCK (PAGE 1) </b></a></h2>
+        <h4 class="radio33 f4">Date:{{myDate | date: 'mediumDate' }}</h4>
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Ref Prod </th>
+            <th >Code a barre</th>
+            <th >Nom produit</th>
+            <th >Stock théorique </th>
+            <th >Stock physique</th>    
+          </tr>
+         
+        </thead>
+        <tbody *ngFor="let inventaire of inventaires">
+          <tr *ngFor="let produit of produits" >
+            <td *ngIf=" inventaire.produit_id == produit.id">{{produit.ref_prod}}</td>
+            <td *ngIf=" inventaire.produit_id == produit.id">{{produit.code}}</td>
+            <td *ngIf=" inventaire.produit_id == produit.id">{{produit.nom_prod}}</td>
+            <td *ngIf=" inventaire.produit_id == produit.id">{{produit.stk_alert}}</td>
+            <td *ngIf=" inventaire.produit_id == produit.id">{{inventaire.QteStock}}</td>
+    
+    </tr> 
+         
+            
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

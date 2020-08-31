@@ -1,0 +1,48 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio005 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">ETAT COMPTES FOURNISSEURS </b></a>
+            <a href="javascript:Export('tblData','ETAT COMPTES FRS')" class="radio1110"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+            <a href="javascript:exportTableToExcel('tblData','ETAT COMPTES FOURNISSEURS ')" class="radio1110"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+        <h4 class="radio32 f4">Date:{{myDate | date: 'mediumDate' }}</h4><br>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2  " >
+          <thead >
+    
+          <tr > 
+            <th >N°</th>
+            <th >Code</th>
+            <th >Nom</th>
+            <th >Téléphone</th>
+            <th >Total</th>
+            <th >Encours</th>
+ 
+          </tr>
+         
+        </thead>
+        <tbody>
+          <tr *ngFor="let fournisseur of fournisseurs">
+            <td >{{fournisseur.id}}</td>
+            <td >{{fournisseur.code_frs}}</td>
+            <td >{{fournisseur.raison_social}}</td>
+            <td >{{fournisseur.tel}}</td>
+            <td ></td>
+            <td ></td>
+          
+</tr> 
+      
+<tr class="tr1">
+    <td   colspan="4"><b>TOTAL</b></td>
+    <td ><b>0.000 DT</b></td>
+    <td ><b>0.000 DT</b></td>
+</tr> 
+            
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

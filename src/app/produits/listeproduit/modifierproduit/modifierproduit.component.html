@@ -1,0 +1,181 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier Produit</h3><h3 class=" h5"><b>{{message}}</b></h3>
+                </div>
+                <div>
+           
+             
+              <br>
+              <div  class="form-group ">
+                <label for="code">Code a barre</label>   
+                <input type="text" name="code" class="form-control1 label3" id="code"  [(ngModel)]="produit.code" required />
+                   
+              </div>
+              <div  class="form-group">
+                <label for="ref_prod">Reference</label>   
+                <input type="text" name="ref_prod" class="form-control1 label3" id="ref_prod"  [(ngModel)]="produit.ref_prod" required />
+                  
+              </div>
+              <div class="form-group">
+                <label for="nom_prod">Nom Produit</label>
+                <input type="text" name="nom_prod" class="form-control1 label3" id="nom_prod"  [(ngModel)]="produit.nom_prod" required />
+                   
+              </div>
+              <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" name="designation" class="form-control1 label3" id="designation"  [(ngModel)]="produit.designation" required />
+                    
+              </div>
+              <div class="form-group  "> 
+                <label for="categorie_id" >Categorie</label>
+
+                <select  id="categorie_id" name="categorie_id" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.categorie_id" required>
+                  
+                  <option
+                    
+                    *ngFor="let categorie of categories.controls; index as i"
+                    [value]="categorie.value.id">{{categorie.value.libelle}}
+                </option>
+                </select>
+             
+              </div>
+              <div class="form-group  "> 
+                <label for="famille_id" >Famille</label>
+
+                <select  id="famille_id" name="famille_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.famille_id" required>
+                  
+                  <option
+                    
+                    *ngFor="let famille of familles.controls; index as i"
+                    [value]="famille.value.id">{{famille.value.libelle}}
+                </option>
+                </select>
+                
+              </div>
+              <div class="form-group  "> 
+                <label for="marque_id" >Marque</label>
+
+                <select  id="marque_id" name="marque_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.marque_id"  required>
+                  
+                  <option
+                    
+                    *ngFor="let marque of marques.controls; index as i"
+                    [value]="marque.value.id">{{marque.value.libelle}}
+                </option>
+                </select>
+                
+              </div>
+              <div class="form-group  "> 
+                <label for="tva_id" >TVA %</label>
+
+                <select  id="tva_id" name="tva_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="produit.tva_id"  required>
+                  
+                  <option
+                    
+                    *ngFor="let tva of tvas.controls; index as i"
+                    [value]="tva.value.id">{{tva.value.taux}}
+                </option>
+                </select>
+                
+              </div>
+              <div class="form-group">
+                <label for="unite_id">Unité </label>
+                <input type="text" name="unite_id" class="form-control1 label3" id="unite_id"  [(ngModel)]="produit.unite_id" required />
+                   
+              </div>
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" src="./assets/img/"  accept=".png, .jpg, .jpeg"  name=image class="form-control1 label3" id="image"  [(ngModel)]="produit.image" required >
+                
+              </div>
+              <div class="form-group ">
+                <label for=" prix_achat">Prix Achat HT (dt) </label>
+                <input type="text" name=prix_achat class="form-control1 label3" id="prix_achat"  [(ngModel)]="produit.prix_achat" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="mrg_ben_pub">Marge Bénif Public (%) </label>
+                <input type="text" name=mrg_ben_pub class="form-control1 label3" id="mrg_ben_pub"  [(ngModel)]="produit.mrg_ben_pub" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="mrg_ben_rev">Marge Bénif Rev (%) </label>
+                <input type="text" name=mrg_ben_rev class="form-control1 label3" id="mrg_ben_rev"  [(ngModel)]="produit.mrg_ben_rev" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="ristourne">Ristourne (%) </label>
+                <input type="text" name=ristourne class="form-control1 label3 radio0000" id="ristourne"  [(ngModel)]="produit.ristourne" required >
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="points">Points</label>
+                <input type="radio">Pts <br><input type="radio" > %
+                <input type="text" name=points class="form-control1 label2 radio0000" id="points"  [(ngModel)]="produit.points" required >
+               
+              </div>
+              <div class="form-group ">
+                <label for="stk_alert">Stocks Alerte</label>
+                <input type="text" name=stk_alert class="form-control1 label3" id="stk_alert"  [(ngModel)]="produit.stk_alert" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="prixf">Prix Final Public (dt)</label>
+                <input type="text" name=prixf class="form-control1 label3" id="prixf"  [(ngModel)]="produit.prixf" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="prixfrev">Prix Final Revend (dt)</label>
+                <input type="text" name=prixfrev class="form-control1 label3" id="prixfrev"  [(ngModel)]="produit.prixfrev" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="prix_min">Prix Min (dt)</label>
+                <input type="text" name=prix_min class="form-control1 label3" id="prix_min"  [(ngModel)]="produit.prix_min" required >
+                
+              </div>
+              <div class="form-group">
+                <label for="prixrispub">Prix Rist Public (dt)</label>
+                <input type="text" name=prixrispub class="form-control1 label7" id="prixrispub"  [(ngModel)]="produit.prixrispub" required >
+               
+              </div>
+              <div class="form-group ">
+                <label for="prixrisrev">Prix Rist Revend (dt)</label>
+                <input type="text" name=prixrisrev class="form-control1 label3" id="prixrisrev"  [(ngModel)]="produit.prixrisrev" required >
+               
+              </div>
+              <div class="form-group">
+                <label for="prix_revient">Prix De Revient (dt)</label>
+                <input type="text" name=prix_revient class="form-control1 label3" id="prix_revient"  [(ngModel)]="produit.prix_revient" required >
+                
+              </div>
+       
+              <button class="b8 btn btn-space btn-primary " (click)="modifierProduit()" type="submit">Modifier</button>
+              <button class=" btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+              <br><br>
+                </div>
+                  
+                  
+                </div>
+              </div>
+           
+          
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+
+

@@ -1,0 +1,53 @@
+
+<html>
+    <body>
+        <br><br>
+        <p class="p33 radio20"><b>Suivi réglement de facture  </b></p>
+        <br> <br>
+        <h4 class=" h5"><b>{{message}}</b></h4><br>
+
+        <a href="/imprimersuivireglement5" target="_blanc" class="imp img2 s7-print" title="imprimer"></a>
+        <table class=" t34 table-sm  table-bordered ">
+            <thead class="thead2">
+              <tr>
+                <th>Date saisie</th>
+                <th>Date echeance</th>
+                <th >Type Paiement </th>
+                <th >Montant payé (DT) </th>
+                <th >Action</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let reglementclt of reglementclts">
+              <tr *ngIf="reglementclt.id">
+                <td>{{reglementclt.date}}</td>
+                <td>{{reglementclt.date_echeance}}</td>
+                <td *ngIf="reglementclt.mode =='cheque'">{{lignebordereau.type_ch}} / {{reglementclt.num}}</td>
+                <td *ngIf="reglementclt.mode =='traite'">{{reglementclt.type_traite}} / {{reglementclt.num}}</td>
+                <td *ngIf="reglementclt.mode =='espece'"> Especes </td>
+                <td *ngIf="reglementclt.mode =='cheque cadeau'">cheque cadeau/ {{reglementclt.num}} </td>
+                <td *ngIf="reglementclt.mode =='tpe'">tpe </td>
+                <td *ngIf="reglementclt.mode =='virement'">virement </td>
+                <td>{{reglementclt.montant}}   </td>
+                <td><a  class="img2 s7-trash" title="supprimer" (click)="supprimer(reglementclt.id)"></a></td>
+              </tr>
+      
+            </tbody>
+            <tfoot>
+              <tr class="tdd">
+                <td colspan="3"><b>Total Paiement</b></td>
+                 <td class="td00" ><b>0,000 DT</b></td>
+                <td></td>
+               </tr>
+               <tr class="tdd">
+                 <td colspan="3"><b>Montant restant</b></td>
+                  <td class="td2" ><b>0,600 DT</b></td>
+                <td></td>
+                </tr> 
+            </tfoot>
+          </table> 
+          <button class="b14 btn btn-dark">Importer les reglements BL</button>
+        
+         <button class="b55 btn btn-dark" onClick="self.close()">Fermer</button>
+    </body>
+</html> 
+

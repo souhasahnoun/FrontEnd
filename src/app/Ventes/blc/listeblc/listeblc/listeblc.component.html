@@ -1,0 +1,193 @@
+<app-header></app-header>
+<div >
+    <div class="am-content">
+      <div class="page-head">
+          <h2>LISTES DES BONS DES LIVRAISONS CLIENTS</h2>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Ventes</a></li>
+            <li class="breadcrumb-item"><a href="/listeblc"> Liste des bons des livraisons clients</a></li>
+          </ol>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card3">
+                    <div class="card-header">
+                      <h3>Chercher Bon de livraison client</h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" data-parsley-validate="" novalidate="">
+                        <div class="form-group ">
+                          <label for="num">N° BL</label>
+                            <input class="form-control1 label4"  type="text" required="" id="num" name="num" [(ngModel)]="document.num" #num="ngModel"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="client_id">Client:</label>
+                          <select  id="client_id" name="client_id" class="form-control label4" size="1"  #client_id="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.client_id"  required>
+                      
+                            <option
+                              
+                              *ngFor="let client of clients.controls; index as i"
+                              [value]="client.value.id">{{client.value.raison_social}}
+                          </option>
+                          </select>
+                        </div>
+                        <div class="form-group ">
+                          <label for="date">Du:</label>
+                              <input class="form-control1 label4"  type="date"  id="date" name="date" #date="ngModel" [(ngModel)]="document.date"  required>
+                        </div>
+                 <div class="form-group ">
+                  <label for="date_fin">Au:</label>
+                  <input class="form-control1 label4"  type="date" id="date_fin" name="date_fin" #date_fin="ngModel" [(ngModel)]="document.date_fin"  required>
+                        </div>
+                        <div class="form-group">
+                          <label for="etat">Facturé</label>
+                          <select class="form-control1 label4"  required="" id="etat" name="etat" #etat="ngModel" (change)="onSelectType($event.target)"  [(ngModel)]="document.etat">
+                            <option value=0>tous</option>
+                            <option value=1>Facturé</option>
+                            <option value=0>Non Facturé</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="etat_pay">Paiement</label>
+                          <select class="form-control1 label4"  id="etat_pay" name="etat_pay" #etat_pay="ngModel" (change)="onSelectType($event.target)"  [(ngModel)]="document.etat_pay"  required >
+                            <option value=1>Reglé</option>
+                            <option value=0>En reglement</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="rs">Retour</label>
+                          <select class="form-control1 label4"  required=""   id="rs" name="rs" (change)="onSelectType($event.target)"  #rs="ngModel" [(ngModel)]="document.rs" >
+                            <option value=0>tous</option>
+                            <option value=1>oui</option>
+                            <option value=0>non</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="login">Par:</label>
+                          <select  id="login" name="login" class="form-control label4" size="1"  #login="ngModel" (change)="onSelectType($event.target)" [(ngModel)]="document.login"  required>
+                      
+                            <option
+                              
+                              *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                              [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                          </option>
+                          </select>
+                        </div>
+                        <button class="b1 btn btn-space btn-primary" type="submit" (click)="search()">Chercher</button>
+      
+                      </form>
+                    </div>
+      
+                    
+                  </div>
+                <br>
+                
+                 <div class="card3">
+                 <div class="card-header">
+                     <h3> liste des bons des livraisons clients
+                        <a href="/imprimerblc" target="_blanc" class="img4 s7-print" title="Imprimer"></a>
+                     </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                 </div>
+                 <br>
+                        <div >
+                         
+                          <table class=" t2 table-sm  table-bordered ">
+                              <thead class="thead1">
+                        
+                              <tr>
+                                <th>Fact.</th>
+                                <th>N° BL</th>
+                                <th >Date </th>
+                                <th >Client</th>
+                                <th >Montant TTC</th>
+                                <th >Etat Fact.</th>
+                                <th >Passer réglement</th>
+                                <th >Suivi réglement</th> 
+                                <th >Retour</th>
+                                <th>Action</th>
+                
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let document of documents">
+                              <tr *ngIf="document.type == 7">
+                              <td><input class="radio000" type="checkbox"></td>
+                              <td >{{document.num}}</td>
+                              <td >{{document.date}}</td>
+                              <td ><span *ngFor="let client of clientss"><span *ngIf="client.id == document.client_id">{{client.raison_social}}</span></span></td>             
+                              <td >(mnin) dt</td>
+                              <td><a  class="radio11 img2 s7-repeat" ></a></td>
+                              <td><a onclick="open('/saisiereglement3','new', 'width=705,height=610')" class="radio0000 img2 s7-cash" title="Saisie réglement"></a></td>
+                              <td><a onclick="open('/suivireglement3','new', 'width=705,height=350')" class="radio0000 img2 s7-file" title="Suivi réglement"></a></td>
+                              <td><a href="/retourbl" class="radio11 img2 s7-way" title="retour"></a></td> 
+                      
+                                
+                            
+                                 
+                                  <td ><a href="/ligneblc/{{document.id}}" class="img2 s7-note" title="modifier"></a>
+                                    <a (click)="supprimer(document.id)" class="img2 s7-trash" title="supprimer"></a>
+                                      <a href="/imprimerblc1/{{document.id}}" target="_blanc" class="img2 s7-print" title="imprimer"></a>
+                                      <a href="/listeblc" class="img2 s7-graph1" title="bénéfice"></a>
+                                    </td>
+            
+                              </tr>
+                            
+                             
+                  
+                                  
+                              </tbody>
+                              <tfoot>
+                                <tr class="tr1">
+                                  <td colspan="2">
+                                    <br>
+                                    
+                                    <select class="form-control1 label7"  required="" >
+                                      <option>--Nouvelle facture--</option>
+                                    </select>
+                                    <br><br>
+                                    <input type="checkbox" >&nbsp;&nbsp;<b>Appliquer une marge de 5% sur le prix d'achat</b>
+                                    <br><br> <input type="checkbox" >&nbsp;&nbsp;<b>Appliquer une marge de 10% sur le prix d'achat</b>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                 
+                           
+                          
+                                  <td colspan="3" ><b>Total</b></td>
+                                  <td class="td55"><b>0.000 DT</b></td>
+                                  <td ></td>
+                                  <td class="td55"><b>0.000 DT</b></td>
+                            
+                                  <td class="td6"><b>0.000 DT</b></td>
+                                  <td ></td>
+                                 
+                                </tr>
+                              </tfoot>
+                          </table>
+                          <br>
+                        
+                          <nav aria-label="Page navigation example" class="radio45">
+                            <ul class="pagination " *ngIf="pager.pages && pager.pages.length">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(1)">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                              </li>
+                              <li class="page-item"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                              </li>
+                              <li class="page-item"  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                              </li>
+                            </ul>
+                          </nav>
+                          </div>
+                      </div>
+                      </div>
+       
+          
+  
+  

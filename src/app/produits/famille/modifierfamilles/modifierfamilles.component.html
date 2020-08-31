@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                   
+                <h3>Modifier famille produit</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div class="card-body">
+                <div>
+                  <div class="form-group  "> 
+                    <label for="categorie_id" >Catégorie</label>
+  
+                    <select  id="categorie_id" name="categorie_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="famille.categorie_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let categorie of categories.controls; index as i"
+                        [value]="categorie.value.id">{{categorie.value.libelle}}
+                    </option>
+                    </select>
+                  </div>
+                  <div  class="form-group">
+                    <label for="libelle">Libélé</label>   
+                    <input type="text" name="libelle" class="form-control1 label3" id="libelle"  [(ngModel)]="famille.libelle" required >
+                    
+                  </div>
+                  <div class="form-group "> 
+                    
+                    <label for="prix"> Prix(DT):</label>
+                    <input type="text" name=Prix class="form-control1 label3" id="prix"  [(ngModel)]="famille.prix" required />
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="merg_ben"> Merge Benefice :</label>
+                      <input type="text" name=merg_ben class="form-control1 label3" id="merg_ben"  [(ngModel)]="famille.merg_ben" required />
+                      </div>
+                         <button class="b1 btn btn-space btn-primary" type="submit" (click)="modifierFamille()">Modifier</button>
+                  
+                 <button class="b1 btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+              
+              
+                </div>
+                </div>
+              </div>
+           
+          <br>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

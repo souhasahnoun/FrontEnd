@@ -1,0 +1,367 @@
+<app-header></app-header>
+<div >
+    
+    <div class="page-head4">
+        <p class="radio02" id="example6"><b class="radio11 tt3 f6">Ticket de caisse</b><span class="radio02 tt44 f7">N° Caisse:     ----------------</span><span class="radio111 tt44 f7">N° Ticket:     -----------------</span><span class="radio0 tt33 f7">Vendeur:----------</span><span class="radio1110 tt33 f7">Date:----------</span><span class="radio1110 tt33 f7">Heure:----------</span></p>
+        <div >
+            <div class="radio02  rs" id="example7">
+               <span class="radio111 tt44 f7" for="client_id">Client: 
+                  <select  id="client" name="client" class="radio111  select1" size="1"   (change)="onSelectType($event.target)"  #client_id="ngModel" [(ngModel)]="caisse.client_id"  required>
+                     <option
+                     
+                     *ngFor="let client of clients.controls; index as i"
+                     [value]="client.value.id">{{client.value.raison_social}}
+                     </option>
+                  </select>
+               </span>  
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="caisse.client_id == client.id ">RS : {{client.raison_social}} </span></span>
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="caisse.client_id == client.id ">Tel : {{client.tel}}   </span></span>
+                  <br ><span *ngFor="let client of clientss"><span class="radio111 tt44 f7" *ngIf="caisse.client_id == client.id ">Solde : {{client.plafond}}  </span></span>
+                  <br >
+               
+               </div>
+            <p class="radio111  rs d" id="example8" ><b class="radio11 tt333 f77" >Total</b><b class="radio51100 tt333 f77" >0.000 DT</b><br><br></p>
+            <p class="radio111  rs" id="example7"><br><span class="radio111 tt44 f7">Montant reçu: <input type="text" class="inp2"><br ><br><span class="radio111 tt44 f7">Rendre: <input type="text" class="inp2 radio001" readonly ></span><br></span></p>
+       </div>
+       <div>
+      <div class="rs  ">
+        <p  class="radio02 rs" id="example11"><b class="radio1110 f tt3 f6">Detail produits </b><br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7 " >Designation   </b>
+               <span *ngFor="let produit of produitss">
+
+                  <span class="inp22 radio13333" *ngIf="prod  == produit.id || code == produit.code  "> {{produit.designation}} </span>
+               </span>
+                   
+            </span>  
+                  <br><br>
+                  <span class="radio1110 tt33 ">
+                     <b class="f7 " >Qte Stock   </b>
+                     <span *ngFor="let stock of stocks">
+                        <span *ngFor="let produit of produitss">
+                        <span class="inp22 radio13333" *ngIf="prod  == stock.produit_id && stock.produit_id == produit.id || stock.produit_id == produit.id && code == produit.code  "> {{stock.QteStock}} </span>
+                     </span>
+
+                     </span>
+                         
+                  </span> 
+                  <br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7">P.A.HT  </b>
+               <span *ngFor="let produit of produitss">
+                  <span class="inp22 radio001" *ngIf="prod  == produit.id || code == produit.code "> {{produit.prix_achat}} </span>
+               </span>
+            </span>
+                  <br><br>
+            <span class="radio1110 tt33 ">
+               <b class="f7">P.Rev.HT   </b>
+               <span *ngFor="let produit of produitss">
+                  <span class="inp22 radio1333" *ngIf="prod  == produit.id || code == produit.code "> {{produit.prix_revient}} </span>
+               </span>
+            </span>
+        </p>
+        <br><br>
+            <div  >
+                <button class="radio0001  t60 "  type="submit" ><b class="tt3 f7">7</b><br></button>
+                <button class=" t60 "  type="submit" ><b class="tt3 f7">8</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">9</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">+/-</b><br></button>
+            
+            </div>
+        
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">4</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">5</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">6</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Remise</b><br></button>
+            
+            </div>
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">1</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7 ">2</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">3</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Qte</b><br></button>
+            </div>
+            <div >
+                <button class="radio0001  t60" type="submit" ><b class="tt3 f7">C</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">0</b><br></button>
+                <button class=" t60" type="submit" ><b class="tt3 f7">.</b><br></button>
+                <button class=" t600" type="submit" ><b class="tt3 f7">Prix</b><br></button>
+            </div>
+            <div >
+                <input class="inp radio0001" type="text"><button class="t63" type="submit" ><b class="f7">Valider</b></button>
+             </div><br><br><br><br><br>
+        </div>
+        <div class="rs">
+            <input class="select2 radio111 rs" type="text" placeholder="   Code a barre" id="code" name="code"  [(ngModel)]="code">
+            <input type="checkbox" class="radio111  ch">
+            <select  id="prod" name="prod" class="radio111 inp4 f7" size="1"   (change)="onSelectType($event.target)"  [(ngModel)]="prod"  required>
+               <option
+               
+               *ngFor="let produit of produits.controls; index as i"
+               [value]="produit.value.id">{{produit.value.nom_prod}}
+               </option>
+               
+
+            </select>
+            <br>
+            <table class=" radio1110 t405 rs  f7   table-sm t88 table-bordered2 ">
+            
+               <tr class="tr321" >
+                    <th class="ty1"></th>
+                    <th class="ty2">Designation</th>
+                    <th>Qte</th>
+                    <th>REM %</th>
+                    <th>P.A.HT</th>
+                    <th>TVA</th>
+                    <th>Total TTC</th>
+                </tr>
+           
+               <tbody *ngFor="let produit of produitss">
+                <tr   *ngFor="let stock of stocks" >
+                    <td class="ty1" *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id  " ><input class="ch" type="checkbox"></td>
+                    <td class="ty2" *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id " >{{produit.designation}}</td>
+                    <td *ngIf="prod  == stock.produit_id && stock.produit_id == produit.id || stock.produit_id == produit.id && code == produit.code  ">{{stock.QteStock}}</td>
+                    <td *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id   ">0</td>
+                    <td *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id  " >{{produit.prix_achat}}</td>
+                    <td *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id  " ><span *ngFor="let tva of tvas"><span *ngIf="tva.id == produit.tva_id">{{tva.taux}}</span></span></td>
+                    <td *ngIf="prod  == produit.id && stock.produit_id == produit.id  || code == produit.code && stock.produit_id == produit.id   ">0.000</td>
+                 </tr>
+               
+            </tbody>
+            </table>
+
+            <div class="rs">
+                 
+                 <p class="radio111 rs1" id="example12"><span class="radio111 f tt3 f6"><b>Encaissement</b></span><br>
+                    <button class="radio11  t61"  type="submit" ><b class="tt33 f7">Supprimer Ligne</b></button>
+                     <button class="radio1110 t61 "  type="submit" ><a href="/listestickets" target="_blanc"><b class="  f7 tt33">Liste des tickets</b></a></button><br><br>
+                     <button class="radio11 t61" type="submit" ><a href="/caisse" target="_blanc"><b class="tt33 f7"> Nouveau ticket</b></a></button>
+                     <button  class="radio1110 t61" type="submit" ><a href="/retraitcaisse" target="_blanc"><b class="tt33  f7">Retrait Caisse</b></a></button><br><br>
+                     <button class="radio11  tx"  type="submit" ><b class="tt33 f7">Valider ticket</b></button>
+                     <button class="radio1110 t61 "  type="submit" ><a href="/caisse1" target="_blanc"><b class="  f7 tt33">Passer Retour</b></a></button><br><br>
+
+                   
+                 </p>
+                <br>
+                <div class="radio111 rs" id="example13"><span class="radio111 f tt3 f6"><b>Reglement</b></span>
+                    <a class="t65" href="#myModal0"  data-toggle="modal"><img class="imgg1" src="/assets/img/especes.png" title="Especes"></a>
+                 <!-- Modal -->
+                 <div class="modal fade" id="myModal0" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <b><p class="i1">Espece</p> </b>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      
+                      </div>
+                      <div class="modal-body">
+                       <label class="f1 radio000"><b>Valeur Espece:</b></label> <input class="radio1333" type="text"><br>
+                      
+                          <br>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                        <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                
+                </div>
+
+
+
+                    
+                    <a class="radio1110 t65" href="#myModal1"  data-toggle="modal"><img class="imgg2" src="/assets/img/cheques.png" title="Cheques"></a>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal1" role="dialog">
+                           <div class="modal-dialog">
+                           
+                             <!-- Modal content-->
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <b><p class="i1">Cheque</p> </b>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               
+                               </div>
+                               <div class="modal-body">
+                                <label class="f1 radio000"><b>Num Cheque:</b></label> <input class="radio1333" type="text"><br>
+                                <label class="f1 radio000"><b>Date Echeance:</b></label> <input class="radio211" type="text"><br>
+                                <label class="f1 radio000"><b>Banque:</b></label> 
+                                    <select class="select3 radio0223">
+                                       <option></option>
+                                    </select><br>
+                                 <label class="f1 radio000"><b>Client:</b></label> 
+                                    <select class="select3 radio700">
+                                       <option></option>
+                                    </select><br>
+                               </div>
+                               <div class="modal-footer">
+                                 <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                                 <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                               </div>
+                             </div>
+                             
+                           </div>
+                         
+                         
+                         </div>
+
+
+                    <br>
+                    <a class=" t65" href="#myModal2"  data-toggle="modal"  ><img class="imgg3" src="/assets/img/traite.png" title="traite"></a>
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Traite</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                             <label class="f1 radio000"><b>Num Traite:</b></label> <input class="radio1333" type="text"><br>
+                             <label class="f1 radio000"><b>Date :</b></label> <input class="radio77" type="text"><br>
+                             <label class="f1 radio000"><b>Banque:</b></label> 
+                                 <select class="select3 radio01">
+                                    <option></option>
+                                 </select><br>
+                              <label class="f1 radio000"><b>Client:</b></label> 
+                                 <select class="select3 radio0223">
+                                    <option></option>
+                                 </select><br>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+
+
+                    <a class=" t65" href="#myModal3"  data-toggle="modal"  ><img class="imgg4" src="/assets/img/tpe.png" title="tpe"></a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal3" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">TPE</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                             <label class="f1 radio000"><b>Num :</b></label> <input class="radio77" type="text"><br>
+                             <label class="f1 radio000"><b>Banque:</b></label> 
+                                 <select class="select3 radio01">
+                                    <option></option>
+                                 </select><br>
+                             
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+                    
+                    <br><br>
+                    <a class=" t65" href="#myModal4"  data-toggle="modal" ><img class="imgg5" src="/assets/img/chequec.png" title="Cheque cadeau"></a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal4" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Cheque Cadeau</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                             <label class="f1 radio000"><b>Num Cheque:</b></label> <input class="radio1333" type="text"><br>
+                             <label class="f1 radio000"><b>Date Echeance:</b></label> <input class="radio211" type="text"><br>
+                             <label class="f1 radio000"><b>Banque:</b></label> 
+                                 <select class="select3 radio0223">
+                                    <option></option>
+                                 </select><br>
+                              <label class="f1 radio000"><b>Client:</b></label> 
+                                 <select class="select3 radio700">
+                                    <option></option>
+                                 </select><br>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+
+
+
+                    <a class="radio11 t65" href="#myModal5"  data-toggle="modal"  ><img class="imgg4" src="/assets/img/virement.png" title="virement"></a>
+                       <!-- Modal -->
+                     <div class="modal fade" id="myModal5" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <b><p class="i1">Virement</p> </b>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            
+                            </div>
+                            <div class="modal-body">
+                            
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Valider</b></button>
+                              <button type="button"  data-dismiss="modal" class=" btn btn-space btn-dark"><b class="c">Fermer</b></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      
+                      
+                      </div>
+                   
+                     </div>
+                <br><br>
+                <table class=" radio12 t407  f7   table-sm t88 ">
+                
+                    <tr>
+                        <th class="tr322 "><b>Total Réglé</b></th>
+                        <th class="tr23 "><b>0.000 DT</b></th>
+                    </tr>
+                </table>
+               <br>
+            </div>
+           
+        </div>
+      </div>
+         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+      
+    </div>
+
+</div>

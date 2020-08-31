@@ -1,0 +1,64 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2 "  id="tblData">
+        <div>
+            <b class=" radio42 f1 f4">Date d'impression :</b><span >--------------</span>  <b class="f1 f4 radio0000">Boutique:</b><span >--------------</span><b class="f1 f4 radio0000">Par:</b> <span >--------------</span>
+        </div>
+        <h1 class="radio3 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">Liste des factures des Frs</b></a>
+            <a href="javascript:Export('tblData','Liste des factures des Frs')" class="radio1110"><img src="/assets/img/pdf.JPG" title="exporter en pdf"></a>
+            <a href="javascript:exportTableToExcel('tblData','Liste des factures des Fournisseurs ')" class="radio111"><img src="/assets/img/excel.JPG" title="exporter en excel"></a>
+        </h1>
+
+        <table class=" f4 t44 table-sm t88 table-bordered2  " >
+            <thead >
+             
+            <tr > 
+              <th >Date Facture </th>
+              <th >Numero</th>
+              <th >Fournisseur</th>
+              <th >RS</th>
+              <th>Origine</th>
+              <th >Total</th>
+              <th >Balance </th>
+              <th >Reglement</th>
+            
+            </tr>
+           
+          </thead>
+          <tbody>
+            <tr *ngFor="let document of documents">
+                <td *ngIf=" document.type == 12">{{document.date}}</td>
+                <td *ngIf=" document.type == 12">{{document.num}}</td>
+                <td *ngIf=" document.type == 12">{{document.fournisseur_id}}</td>
+                <td *ngIf=" document.type == 12">{{document.rs}}</td>
+                <td *ngIf=" document.type == 12"></td>
+                <td *ngIf="document.type == 12"></td>
+                <td *ngIf="document.type == 12"></td>
+                <td *ngIf="document.type == 12"></td>
+
+               
+      </tr> 
+            
+              
+            </tbody>
+            <tfoot>
+                <tr>
+            
+              
+                    <th   colspan="5">TOTAL</th>
+                   
+                    <th >0.000</th> 
+                    <th >0.000</th>   
+                    <th >0.000</th>  
+                      
+                   
+          
+        
+                  </tr>
+            </tfoot>
+  
+        </table>
+  
+    </div>
+
+</div>

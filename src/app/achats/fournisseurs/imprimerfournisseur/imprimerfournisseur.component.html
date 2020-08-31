@@ -1,0 +1,44 @@
+<div >
+    
+    <div class="page-head2" id="sectionAimprimer">
+        <h1 class="radio3 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">LISTE DES FOURNISSEURS </b></a></h1>
+        <h4 class="radio36 f4">Date: {{myDate | date: 'mediumDate' }}</h4><br>
+        
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th>Code fournisseur </th>
+            <th>Raison sociale</th>
+            <th >M.F</th>
+            <th >Tel </th>
+            <th >Fax</th>
+            <th >GSM</th>
+            <th >Email </th>
+            <th >site web</th>
+            
+          </tr>
+         
+        </thead>
+        <tbody>
+        <tr *ngFor="let fournisseur of fournisseurs| orderBy:id">
+          <td>{{ fournisseur.code_frs}}{{fournisseur.id}}</td>
+          <td >{{ fournisseur.raison_social}}</td>
+          <td >{{ fournisseur.mf}}</td>
+          <td>{{ fournisseur.tel}}</td>
+          <td >{{ fournisseur.fax}}</td>
+          <td >{{ fournisseur.gsm}}</td>
+          <td>{{ fournisseur.email}}</td>
+          <td >{{ fournisseur.site_web}}</td>
+          
+</tr> 
+         
+            
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier caisse du jour</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div class="card-body">
+                <div >
+                  <div  class="form-group">
+                    <label for="date">Date caisse</label>   
+                    <input class="form-control label3" type="date" name="date" id="date" [(ngModel)]="caisse.date"  #date="ngModel"  required >
+                  
+                  </div>
+                  <div  class="form-group">
+                    <label for="fond_caisse">Fond de caisse (dt) </label>   
+                    <input class="form-control label3" type="text" name="fond_caisse"  id="fond_caisse" placeholder="fond caisse" [(ngModel)]="caisse.fond_caisse" required > 
+                    
+                  </div>
+                  <div  class="form-group">
+                    <label for="montant_final">Montant final (dt) </label>   
+                    <input class="form-control label3" type="text" name="montant_final"  id="montant_final" placeholder="montant final" [(ngModel)]="caisse.montant_final" required> 
+                    
+                  </div>
+                  <div class="form-group"> 
+                    <label for="login" >Login</label>
+
+                    <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="caisse.login"  required>
+                      
+                      <option
+                        
+                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                        [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                    </option>
+                    </select>
+                    
+                  </div>
+                  <div class="form-group"> 
+                    <label for="magasin_id" >Magasin</label>
+
+                    <select  id="magasin_id" name="magasin_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="caisse.magasin_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let magasin of magasins.controls; index as i"
+                        [value]="magasin.value.id">{{magasin.value.libelle}}
+                    </option>
+                    </select>
+                    
+                  </div>
+                  <br>
+              <button class="b8 btn btn-space btn-primary"  type="submit"(click)="modifierCaisse()">Enregistrer</button>
+              <button class=" btn btn-space btn-primary"  type="submit" (click)="reset()">Annuler</button>
+            </div>
+          </div>
+        </div>
+     
+    <br>
+    
+    </div>
+  </div>
+</div>
+</div>

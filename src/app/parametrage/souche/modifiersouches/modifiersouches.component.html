@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier souche</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+           
+             
+              <br>
+              
+              <div class="form-group ">
+                <label for="num">Num Souche:</label>
+                  <input [(ngModel)]="souche.num" id="num" class="form-control1 label3"  type="text"  placeholder="  numero" #num="ngModel" name="num" minlength="4" maxlength="20" pattern="[A-Za-z0-9\s]*" required>
+                  <div *ngIf="num.invalid && (num.dirty || num.touched)"
+                  class="f55">
+            
+                  <div *ngIf="num.errors.required">
+                     champs num est obligatoire.
+                  </div>
+                  <div *ngIf="num.errors.minlength">
+                    num doit comporter au moins 4 caractères.
+                  </div>
+                  <div *ngIf="num.errors.maxlength">
+                    num doit contenir au maximum 20 caractères.
+                  </div>
+                  <div *ngIf="num.errors.pattern">
+                    veuillez respecter le format requis
+                  </div>
+                </div>
+                </div>
+                <div class="form-group"> 
+                  <label for="banque_id" >Banque</label>
+
+                  <select  id="banque_id" name="banque_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="souche.banque_id" required>
+                    
+                    <option
+                      
+                      *ngFor="let banque of banques.controls; index as i"
+                      [value]="banque.value.id">{{banque.value.libelle}}
+                  </option>
+                  </select>
+                  
+                </div>
+              <div class="form-group ">
+                <label for="du">DU:</label>
+                  <input [(ngModel)]="souche.du" id="du" class="form-control1 label3"  type="date"   name="du" required>
+                </div>
+              <div class="form-group ">
+                <label for="au">AU:</label>
+                  <input [(ngModel)]="souche.au" id="au" class="form-control1 label3"  type="date"   name="au" required>
+                </div>
+                   
+       
+              <button class="btn1 btn btn-space btn-primary radio0000"  type="submit" (click)="modifierSouche()">Modifier</button>
+              <button class="btn1 btn btn-space btn-primary"  type="submit"  (click)="reset()">Annuler</button>
+              <br><br>
+                </div>
+                  
+                  
+                </div>
+              </div>
+           
+         
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

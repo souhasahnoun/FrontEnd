@@ -1,0 +1,44 @@
+<div >
+    
+    <div class="page-head2"id='sectionAimprimer'>
+        <h1 class="radio33 f4"><a href="javascript:imprimer('sectionAimprimer')" ><b class="f1">LISTE DES CLIENTS </b></a></h1>
+        <h4 class="radio35 f4">Date: {{myDate | date: 'mediumDate' }}</h4><br>
+        
+        <table class="f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th >Code client </th>
+            <th >Type </th>
+            <th>Raison sociale</th>
+            <th >M.F</th>
+            <th >Tel </th>
+            <th >GSM</th>
+            <th >Email </th>
+            <th >Plafond</th>
+            
+          </tr>
+         
+        </thead>
+        <tbody>
+        <tr *ngFor="let client of clients| orderBy:id">
+          <td >{{ client.code_clt}}{{client.id}}</td>
+          <td >{{ client.type}}</td>
+          <td >{{ client.raison_social}}</td>
+          <td >{{ client.mf}}</td>
+          <td >{{ client.tel}}</td>
+          <td >{{ client.gsm}}</td>
+          <td >{{ client.email}}</td>
+          <td >{{ client.plafond}}</td>
+          
+</tr> 
+         
+            
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

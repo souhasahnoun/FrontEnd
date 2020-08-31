@@ -1,0 +1,47 @@
+<div >
+    
+    <div class="page-head2">
+        <h1 class="radio1001 f1 f4"><b>ETAT DE STOCK du --------------- au --------------- </b></h1>
+        <h4 class="radio36 f4">Date impression: {{myDate | date: 'mediumDate' }}</h4>
+        <h4 class="radio36 f4" *ngIf="tracabilitestock.login">Par :{{tracabilitestock.login}}</h4>
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr  class="t881"> 
+            <th >Id produit </th>
+            <th >Ref</th>
+            <th >Produit</th>
+            <th >Stock initial</th>
+            <th >Qte achat</th>
+            <th >Qte vente</th>
+            <th >Stock theorique</th>
+            <th>Stock physique</th>
+            <th >Ecart</th>
+           
+            
+          </tr>
+         
+        </thead>
+        <tbody>
+        <tr *ngFor="let produit of produits">
+          <td >{{produit.id}}</td>
+          <td >{{produit.ref_prod}}</td>
+          <td >{{produit.nom_prod}}</td>
+          <td >{{produit.stk_alert}}</td>
+          <td >------</td>
+          <td >------</td>
+          <td >------</td>
+          <td >------</td>
+          <td >------</td>
+          
+          
+</tr>     
+          </tbody>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

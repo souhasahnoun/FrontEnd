@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div>
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                   
+                <h3>Modifier retrait caisse</h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div class="card-body">
+                <div>
+              
+              
+                  <div  class="form-group">
+                    <label for="montant">Montant (dt)</label>   
+                    <input class="form-control label3" type="text"  [(ngModel)]="retraitcaisse.montant" required>
+                  </div>
+                  <div class="form-group "> 
+                    <label for="type">Type de retrait</label>
+
+                      <select  class="form-control label3"   [(ngModel)]="retraitcaisse.type" required  >
+                     
+                        <option value="Especes">Especes</option>
+                        <option value="Virement">Virement</option>
+                        <option value="Cheque">Cheque</option>
+                        <option value="Traites">Traites</option>
+                        <option value="Cheque cadeaux">Cheque cadeaux</option>
+                      </select>
+                  </div>
+                  <div  class="form-group">
+                    <label for="date">Date </label>   
+                    <input [(ngModel)]="retraitcaisse.date" id="date"  class="form-control label3"  required> 
+                 
+                  </div>
+                  <div  class="form-group">
+                    <label for="designation">Désignation </label>   
+                    <input [(ngModel)]="retraitcaisse.designation" id="designation"  class="form-control label7"  required > 
+                    
+                  </div>
+                  <div  class="form-group">
+                    <label for="beneficiaire">Bénificiaire </label>   
+                    <input [(ngModel)]="retraitcaisse.beneficiaire" id="beneficiaire"  class="form-control label3"  required > 
+                    
+                  </div>
+                  <div  class="form-group">
+                    <label for="num_cheque">Num Cheque </label>   
+                    <input [(ngModel)]="retraitcaisse.num_cheque" id="num_cheque"  class="form-control label3"  required > 
+                   
+                  </div>
+                  <div  class="form-group">
+                    <label for="banque">Banque </label>   
+                    <input [(ngModel)]="retraitcaisse.banque" id="banque"  class="form-control label3"  required> 
+                   
+                  </div>
+                  <div class="form-group"> 
+                    <label for="login" >Login</label>
+  
+                    <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="retraitcaisse.login"  required>
+                      
+                      <option
+                        
+                        *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                        [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                    </option>
+                    </select>
+                    
+                  </div>
+                  <div class="form-group"> 
+                    <label for="caisse_id" >Caisse</label>
+  
+                    <select  id="caisse_id" name="caisse_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="retraitcaisse.caisse_id"  required>
+                      
+                      <option
+                        
+                        *ngFor="let caisse of caisses.controls; index as i"
+                        [value]="caisse.value.id">{{caisse.value.id}}
+                    </option>
+                    </select>
+                    
+                  </div>
+        
+                  <button class="b9 btn btn-space btn-primary" type="submit" (click)="modifierRetrait()">Enregistrer</button>
+                  
+                  <button class=" btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                  <a href="/imprimerretraitcaisse1/{{retraitcaisse.id}}" target="_blanc" class="btn btn-space btn-primary" >Imprimer recu</a>
+
+                </div>
+
+                </div>
+              </div>
+           
+          <br>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

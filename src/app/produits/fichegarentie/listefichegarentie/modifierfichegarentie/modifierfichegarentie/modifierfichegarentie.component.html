@@ -1,0 +1,132 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    
+      <div class="main-content">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card3">
+              <div class="card-header">
+                <h3>Modifier fiche de garantie </h3><h4 class=" h5"><b>{{message}}</b></h4>
+                </div>
+                <div>
+                    <br>
+              <div class="tt10" *ngIf="garentie.num" >Fiche de garantie n°{{garentie.num}}</div>
+             
+              <br>
+                <div class="form-group radio0000 "> 
+                    
+                  <label for="date">Date</label>
+                  <input type="date" name="date" class="form-control1 label3" id="date"   [(ngModel)]="garentie.date"  />
+                
+                  </div>
+                <div class="form-group "> 
+                    
+                  <label for="nom">Nom & Prénom:</label>
+                  <input type="text" name="nom" class="form-control1 label7" id="nom"   [(ngModel)]="garentie.nom"  />
+                
+                  </div>
+                  
+                  <div class="form-group "> 
+                    
+                    <label for="tel">Tél:</label>
+                    <input type="text" name="tel" class="form-control1 label3"  id="tel"  [(ngModel)]="garentie.tel"  />
+                  
+                    </div>
+                    <div class="form-group "> 
+                    
+                      <label for="piece">Pièce:</label>
+                      <input type="text" name="piece" class="form-control1 label7" id="piece"  [(ngModel)]="garentie.piece"  />
+                    
+                      </div>
+                  <div class="form-group "> 
+                    
+                    <label for="accessoire"> Accessoire:</label>
+                    <input type="text" name="accessoire" class="form-control1 label7" id="accessoire"  [(ngModel)]="garentie.accessoire" />
+                  
+                    </div>
+                    <div class="form-group radio0000"> 
+                    
+                      <label for="panne">Panne:</label>
+                      <input type="text" name="panne" class="form-control1 label7" id="panne"  [(ngModel)]="garentie.panne" />
+                    
+                      </div>
+                      <div class="form-group "> 
+                    
+                        <label for="tache"> Taches effectuées:</label>
+                        <input type="text" name="tache" class="form-control1 label3" id="tache"  [(ngModel)]="garentie.tache" />
+                      
+                        </div>
+                        <div class="form-group "> 
+                    
+                          <label for="prix"> Prix(DT):</label>
+                          <input type="text" name=Prix class="form-control1 label3" id="prix"  [(ngModel)]="garentie.prix" />
+                        
+                          </div>
+                          <div class="form-group "> 
+                    
+                            <label for="recu_par"> Réçu par:</label>
+                            <input type="text" name="recu_par" class="form-control1 label7" id="recu_par"  [(ngModel)]="garentie.recu_par" />
+                          
+                            </div>
+                            <div class="form-group  "> 
+                              <label for="magasin_id" >Magasin</label>
+            
+                              <select  id="magasin_id" name="magasin_id" class="form-control label7" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.magasin_id"  required>
+                                
+                                <option
+                                  
+                                  *ngFor="let magasin of magasins.controls; index as i"
+                                  [value]="magasin.value.id">{{magasin.value.libelle}}
+                              </option>
+                              </select>
+                            
+                            </div>
+                            <div class="form-group  radio0000"> 
+                              <label for="login" >login</label>
+            
+                              <select  id="login" name="login" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.login"  required>
+                                
+                                <option
+                                  
+                                  *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                                  [value]="utilisateur.value.login">{{utilisateur.value.login}}
+                              </option>
+                              </select>
+                            
+                            </div>
+
+                            <div class="form-group  "> 
+                              <label for="utilisateur_id" >ID Utilisateur</label>
+            
+                              <select  id="utilisateur_id" name="utilisateur_id" class="form-control label3" size="1" (change)="onSelectType($event.target)" [(ngModel)]="garentie.utilisateur_id"  required>
+                                
+                                <option
+                                  
+                                  *ngFor="let utilisateur of utilisateurs.controls; index as i"
+                                  [value]="utilisateur.value.id">{{utilisateur.value.id}}
+                              </option>
+                              </select>
+                            
+                            </div>
+                            <br>
+                            <button class="b9 btn btn-space btn-primary" type="submit" (click)="modifierGarentie()">Enregistrer</button>
+                  
+                  <button class=" btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+                  <a routerLink="/imprimerfichegarentie/{{garentie.id}}" target="_blanc" class=" btn btn-space btn-primary" >Imprimer recu</a>
+                  <br>   <br>
+                </div>
+                </div>
+              </div>
+           
+       
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+

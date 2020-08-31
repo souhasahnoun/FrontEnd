@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div >
+  <div class="am-content">
+    <div class="page-head">
+        <h2>ETATS COMPTES CLIENTS </h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Etat</a></li>
+          <li class="breadcrumb-item"><a href="/etatcomptesclients">Etat comptes clients</a></li>
+        </ol>
+    </div>
+    <div class="main-content">
+      <div class="row">
+          
+        <div class="col-md-6">
+          <div class="card3">
+            <div class="card-header">
+              
+              <h3>Top clients </h3>
+            </div>
+              
+            <div class="card-body">
+              <form target="_blanc">
+                 
+                <div class="form-group radio1 "> 
+                    <label for="top">Top:</label>
+
+                      <select class="form-control1 label7" id="top" name="top" [(ngModel)]="top" >
+                        <option>Tous</option>
+                        <option value=10>10</option>
+                        <option value=50>50</option>
+                        <option value=100>100</option>
+                        <option value=500>500</option>
+                        <option value=1000>1000</option>
+                      </select>
+                </div>
+                <div class="form-group "> 
+                    <label for="ordonner">Ordonner par:</label>
+
+                      <select class="form-control1 label7" name="ordonner">
+                        <option value="Total des ventes">Total des ventes</option>
+                        <option value="Total des encours">Total des encours</option>
+                      </select>
+                </div>
+                  
+                  
+                   
+                  <a class="b8 btn btn-space btn-primary"  href="/imprimeretatcomptec"  target="_blanc">Imprimer</a>
+                  <button class="btn btn-space btn-primary" type="submit" (click)="reset()">Annuler</button>
+               
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+           
+          

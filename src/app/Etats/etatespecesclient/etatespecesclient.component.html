@@ -1,0 +1,217 @@
+<div >
+    
+      <div class="page-head1">
+          <h1 class="radio31"><b>ETAT DES ESPECES CLIENTS</b></h1>
+          <h4 class="radio41">Date d'impression:  <span class="radio1110">{{myDate | date: 'mediumDate' }}</span> </h4><br>
+          <h3 class="radio33"><b>Réglements espéces (TICKETS)</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>Ticket </th>
+              <th>Date réglement</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody *ngFor="let lignebordereau of lignebordereaux">
+            <tr class="t7" *ngFor="let reglementclt of reglementclts">
+              <td *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'ticket'">{{reglementclt.num}}</td>
+              <td   *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'ticket'">{{reglementclt.date}}</td>
+              <td  *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'ticket'">{{reglementclt.montant}}</td>
+            </tr>
+     
+           
+                
+            </tbody>
+            <tfoot>
+              <tr>
+            
+              
+                <td colspan="2"></td>
+                <td>0</td>  
+      
+  
+              </tr>
+            </tfoot>
+        </table>
+        <br>
+
+        <h3 class="radio33"><b>Réglements espéces (BLs)</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>BL </th>
+              <th>Date réglement</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody *ngFor="let lignebordereau of lignebordereaux">
+            <tr class="t7" *ngFor="let reglementclt of reglementclts">
+              <td *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'BL'">{{reglementclt.num}}</td>
+              <td   *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'BL'">{{reglementclt.date}}</td>
+              <td  *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'BL'">{{reglementclt.montant}}</td>
+            </tr>
+     
+           
+                
+            </tbody>
+            <tfoot>
+              <tr>
+            
+              
+                <td colspan="2"></td>
+                <td>0</td>  
+      
+  
+              </tr>
+            </tfoot>
+        </table>
+        <br>
+
+        <h3 class="radio33"><b>Réglements espéces (FACTURE)</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>Facture </th>
+              <th>Date réglement</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody *ngFor="let lignebordereau of lignebordereaux">
+            <tr class="t7" *ngFor="let reglementclt of reglementclts">
+              <td *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'facture'">{{reglementclt.num}}</td>
+              <td   *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'facture'">{{reglementclt.date}}</td>
+              <td  *ngIf="lignebordereau.reglementcls_id == reglementclt.id && lignebordereau.type == 'facture'">{{reglementclt.montant}}</td>
+            </tr>
+     
+           
+                
+            </tbody>
+            <tfoot>
+              <tr>
+            
+              
+                <td colspan="2"></td>
+                <td>0</td>  
+      
+  
+              </tr>
+            </tfoot>
+        </table>
+        <br>
+
+        <h3 class="radio34"><b>Entrees</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>Designation </th>
+              <th>Date dep</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="t7" *ngFor="let entreecaisse of entreecaisses">
+                  <td>{{entreecaisse.designation}}</td>
+                  <td>{{entreecaisse.date}}</td>
+                  <td>{{entreecaisse.montant}}</td>
+              </tr>
+            <tr>
+            
+              
+              <td colspan="2"></td>
+              <td>0.000</td>  
+    
+
+            </tr>
+           
+                
+            </tbody>
+        </table>
+        <br>
+
+        <h3 class="radio34"><b>Depenses</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>Designation </th>
+              <th>Date dep</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="t7" *ngFor="let retraitcaisse of retraitcaisses">
+                  <td>{{retraitcaisse.designation}}</td>
+                  <td>{{retraitcaisse.date}}</td>
+                  <td>{{retraitcaisse.montant}}</td>
+              </tr>
+            <tr>
+            
+              
+              <td colspan="2"></td>
+              <td>	0.0000</td>  
+    
+
+            </tr>
+           
+             
+            </tbody>
+        </table>
+        <br><br>
+        <label class="radio3 tt"><b>TOTAL ESPECE = 0000000,000</b></label>
+        <div class="card-header"></div>
+            <h3 class="radio35"><b>Bon de réception</b></h3>
+          <table class=" radio1 t6 table-sm  table-bordered ">
+            <thead >
+      
+            <tr> 
+              <th>Bon de réception </th>
+              <th>Date réglement</th>
+              <th >Montant</th>
+       
+              
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="t7" *ngFor="let reception of receptions">
+              <td>{{reception.num}}</td>
+              <td>{{reception.date}}</td>
+              <td>{{reception.prix}}</td>
+          </tr>
+            <tr>
+            
+              
+              <td colspan="2"></td>
+              <td>0</td>  
+    
+
+            </tr>
+           
+                
+            </tbody>
+        </table>
+        <br>
+       
+        </div>
+        
+    
+</div>   

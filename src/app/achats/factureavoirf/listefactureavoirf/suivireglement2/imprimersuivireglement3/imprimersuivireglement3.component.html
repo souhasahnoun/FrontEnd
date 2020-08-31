@@ -1,0 +1,77 @@
+<div id='sectionAimprimer'>
+    
+    <div class="page-head2" id="tblData">
+        <h1 class="radio32 f4"><a href="javascript:imprimer('sectionAimprimer')"> <b  class="f1">SUIVI PAIEMENT  </b></a>
+          
+        </h1>
+        <br><br>
+        
+        <!--<table class="tr331  t44 table-sm t88  table-bordered2">
+            <thead >
+      
+            <tr  class="f4 f1 ">
+              <th class="logo2" *ngIf="document.type == 11"> N° Facture:{{document.num}} <br><br> Date:{{document.date}} </th>
+             
+              <th class="logo2" *ngIf="document.type == 11 && document.fournisseur_id == fournisseur.id">  Code Fournisseur: {{fournisseur.code_frs}}<br>Raison Sociale : {{fournisseur.raison_social}}<br>Code TVA : {{fournisseur.mf}} <br>Adresse: {{fournisseur.adresse}}</th>            </tr>
+            
+          </thead>
+          
+            </table>-->
+          
+        
+       
+
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+           <thead>
+            <tr>
+              <th>Date paiement</th>
+              <th>Type paiement</th>
+              <th>Montant payé (DT)</th>
+            </tr>
+           </thead>
+
+            <tbody *ngFor="let paiementfrs of paiementfrss">
+              <tr *ngIf="paiementfrs.id">
+                <td >{{paiementfrs.date}}</td>
+                <td *ngIf="paiementfrs.mode =='cheque'">{{paiementfrs.type_ch}} / {{paiementfrs.num}}</td>
+                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.type_traite}} / {{paiementfrs.num}}</td>
+                <td *ngIf="paiementfrs.mode =='espece'"> Especes </td>
+                <td *ngIf="paiementfrs.mode =='cheque cadeau'">cheque cadeau/ {{paiementfrs.num}} </td>
+                <td *ngIf="paiementfrs.mode =='Tpe'">tpe </td>
+                <td *ngIf="paiementfrs.mode =='virement'">virement </td>
+                <td>{{paiementfrs.montant}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <br>
+        <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead >
+    
+          <tr > 
+            <th colspan="2">Montant BL</th>
+            <th>	0,000</th>
+         
+            
+          </tr>
+          <tr > 
+            <th colspan="2">Montant Payé</th>
+            <th>	0,000</th>
+         
+            
+          </tr>
+          <tr > 
+            <th colspan="2">Montant Restant</th>
+            <th>	0,000</th>
+         
+            
+          </tr>
+        </thead>
+       
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

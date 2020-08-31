@@ -1,0 +1,58 @@
+<div id='sectionAimprimer' >
+    
+    <div class="page-head2">
+      <h1 class="radio511 f4"><a href="javascript:imprimer('sectionAimprimer')"  ><b class="f1">BORDEREAU  DES CHEQUES CLIENTS</b></a></h1>
+      <br>  
+      <table class=" f4 t44 table-sm t88 table-bordered2 ">
+          <thead *ngFor="let reglementclt of reglementclts">
+            <tr class="td001" *ngFor="let banque of banques" > 
+              <th class="  f4" colspan="5" *ngIf="banque.libelle == reglementclt.banque"><b> {{banque.titulaire_cheque}}    {{banque.rib}}</b></th>
+              
+   
+            </tr>
+            <tr class="td001" *ngFor="let bordereau of borderaux"> 
+                <th class="  f4" colspan="5" *ngIf="reglementclt.banque && reglementclt.mode== 'cheque'" ><b>BORDEREAU D'ENCAISSEMENT DES CHEQUES Nº {{bordereau.num}}</b></th>
+                
+     
+              </tr>
+        
+         
+        </thead>
+        <tr > 
+          <th >Nº DE CHEQUE</th>
+          <th >BANQUE</th>
+          <th >NOM ET PRENOM</th>
+          <th >MONTANT</th>
+          <th >DATE</th>
+       
+
+        </tr>
+        <tbody  *ngFor="let reglementclt of reglementclts">
+       
+        <tr >
+          <td  *ngIf="reglementclt.mode== 'cheque'">{{reglementclt.num}}</td>
+          <td  *ngIf=" reglementclt.mode== 'cheque'">{{reglementclt.banque}}</td>
+          <td  *ngIf=" reglementclt.mode== 'cheque'">{{reglementclt.client}}</td>
+          <td  *ngIf=" reglementclt.mode== 'cheque'">{{reglementclt.montant}}</td>
+          <td  *ngIf=" reglementclt.mode== 'cheque'">{{reglementclt.date}}</td>
+         
+          
+</tr> 
+      
+
+            
+          </tbody>
+          <tfoot>
+            <tr class="tr3">
+              <td   colspan="3"><b>TOTAL</b></td>
+              <td ><b>0.000 DT</b></td>
+              <td ></td>
+          </tr> 
+          </tfoot>
+      </table>
+      
+     
+      </div>
+      
+  
+</div>   

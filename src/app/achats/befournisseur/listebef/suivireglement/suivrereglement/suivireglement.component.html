@@ -1,0 +1,47 @@
+
+<html>
+    <body>
+        <br><br>
+        <p class="p3"><b>Suivi paiement de BL fournisseur </b></p>
+        <br> <br>
+        <h4 class=" h5"><b>{{message}}</b></h4><br>
+        <a href="/imprimersuivireglement1/{{paiementfrs.id}}" target="_blanc" class="imp img2 s7-print" title="imprimer"></a>
+        <table class=" t34 table-sm  table-bordered ">
+            <thead class="thead2">
+              <tr>
+                <th>Date Paiement</th>
+                <th >Type Paiement </th>
+                <th >Montant payé (DT) </th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let paiementfrs of paiementfrss">
+              <tr *ngIf="paiementfrs.id">
+                <td>{{paiementfrs.date}}</td>
+                <td *ngIf="paiementfrs.mode =='cheque'">{{paiementfrs.type_ch}} / {{paiementfrs.num}}</td>
+                <td *ngIf="paiementfrs.mode =='traite'">{{paiementfrs.type_traite}} / {{paiementfrs.num}}</td>
+                <td *ngIf="paiementfrs.mode =='espece'"> Especes </td>
+                <td *ngIf="paiementfrs.mode =='cheque cadeau'">cheque cadeau/ {{paiementfrs.num}} </td>
+                <td *ngIf="paiementfrs.mode =='tpe'">tpe </td>
+                <td *ngIf="paiementfrs.mode =='virement'">virement </td>
+                <td>{{paiementfrs.montant}} </td>
+              </tr>
+              
+            </tbody>
+            <tfoot>
+              <tr class="tdd">
+                <td colspan="2"><b>Total Paiement</b></td>
+                 <td class="td00"><b>0,000 DT</b></td>
+ 
+               </tr>
+               <tr class="tdd" >
+                 <td colspan="2"><b>Montant Restant</b></td>
+                  <td class="td2"><b>0,000 DT</b></td>
+  
+                </tr>   
+            </tfoot>
+          </table> 
+        
+         <button class="b55 btn btn-dark" onClick="self.close()">Fermer</button>
+    </body>
+</html> 
+
